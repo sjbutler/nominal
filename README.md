@@ -23,18 +23,18 @@ to run using Java 7, but a lot of work would be entailed.
 Dependencies
 ============
 nominal has the following dependencies:
-(1) SLF4J - nominal uses SLF4J for logging. Incorporating SLF4J in 
+  1 SLF4J - nominal uses SLF4J for logging. Incorporating SLF4J in 
     (exisitng) code is straightforward. A copy of slf4j-api.x.x.x.jar 
     must be on the classpath when compiling and running nominal. 
     Another slf4j jar will also be required to support logging 
     -- see http://slf4j.org/ for more information
     nominal was coded against slf4j v1.7.7, so v1.7.7 or greater
     should work
-(2) mdsc - nominal uses mdsc which is available at 
+  2 mdsc - nominal uses mdsc which is available at 
     https://github.com/sjbutler/mdsc/
-(3) idtk - nominal uses classes from idtk which is available at 
+  3 idtk - nominal uses classes from idtk which is available at 
     https://github.com/sjbutler/idtk-j/
-(4) ANTLR - ANTLR 4 is required to run nominal and to compile any
+  4 ANTLR - ANTLR 4 is required to run nominal and to compile any
     changes to the grammar. antlr-x.x-complete.jar must be on 
     the classpath. nominal was coded against ANTLR v4.4
     See http://www.antlr.org/
