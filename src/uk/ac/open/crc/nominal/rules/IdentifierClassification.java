@@ -18,9 +18,10 @@ package uk.ac.open.crc.nominal.rules;
 
 import java.util.HashMap;
 import java.util.List;
-import uk.ac.open.crc.nominal.IdentifierName;
 import uk.ac.open.crc.idtk.Modifier;
 import uk.ac.open.crc.idtk.Species;
+import uk.ac.open.crc.nominal.IdentifierName;
+import uk.ac.open.crc.nominal.util.GuiActionReference;
 
 /**
  * A set of classifiers for identifier names. The classifiers reflect 
@@ -34,17 +35,12 @@ import uk.ac.open.crc.idtk.Species;
 public enum IdentifierClassification {
     
     // Class and interface
-    // try package private
-    
-    
-    
-    // Class and interface
     CLASS ( "class" ),
     INTERFACE ( "interface" ), 
     INTERFACE_MIX_IN ( "interface-mix-in" ),
-    CLASS_GUI_ACTION ( "class-gui-action" ),        // interesting challenge to detect anything other than the obvious cases
+    CLASS_GUI_ACTION ( "class-gui-action" ),
     CLASS_STATIC_SERVICES ( "class-static-services" ),
-    CONSTRUCTOR ( "constructor" ),             // note that this is never used for testing purposes, but may be useful
+    CONSTRUCTOR ( "constructor" ),  // note that this is never tested
     
     // Enumerations and annotations -- not used ATM, but in for completeness and expansion
     ANNOTATION ( "annotation" ),
@@ -68,15 +64,15 @@ public enum IdentifierClassification {
     FIELD_CONSTANT ( "field-constant" ),
     FIELD_VARIABLE ( "field-variable" ),
     // specific
-    FIELD_CONSTANT_BOOLEAN ( "field-constant-boolean" ),  // doesn't make much sense, but may be seen
+    FIELD_CONSTANT_BOOLEAN ( "field-constant-boolean" ),  
 //    @Deprecated  // no significant evidence found during survey to show a difference between numeric and other references.
-//    FIELD_CONSTANT_NUMERIC ( "field-constant-numeric" ),  // is it necessary or useful to distinguish numeric?
+//    FIELD_CONSTANT_NUMERIC ( "field-constant-numeric" ),  
     FIELD_CONSTANT_COLLECTION_REFERENCE ( "field-constant-collection-reference" ),
     FIELD_CONSTANT_OTHER ( "field-constant-other" ),
     FIELD_CONSTANT_STRING ( "field-constant-string" ),
     FIELD_CONSTANT_STRING_I18N ( "field-constant-string-i18n" ),  // not yet used -- need to develop mechanism for classifying identifier names
-    // consider revision so that there is a final-static-mutable and final-static-immutable
-    // division
+    // consider revision so that there is a final-static-mutable 
+    // and final-static-immutable division
     // difficult to see how that might work and be understood.
     
     FIELD_VARIABLE_ACTION ( "field-variable-action" ),
@@ -172,7 +168,8 @@ public enum IdentifierClassification {
      */
     public static IdentifierClassification getClassificationFor( String description ) {
         if ( description == null || description.isEmpty() ) {
-            throw new IllegalArgumentException( "null reference or empty String passed to getClassificationFor()" );
+            throw new IllegalArgumentException( 
+                    "null reference or empty String passed to getClassificationFor()" );
         }
         
         // O(n) -- surely there is an easier solution?
@@ -372,7 +369,9 @@ public enum IdentifierClassification {
                 classification = LABEL;
                 break;
             default:
-                throw new IllegalStateException( "Unexpected species of identifier name found in classifyRemainder" );
+                throw new IllegalStateException( 
+                        "Unexpected species of identifier name found "
+                                + "in classifyRemainder" );
         }
         
         return classification;
@@ -391,7 +390,9 @@ public enum IdentifierClassification {
     
     // is this a realistic test? Review
     private static boolean isBoolean( String typeName ) {
-        return typeName.equalsIgnoreCase( "boolean" ) || typeName.matches( "(?i).*boolean$" );
+        return typeName.equalsIgnoreCase( 
+                "boolean" ) 
+                || typeName.matches( "(?i).*boolean$" );
     }
     
     
@@ -399,13 +400,13 @@ public enum IdentifierClassification {
     public static boolean isCollection( IdentifierName identifierName ) {
         return identifierName.isArrayDeclaration() 
                 || identifierName.isCollectionReference();
-        // IMPLEMENT A LOOKUP SYSTEM for the Java lib
         // needs the javaref
     }
     
     // crude!! -- waiting for javaref
     private static boolean isMixInInterface( IdentifierName identifierName ) {
-        return identifierName.species().isInterface() && identifierName.nameString().endsWith( "able" );
+        return identifierName.species().isInterface() 
+                && identifierName.nameString().endsWith( "able" );
 
         // needs javaref
 //        throw new UnsupportedOperationException();
@@ -429,14 +430,14 @@ public enum IdentifierClassification {
         String nameString = identifierName.nameString();
         String typeName = identifierName.type();
                 
-        return ( nameString.endsWith( "Action" ) 
+        return ( GuiActionReference.isAction( typeName )
+                || nameString.endsWith( "Action" ) 
                 || nameString.endsWith( "Event" )
                 || nameString.endsWith( "Listener" ) 
                 || typeName.endsWith( "Action")  
                 || typeName.endsWith( "Event")  
                 || typeName.endsWith( "Listener") );
 //        throw new UnsupportedOperationException();
-        // IMPLEMENT A LOOKUP SYSTEM FOR THE Java Lib
         // needs javaref
     }
 }
