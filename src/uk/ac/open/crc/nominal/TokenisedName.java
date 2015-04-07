@@ -19,7 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Encapsulates a tokenised name; a name with its tokens, part of
+ * speech tags for the tokens and a phrase summary. 
  *
  *
  * @author Simon Butler (simon@facetus.org.uk)
@@ -35,35 +36,14 @@ public class TokenisedName {
     
     private final List<String> normalisedTokensAsText;
 
-//    // experimental alternative constructor.
-//    // if posTags is set to null ...
-//    public TokenisedName( 
-//            String nameString, 
-//            List<Token> unnormalisedTokens, 
-//            List<String> posTags,
-//            String phraseSummary ) {
-//        this.nameString = nameString;
-//        this.unnormalisedTokens = unnormalisedTokens;
-//        this.posTags = posTags;
-//        this.phraseSummary = phraseSummary;
-//        
-//        this.taggedTokens = new ArrayList<>();
-//        for ( int i = 0; i < this.unnormalisedTokens.size(); i++ ) {
-//            TaggedToken tt = new TaggedToken( 
-//                    this.unnormalisedTokens.get( i ).text(), 
-//                    this.posTags.get( i ) );
-//            this.taggedTokens.add( tt );
-//        }
-//        
-//        this.normalisedTokensAsText = new ArrayList<>();
-//        this.taggedTokens.stream()
-//                .forEach( tt -> { 
-//                    this.normalisedTokensAsText.add( tt.text() );
-//                });
-//        
-//    }
-    
-
+    /**
+     * Creates a new tokenised name using the specified name, tokens and 
+     * phrase summary. 
+     * 
+     * @param nameString the name as it is found in source code
+     * @param taggedTokens the output of a name tokeniser with PoS tags
+     * @param phraseSummary a phrase summary of the name
+     */
     public TokenisedName( 
             String nameString, 
             List<TaggedToken> taggedTokens,
@@ -87,27 +67,48 @@ public class TokenisedName {
     }
     
     
+    /**
+     * Retrieves the number of tokens.
+     * @return the number of tokens
+     */
     public int tokenCount() {
         return this.unnormalisedTokens.size();
     }
     
+    
+    /**
+     * Retrieves the list of part of speech tags
+     * @return a {@code List} of PoS tags.
+     */
     public List<String> posTags() {
         return this.posTags;
     }
+    
     
     public String nameString() {
         return this.nameString;
     }
     
+    /**
+     * Retrieves the phrase summary.
+     * @return a phrase summary
+     */
     public String phraseSummary() {
         return this.phraseSummary;
     }
     
+    /**
+     * A list of the text of the tokens normalised to lower case.
+     * @return a {@code List} of the tokens
+     */
     public List<String> normalisedTokensAsText() {
         return this.normalisedTokensAsText;
     }
     
-    
+    /**
+     * Recovers the list of tagged tokens.
+     * @return a {@code List} of {@code TaggedTokens}
+     */
     public List<TaggedToken> taggedTokens() {
         return this.taggedTokens;
     }
