@@ -2,14 +2,13 @@ package uk.ac.open.crc.nominal;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import uk.ac.open.crc.nominal.detectors.DetectorManager;
-import uk.ac.open.crc.nominal.information.Information;
 import uk.ac.open.crc.nominal.rules.RulesetGroup;
 import uk.ac.open.crc.nominal.rules.RulesetGroupFactory;
 
 /**
- *
+ * Provides a means of initialising the library, and testing 
+ * identifier names for compliance with conventions.
  *
  *
  * @author Simon Butler (simon@facetus.org.uk)
@@ -19,7 +18,8 @@ public class Nominal {
     /**
      * Creates an instance of {@code Nominal} using the default "AJC" conventions.
      * @return an instance of {@code Nominal}
-     * @throws IOException 
+     * @throws IOException  if there are problems opening or reading the 'ajc' 
+     * conventions.
      */
     public static Nominal create() throws IOException {
         return new Nominal( "ajc" );
@@ -29,7 +29,8 @@ public class Nominal {
      * Creates an instance of {@code Nominal} using the specified conventions.
      * @param conventionsName one of 'ajc','ejs' or 'jls'
      * @return an instance of {@code Nominal}
-     * @throws IOException 
+     * @throws IOException if there are problems opening or reading the 
+     * specified conventions 
      */
     public static Nominal create( String conventionsName ) throws IOException {
         return new Nominal( conventionsName );
@@ -40,7 +41,7 @@ public class Nominal {
      * nominal's language.
      * @param file a file containing conventions definition
      * @return an instance of {@code Nominal}
-     * @throws IOException 
+     * @throws IOException if there are problems opening or reading the file. 
      */
     public static Nominal create( File file ) throws IOException {
         return new Nominal( file, false );
@@ -52,7 +53,7 @@ public class Nominal {
      * nominal's language.
      * @param file a file containing partial conventions definition
      * @return an instance of {@code Nominal}
-     * @throws IOException 
+     * @throws IOException if there are problems opening or reading the file.
      */
     public static Nominal createWithDefaults( File file ) throws IOException {
         return new Nominal( file, true );

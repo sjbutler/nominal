@@ -17,10 +17,12 @@ limitations under the License.
 package uk.ac.open.crc.nominal.information;
 
 /**
+ * Records the correctness of the typography of a token according 
+ * to the rule specified for the body of the name the token is 
+ * part of. 
  *
  *
- *
- * @author Simon Butler (simon@facetus.org.uk>)
+ * @author Simon Butler (simon@facetus.org.uk)
  */
 public class BodyCapitalisationInformation extends TokenInformation {
 
@@ -36,8 +38,5 @@ public class BodyCapitalisationInformation extends TokenInformation {
     public boolean isCorrect() {
         return this.isCorrect;
     }
-    
-    
-    
     
 }

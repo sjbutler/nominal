@@ -103,7 +103,7 @@ public class RulesetGroupFactory {
      * @param conventionsDefinitionFile a file containing conventions defined 
      * in nominal's language
      * @return an instance of {@code RulesetGroup}.
-     * @throws java.io.IOException 
+     * @throws java.io.FileNotFoundException if specified file is not found.
      */
     public static RulesetGroup createRulesetGroup ( File conventionsDefinitionFile ) throws IOException {
         RulesetGroup rulesetGroup = new RulesetGroup();
@@ -133,7 +133,6 @@ public class RulesetGroupFactory {
         
         addDummyRulesets( rulesetGroup );
         
-        
         return rulesetGroup;
     }
     
@@ -148,7 +147,8 @@ public class RulesetGroupFactory {
      * @param conventionsDefinitionFile a file containing convention 
      * definitions in nominal's language
      * @return an instance of {@code RulesetGroup}.
-     * @throws java.io.IOException 
+     * @throws java.io.IOException if internal file is not found in jar.
+     * @throws java.io.FileNotFoundException if external nominal file is not found.
      */
     public static RulesetGroup createRulesetGroupWithDefaults( File conventionsDefinitionFile ) throws IOException {
         RulesetGroup rulesetGroup;
@@ -159,7 +159,7 @@ public class RulesetGroupFactory {
             LOGGER.warn(
                     "Unable to access default rules: {}", 
                     e.getMessage());
-            return null;
+            throw e;
         }
         
         FileReader fileReader;
@@ -190,9 +190,10 @@ public class RulesetGroupFactory {
     }
     
     
+    // inserts dummy rulesets in the 
+    // hierarchy to prevent NPEs during the recursive search up the tree
+    // for rules. Could be done better :-)
     private static void addDummyRulesets( RulesetGroup rulesetGroup ) {
-        // the following block of code inserts dummy rulesets in the 
-        // hierarchy to prevent NPEs during the recursion up the tree
         Ruleset fieldRuleSet = rulesetGroup.get( IdentifierClassification.FIELD );
         if ( fieldRuleSet == null  ) {
             fieldRuleSet = new Ruleset( IdentifierClassification.FIELD );

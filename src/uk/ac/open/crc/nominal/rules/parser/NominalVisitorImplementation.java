@@ -39,7 +39,7 @@ import uk.ac.open.crc.nominal.rules.StandaloneAbbreviationRule;
 import uk.ac.open.crc.nominal.rules.TypeAcronymRule;
 
 /**
- * Visitor that creates rules defined in {.}nom files.
+ * Visitor that creates rules defined in .nom files.
  *
  *
  * @author Simon Butler (simon@facetus.org.uk)

@@ -22,7 +22,7 @@ import java.util.List;
  * Summarises the spelling information for the entire identifier name.
  * Is this a practical proposition?
  *
- * @author Simon Butler (simon@facetus.org.uk>)
+ * @author Simon Butler (simon@facetus.org.uk)
  */
 public class SpellingSummaryInformation extends IdentifierInformation {
 
@@ -40,11 +40,19 @@ public class SpellingSummaryInformation extends IdentifierInformation {
     
     
     
-    // the notion of correctness is that:
-    // * every token is a recognised word or acronym, or iso country code
-    // * every token is a recognised word or acronym, or iso country code, preceded by correctly used branding or prefix
-    // * or the identifier name is a correctly used cipher.
-    // this is determined in SpellingDetector as it has access to the identifier name.
+    /**
+     * Reports whether the name can be summarised as being correctly spelt.
+     * <p>The notion of correctness is that:</p>
+     * <ol>
+     *  <li>every token is a recognised word or acronym, or iso country code</li>
+     *  <li>every token is a recognised word or acronym, or iso country code, 
+     * preceded by correctly used branding or prefix</li>
+     *  <li>or the identifier name is a correctly used cipher.</li>
+     * </ol>
+     * <p>Correctness is determined in {@linkplain uk.ac.open.crc.nominal.detectors.SpellingDetector} as it has 
+     * access to the identifier name.</p>
+     * @return {@code true} if each token is 'correct'
+    */
     @Override
     public boolean isCorrect() {
         return this.isCorrect;

@@ -35,7 +35,7 @@ public class PrefixInformation extends TokenInformation {
     
     /**
      * Constructor.
-     * @param isCorrect
+     * @param isCorrect indicates if the prefix usage is correct
      * @param isPrefix indicates whether the token has been recognised by the dictionary as a prefix
      * @param isPrefixIgnoreCase indicates the result of a case insensitive test of the token
      */

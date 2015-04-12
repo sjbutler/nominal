@@ -17,18 +17,17 @@ limitations under the License.
 package uk.ac.open.crc.nominal.detectors;
 
 import java.util.List;
-import uk.ac.open.crc.idtk.Species;
 import uk.ac.open.crc.nominal.IdentifierName;
 import uk.ac.open.crc.nominal.Token;
 import uk.ac.open.crc.nominal.information.TrailingDigitInformation;
 
 /**
  * Determines whether an identifier name contains a trailing digit, and whether
- * that use of a trailing digit is acceptable.
+ * that use of a trailing digit is acceptable. This functionality is 
+ * currently unavailable. It will be reinstated soon.
  *
  *
- * @author Simon Butler <simon@facetus.org.uk>
- * @version $Id: TrailingDigitDetector.java 56 2015-04-02 18:43:02Z simon $
+ * @author Simon Butler (simon@facetus.org.uk)
  */
 public class TrailingDigitDetector implements Detector {
 
@@ -99,7 +98,7 @@ public class TrailingDigitDetector implements Detector {
     }
     
     
-    // look very carefully at this logic 
+    // review this logic 
     private boolean checkAcceptability( IdentifierName identifierName ) {
         boolean isAcceptable;
 ////        List<IdentifierName> siblings = identifierNameStore.getSiblings( identifierName );

@@ -29,8 +29,7 @@ import uk.ac.open.crc.nominal.util.GuiActionReference;
  * linguistic rules.
  * <p>NB: this is not an exhaustive or complete list. The intention is that 
  * the classifications are <strong>useful</strong> and will be expanded as necessary.</p>
- * @author Simon Butler <simon@facetus.org.uk>
- * @version $Id: IdentifierClassification.java 56 2015-04-02 18:43:02Z simon $
+ * @author Simon Butler (simon@facetus.org.uk)
  */
 public enum IdentifierClassification {
     
@@ -164,7 +163,7 @@ public enum IdentifierClassification {
      * @param description a known textual label for an identifier classification. 
      * Method throws {@code IllegalArgumentException} if textual description is 
      * unrecognised.
-     * @return 
+     * @return the classification 
      */
     public static IdentifierClassification getClassificationFor( String description ) {
         if ( description == null || description.isEmpty() ) {
@@ -187,8 +186,8 @@ public enum IdentifierClassification {
      * Classifies an instance of {@code IdentifierName}, the classification is 
      * added to the identifier name and returned as a convenience.
      * 
-     * @param identifierName
-     * @return 
+     * @param identifierName a name to be classified
+     * @return the classification of the name
      */
     public static IdentifierClassification getClassificationFor( IdentifierName identifierName ) {
         Species species = identifierName.species();

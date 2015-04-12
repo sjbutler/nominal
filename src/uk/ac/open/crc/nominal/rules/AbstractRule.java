@@ -16,25 +16,19 @@ limitations under the License.
 
 package uk.ac.open.crc.nominal.rules;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * Common implementations for all {@code Rule} classes.
  *
  *
- * @author Simon Butler <simon@facetus.org.uk>
- * @version $Id: AbstractRule.java 56 2015-04-02 18:43:02Z simon $
+ * @author Simon Butler (simon@facetus.org.uk)
  */
 abstract public class AbstractRule implements Rule {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger( AbstractRule.class );
-    
     private final RuleType ruleType;
     
     /**
      * Creates in instance of {@code AbstractRule}.
-     * @param ruleType 
+     * @param ruleType specifies a key identifying the type of rule
      */
     public AbstractRule( RuleType ruleType ) {
         this.ruleType = ruleType;
@@ -42,7 +36,7 @@ abstract public class AbstractRule implements Rule {
     
     /**
      * Retrieves the {@link RuleType} for the given rule.
-     * @return 
+     * @return the {@code RuleType}
      */
     @Override
     public final RuleType ruleType() {

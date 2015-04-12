@@ -17,7 +17,7 @@ limitations under the License.
 package uk.ac.open.crc.nominal.rules;
 
 /**
- * Ugly, ugly, ugly &mdash; but may work. 
+ * Keys to identify {@code Rule}s. 
  * 
  * @author Simon Butler (simon@facetus.org.uk)
  */
@@ -41,7 +41,10 @@ public enum RuleType {
         this.description = description;
     } 
     
-    
+    /**
+     * Retrieves a textual description of the rule type.
+     * @return a textual description
+     */
     public String description() {
         return this.description;
     }

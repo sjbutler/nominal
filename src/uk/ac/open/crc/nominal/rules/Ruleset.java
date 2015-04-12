@@ -60,7 +60,7 @@ public class Ruleset { // class needs to be public as it will be used outside th
     /**
      * Retrieves the sub-species of identifier name for which the {@code Ruleset} 
      * is defined.
-     * @return 
+     * @return the name classification the ruleset applies to.
      */
     public IdentifierClassification getClassification() {
         return this.classification;

@@ -21,7 +21,7 @@ import java.util.List;
 import uk.ac.open.crc.mdsc.Result;
 
 /**
- * Indicates whether a word is spelt correctly, and can provide a 
+ * Indicates whether a word is spelt correctly and provides a 
  * record of the dictionaries consulted.
  *
  * @author Simon Butler (simon@facetus.org.uk)
@@ -31,6 +31,10 @@ public class SpellingInformation extends TokenInformation {
     
     private final List<Result> results;
     
+    /**
+     * Creates an instance of {@code SpellingInformation}
+     * @param results a list of results returned by mdsc
+     */
     public SpellingInformation( List<Result> results ) {
         super( InformationClassification.SPELLING );
         this.results = results;
@@ -45,8 +49,8 @@ public class SpellingInformation extends TokenInformation {
     }
     
     /**
-     *
-     * @return
+     * Indicates whether the token is correctly spelt.
+     * @return {@code true} if the token is correctly spelt
      */
     @Override
     public boolean isCorrect() {

@@ -20,17 +20,17 @@ import uk.ac.open.crc.nominal.IdentifierName;
 import uk.ac.open.crc.nominal.information.TrailingUnderscoreInformation;
 
 /**
+ * Detects the presence of trailing underscores.
  *
  *
- *
- * @author Simon Butler <simon@facetus.org.uk>
- * @version $Id: TrailingUnderscoreDetector.java 56 2015-04-02 18:43:02Z simon $
+ * @author Simon Butler (simon@facetus.org.uk)
  */
 public class TrailingUnderscoreDetector implements Detector {
 
     @Override
     public TrailingUnderscoreInformation test( final IdentifierName identifierName ) {
-        TrailingUnderscoreInformation information = new TrailingUnderscoreInformation( identifierName.nameString().endsWith( "_" ) );
+        TrailingUnderscoreInformation information = 
+                new TrailingUnderscoreInformation( identifierName.nameString().endsWith( "_" ) );
         identifierName.add( information );
         return information;
     }

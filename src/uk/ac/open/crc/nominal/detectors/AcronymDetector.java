@@ -18,22 +18,21 @@ package uk.ac.open.crc.nominal.detectors;
 
 import java.util.ArrayList;
 import java.util.List;
-import uk.ac.open.crc.nominal.IdentifierName;
-import uk.ac.open.crc.nominal.rules.RulesetGroup;
-import uk.ac.open.crc.nominal.information.AcronymInformation;
-import uk.ac.open.crc.nominal.information.AcronymSummaryInformation;
-import uk.ac.open.crc.nominal.Token;
 import uk.ac.open.crc.mdsc.AcronymDictionaryManager;
 import uk.ac.open.crc.mdsc.DictionaryManager;
 import uk.ac.open.crc.mdsc.DictionarySet;
 import uk.ac.open.crc.mdsc.Result;
+import uk.ac.open.crc.nominal.IdentifierName;
+import uk.ac.open.crc.nominal.Token;
+import uk.ac.open.crc.nominal.information.AcronymInformation;
+import uk.ac.open.crc.nominal.information.AcronymSummaryInformation;
+import uk.ac.open.crc.nominal.rules.RulesetGroup;
 
 /**
+ * Identifies whether any tokens in the name are acronyms.
  *
  *
- *
- * @author Simon Butler <simon@facetus.org.uk>
- * @version $Id: AcronymDetector.java 56 2015-04-02 18:43:02Z simon $
+ * @author Simon Butler (simon@facetus.org.uk)
  */
 public class AcronymDetector implements Detector {
     private final RulesetGroup ruleSetGroup; // redundant, unless/until the user can add acronyms to the rules.

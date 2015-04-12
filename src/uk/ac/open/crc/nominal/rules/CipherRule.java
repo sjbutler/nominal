@@ -22,10 +22,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import uk.ac.open.crc.nominal.IdentifierName;
 import uk.ac.open.crc.nominal.TaggedToken;
-import uk.ac.open.crc.nominal.information.CipherInformation;
 import uk.ac.open.crc.nominal.Token;
+import uk.ac.open.crc.nominal.information.CipherInformation;
 
-// NB: the this object is created by the nominal parser.
+// NB: instances of this class created by the nominal parser.
 // the cipher map is populated by the same parser and
 // probably after this object is instantiated, hence
 // the lazy load of the specified cipher map. 
@@ -33,8 +33,7 @@ import uk.ac.open.crc.nominal.Token;
  * Embodies the rules on cipher use.
  *
  *
- * @author Simon Butler <simon@facetus.org.uk>
- * @version $Id: CipherRule.java 56 2015-04-02 18:43:02Z simon $
+ * @author Simon Butler (simon@facetus.org.uk)
  */
 public class CipherRule extends IdentifierRule {
     private static final Logger LOGGER = LoggerFactory.getLogger( CipherRule.class );

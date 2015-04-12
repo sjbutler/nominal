@@ -18,22 +18,21 @@ package uk.ac.open.crc.nominal.detectors;
 
 import java.util.ArrayList;
 import java.util.List;
-import uk.ac.open.crc.nominal.IdentifierName;
-import uk.ac.open.crc.nominal.rules.RulesetGroup;
-import uk.ac.open.crc.nominal.information.CountryCodeInformation;
-import uk.ac.open.crc.nominal.information.CountryCodeSummaryInformation;
-import uk.ac.open.crc.nominal.Token;
 import uk.ac.open.crc.mdsc.DictionaryManager;
 import uk.ac.open.crc.mdsc.DictionarySet;
 import uk.ac.open.crc.mdsc.NormalisedIso3166DictionaryManager;
 import uk.ac.open.crc.mdsc.Result;
+import uk.ac.open.crc.nominal.IdentifierName;
+import uk.ac.open.crc.nominal.Token;
+import uk.ac.open.crc.nominal.information.CountryCodeInformation;
+import uk.ac.open.crc.nominal.information.CountryCodeSummaryInformation;
+import uk.ac.open.crc.nominal.rules.RulesetGroup;
 
 /**
+ * Provides a detector for ISO3166 country codes. 
  *
  *
- *
- * @author Simon Butler <simon@facetus.org.uk>
- * @version $Id: CountryCodeDetector.java 56 2015-04-02 18:43:02Z simon $
+ * @author Simon Butler (simon@facetus.org.uk)
  */
 public class CountryCodeDetector implements Detector {
 

@@ -23,11 +23,10 @@ import uk.ac.open.crc.nominal.rules.RuleType;
 import uk.ac.open.crc.nominal.rules.RulesetGroup;
 
 /**
+ * Entry point to investigate and record the typography of acronyms.
  *
  *
- *
- * @author Simon Butler <simon@facetus.org.uk>
- * @version $Id: AcronymTypographyDetector.java 56 2015-04-02 18:43:02Z simon $
+ * @author Simon Butler (simon@facetus.org.uk)
  */
 public class AcronymTypographyDetector implements Detector {
     

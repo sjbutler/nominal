@@ -20,8 +20,7 @@ package uk.ac.open.crc.nominal.rules;
  * A rule that applies to a token.
  *
  *
- * @author Simon Butler <simon@facetus.org.uk>
- * @version $Id: TokenRule.java 56 2015-04-02 18:43:02Z simon $
+ * @author Simon Butler (simon@facetus.org.uk)
  */
 abstract public class TokenRule extends AbstractRule {
 

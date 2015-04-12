@@ -22,9 +22,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Encapsulates a set of @linkplain{Ruleset} objects. <code>RulesetGroup</code>s
- * may be comprehensive, containing a <code>Ruleset</code> for each 
- * @linkplain{IdentifierClassification}, or partial with a <code>Ruleset</code>
+ * Encapsulates a set of {@linkplain Ruleset} objects. {@code RulesetGroup}s
+ * may be comprehensive, containing a {@code Ruleset} for each 
+ * {@linkplain IdentifierClassification}, or partial with a {@code Ruleset}
  * for only some of the species sub-types.
  *
  *
@@ -65,7 +65,7 @@ public class RulesetGroup {
     
     /**
      * Retrieves a {@code Ruleset} for the classification.
-     * @param classification
+     * @param classification the name classification of the ruleset
      * @return a {@link Ruleset Ruleset} or {@code null} if none has been specified
      */
     public Ruleset get( IdentifierClassification classification ) {
@@ -95,8 +95,8 @@ public class RulesetGroup {
      * to provide a rule needs to be enforced either here, or in the client 
      * classes.
      * 
-     * @param classification
-     * @param ruleType
+     * @param classification the classification of the name
+     * @param ruleType a key for the type of rule requested
      * @return an instance of {@code Rule}
      */
     public Rule get( IdentifierClassification classification, RuleType ruleType ) {
@@ -144,7 +144,7 @@ public class RulesetGroup {
      * Adds a {@link Ruleset Ruleset} to the group. NB this method overwrites 
      * any pre-existing {@code Ruleset} defined for the same 
      * identifier classification ();
-     * @param ruleset 
+     * @param ruleset an instance of {@code Ruleset}
      */
     public void add( Ruleset ruleset ) {
         this.rulesets.put( ruleset.getClassification(), ruleset );

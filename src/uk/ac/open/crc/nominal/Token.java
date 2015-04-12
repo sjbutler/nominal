@@ -41,7 +41,7 @@ public class Token {
     
     /**
      * Retrieves the string that makes up the token. 
-     * @return 
+     * @return the text of the token
      */
     public String text() {
         return this.text;

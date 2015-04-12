@@ -35,7 +35,7 @@ public class RedundantPrefixRule extends AbstractRule {
     // 
     /**
      * Tests for the presence of a redundant prefix.
-     * @param identifierName
+     * @param identifierName a name to be tested
      * @return an information object or null where the 
      * input contains fewer than 2 tokens.
      */

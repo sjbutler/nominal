@@ -29,8 +29,7 @@ import uk.ac.open.crc.nominal.information.BodyCapitalisationSummaryInformation;
  * an identifier name. 
  *
  *
- * @author Simon Butler <simon@facetus.org.uk>
- * @version $Id: BodyTypographyRule.java 56 2015-04-02 18:43:02Z simon $
+ * @author Simon Butler (simon@facetus.org.uk)
  */
 public class BodyTypographyRule extends AbstractRule {
 
@@ -61,8 +60,8 @@ public class BodyTypographyRule extends AbstractRule {
     // run first as they will need the acronym information 
     // to be available to 
     // support variations in the capitalisation of acronyms.
-    // Do not test the first token in the name -- that is the responsibility of 
-    // another detector & rule.
+    // Do not test the first character of the first token in the name 
+    // -- that is the responsibility of another detector & rule.
     @Override
     public BodyCapitalisationSummaryInformation test( IdentifierName identifierName ) {
         

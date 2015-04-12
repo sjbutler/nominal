@@ -17,17 +17,16 @@ limitations under the License.
 package uk.ac.open.crc.nominal.detectors;
 
 import uk.ac.open.crc.nominal.IdentifierName;
-import uk.ac.open.crc.nominal.rules.Rule;
-import uk.ac.open.crc.nominal.rules.RulesetGroup;
-import uk.ac.open.crc.nominal.rules.RuleType;
 import uk.ac.open.crc.nominal.information.PhraseInformation;
+import uk.ac.open.crc.nominal.rules.Rule;
+import uk.ac.open.crc.nominal.rules.RuleType;
+import uk.ac.open.crc.nominal.rules.RulesetGroup;
 
 /**
+ * Wraps a phrase rule.
  *
  *
- *
- * @author Simon Butler <simon@facetus.org.uk>
- * @version $Id: PhraseStructureDetector.java 56 2015-04-02 18:43:02Z simon $
+ * @author Simon Butler (simon@facetus.org.uk)
  */
 public class PhraseStructureDetector implements Detector {
     private final RulesetGroup ruleSetGroup;

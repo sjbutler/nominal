@@ -30,11 +30,10 @@ import org.slf4j.LoggerFactory;
  * Two separate tests are available. One is for mnemonics as they are
  * conventionally written, including those that contain underscores, such 
  * as {@code aload_1}. The second contains mnemonics where the underscore 
- * has been removed, so that, for example, {@code aload_1} becomes {@code aload1}.
+ * has been removed, so, for example, {@code aload_1} becomes {@code aload1}.
  *
  *
- * @author Simon Butler <simon@facetus.org.uk>
- * @version $Id: BytecodeMnemonicDictionary.java 56 2015-04-02 18:43:02Z simon $
+ * @author Simon Butler (simon@facetus.org.uk)
  */
 public class BytecodeMnemonicDictionary {
 
@@ -60,7 +59,8 @@ public class BytecodeMnemonicDictionary {
         this.dictionary = new HashSet<>();
         this.contractedDictionary = new HashSet<>();
         
-        try ( BufferedReader in = new BufferedReader( new InputStreamReader( this.getClass().getResourceAsStream( "mnemonics-tokens-java8" ) ) ) ) {
+        try ( BufferedReader in = new BufferedReader( new InputStreamReader( 
+                this.getClass().getResourceAsStream( "mnemonics-tokens-java8" ) ) ) ) {
             String line;
             while ( ( line = in.readLine() ) != null ) {
                 String trimmedToken = line.trim(); 

@@ -22,8 +22,7 @@ import java.util.HashSet;
  * A reference for checking branding.
  *
  *
- * @author Simon Butler <simon@facetus.org.uk>
- * @version $Id: BrandingDictionary.java 56 2015-04-02 18:43:02Z simon $
+ * @author Simon Butler (simon@facetus.org.uk)
  */
 public class BrandingDictionary {
 

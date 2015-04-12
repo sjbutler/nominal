@@ -20,7 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Common implementation of the {@code Information} interface to annotate tokens 
+ * with the result of token based rule tests.
  *
  *
  * @author Simon Butler (simon@facetus.org.uk)
@@ -36,8 +37,8 @@ public abstract class TokenInformation implements Information {
     }
     
     /**
-     *
-     * @return
+     * Retrieves the classification of the information object
+     * @return the classification
      */
     @Override
     public InformationClassification classification() {

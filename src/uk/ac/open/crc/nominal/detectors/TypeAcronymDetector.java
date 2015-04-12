@@ -17,10 +17,10 @@ limitations under the License.
 package uk.ac.open.crc.nominal.detectors;
 
 import uk.ac.open.crc.nominal.IdentifierName;
+import uk.ac.open.crc.nominal.information.TypeAcronymInformation;
 import uk.ac.open.crc.nominal.rules.Rule;
 import uk.ac.open.crc.nominal.rules.RuleType;
 import uk.ac.open.crc.nominal.rules.RulesetGroup;
-import uk.ac.open.crc.nominal.information.TypeAcronymInformation;
 
 /**
  * Detects the use of type acronyms for single token reference names. Type 
@@ -31,8 +31,7 @@ import uk.ac.open.crc.nominal.information.TypeAcronymInformation;
  * variable names. 
  *
  *
- * @author Simon Butler <simon@facetus.org.uk>
- * @version $Id: TypeAcronymDetector.java 56 2015-04-02 18:43:02Z simon $
+ * @author Simon Butler (simon@facetus.org.uk)
  */
 public class TypeAcronymDetector implements Detector {
 

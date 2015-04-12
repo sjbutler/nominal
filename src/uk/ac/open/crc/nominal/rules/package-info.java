@@ -12,10 +12,9 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
- */
-
+*/
 /**
- * Classes used to describe and implement rules for identifier naming.
+ * Classes that describe and implement rules for identifier naming.
  * 
  * <p>
  * The classes may be divided into two groups. There are infrastructure classes
@@ -26,37 +25,25 @@ limitations under the License.
  * 
  * 
  * <p>
- * {@link RuleSetGroupFactory} is used to create instances of {@link RuleSetGroup}
+ * {@link RulesetGroupFactory} is used to create instances of {@link RulesetGroup}
  * constructed from text files of rules either stored in a jar file, on the 
- * filesystem, or injected as a string. {@code RuleSetGroup}s are then used to 
- * test identifier names that are passed in using instances of the 
- * {@code ProgramEntity} class (transfer object) returned by many of the methods 
- * in the {@code jimdb} package. The user should classify the {@code ProgramEntity} 
- * and extract the appropriate rule to test it against.
- * </p>
- * 
- * <p>
- * {@link ruleSetGroupSynthesiser} is a class that supports the derivation of 
- * rule sets (and rule set groups) from surveys of source code. Generating 
- * new rule set groups by this method can be time consuming. NB this functionality
- * has not been developed.
+ * filesystem. {@code RulesetGroup}s are then used to 
+ * test instances of {@code IdentifierName}, which need to be instantiated by 
+ * the caller. 
  * </p>
  * 
  * <p>
  * Rule sets are created for a particular sub-species or type of identifier name, 
- * e.g. a method that takes no arguments and returns a boolean. Each {@link RuleSet} 
+ * e.g. a method that takes no arguments and returns a boolean. Each {@link Ruleset} 
  * contains {@link Rule}s for typography and phrase structure. 
  * </p>
  * 
  * <p>
- * The grammar for .nom files defining rules is available from &hellip;
+ * The grammar for .nom files defining rules is available from the 
+ * package {@code uk.ac.open.crc.nominal.rules.parser}.
  * </p>
  * 
- * <p>
- * Copyright (C) 2013-2015 The Open University
- * </p>
  * 
  * 
  */
-// $Id: package-info.java 56 2015-04-02 18:43:02Z simon $
-package uk.ac.open.crc.idris.rules;
+package uk.ac.open.crc.nominal.rules;

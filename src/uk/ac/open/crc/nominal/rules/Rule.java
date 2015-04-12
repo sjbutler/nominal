@@ -27,9 +27,9 @@ import uk.ac.open.crc.nominal.information.Information;
 public interface Rule {
 
     /**
-     *
-     * @param identifierName
-     * @return
+     * Evaluates the identifier name.
+     * @param identifierName a name to test
+     * @return an instance of {@code Information} with details of the test result.
      */
     public Information test( IdentifierName identifierName );
     
