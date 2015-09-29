@@ -29,7 +29,7 @@ import uk.ac.open.crc.nominal.information.IdentifierInformation;
 import uk.ac.open.crc.nominal.information.InformationClassification;
 
 /**
- * 
+ * A configurable rule for acronym typography.
  *
  *
  * @author Simon Butler (simon@facetus.org.uk)
@@ -45,6 +45,10 @@ public class AcronymTypographyRule extends AbstractRule {
     private String firstTokenPattern;
     private final String otherTokenPattern;
     
+    /**
+     * Creates a rule for acronym typography according to the argument.
+     * @param caseType indicates upper or mixed case acronyms
+     */
     public AcronymTypographyRule( final CaseType caseType ) {
         super( RuleType.ACRONYM );
         this.caseType = caseType;
@@ -57,6 +61,12 @@ public class AcronymTypographyRule extends AbstractRule {
         }
     }
     
+    /**
+     * Tests any acronyms in the name for 'correct' acronym typography.
+     * @param identifierName a name to test
+     * @return A summary indicating which acronyms have correct typography 
+     * or {@code null} if the name contains no acronyms
+     */
     @Override
     public AcronymTypographySummaryInformation test( IdentifierName identifierName ) {
         // set first token using name context
@@ -81,8 +91,10 @@ public class AcronymTypographyRule extends AbstractRule {
         }
         
         AcronymTypographySummaryInformation summaryInformation = null;
-        List<IdentifierInformation> informationList = identifierName.getInformationList( InformationClassification.ACRONYM_SUMMARY );
-        AcronymSummaryInformation acronymSummaryInformation = (AcronymSummaryInformation) informationList.get( 0 );
+        List<IdentifierInformation> informationList = 
+                identifierName.getInformationList( InformationClassification.ACRONYM_SUMMARY );
+        AcronymSummaryInformation acronymSummaryInformation = 
+                (AcronymSummaryInformation) informationList.get( 0 );
         if ( acronymSummaryInformation != null ) {
             List<Integer> acronymIndices = acronymSummaryInformation.acronymIndices();
             List<Boolean> overallCorrectness = new ArrayList<>();
@@ -103,7 +115,8 @@ public class AcronymTypographyRule extends AbstractRule {
                     token.add( acronymTypographyInformation );
                     overallCorrectness.add( isCorrect );
                 }
-                summaryInformation = new AcronymTypographySummaryInformation( ! overallCorrectness.contains( false ) );
+                summaryInformation = 
+                        new AcronymTypographySummaryInformation( ! overallCorrectness.contains( false ) );
             }
         
         }

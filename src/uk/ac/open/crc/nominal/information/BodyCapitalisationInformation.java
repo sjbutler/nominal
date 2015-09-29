@@ -33,7 +33,11 @@ public class BodyCapitalisationInformation extends TokenInformation {
         this.isCorrect = isCorrect;
     }
     
-    
+    /**
+     * Indicates if the token body has the correct typography.
+     * @return {@code true} if the token, excluding the first character, has 
+     * the correct typography.
+     */
     @Override
     public boolean isCorrect() {
         return this.isCorrect;

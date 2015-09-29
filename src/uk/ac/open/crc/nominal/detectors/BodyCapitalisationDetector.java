@@ -24,7 +24,9 @@ import uk.ac.open.crc.nominal.information.BodyCapitalisationInformation;
 import uk.ac.open.crc.nominal.information.BodyCapitalisationSummaryInformation;
 
 /**
- *
+ * Checks the capitalisation of all tokens in a name
+ * with the exception of the first character of the 
+ * first token.
  *
  *
  * @author Simon Butler (simon@facetus.org.uk)

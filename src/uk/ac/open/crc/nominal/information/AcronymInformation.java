@@ -20,7 +20,7 @@ import java.util.List;
 import uk.ac.open.crc.mdsc.Result;
 
 /**
- *
+ * Identifies a token as an acronym. 
  *
  *
  * @author Simon Butler (simon@facetus.org.uk)
@@ -29,7 +29,7 @@ public class AcronymInformation extends TokenInformation {
     private final List<Result> resultList;
     private boolean isCorrect;
     private boolean isKnownAcronym; // is this not implied??
-    private boolean isCorrectTypography;
+    private boolean isCorrectTypography; // typography tested elsewhere
     
     public AcronymInformation( final List<Result> resultList ) {
         super( InformationClassification.ACRONYM );
@@ -52,6 +52,10 @@ public class AcronymInformation extends TokenInformation {
         return this.isKnownAcronym;
     }
     
+    /**
+     * Always returns false as acronym typography is checked elsewhere.
+     * @return {@code false}
+     */
     public boolean isCorrectTypography() {
         return this.isCorrectTypography;
     }

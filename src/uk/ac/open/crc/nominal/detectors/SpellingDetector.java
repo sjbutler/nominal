@@ -39,14 +39,16 @@ import uk.ac.open.crc.nominal.TaggedToken;
 import uk.ac.open.crc.nominal.rules.MdscDictionaryPool;
 
 /**
- *
- *
- *
+ * Classifies each token in the name. This class also manages
+ * instantiation and invocation of the abbreviation, acronym, 
+ * acronym typography, cipher, country code, and type acronym detectors.
+ * 
  * @author Simon Butler (simon@facetus.org.uk)
  */
 public class SpellingDetector implements Detector {
 
-    private static final DictionarySet DICTIONARY = MdscDictionaryPool.getInstance().wordDictionaries();
+    private static final DictionarySet DICTIONARY = 
+            MdscDictionaryPool.getInstance().wordDictionaries();
     
     
     private final RulesetGroup ruleSetGroup;  // not used, this is a test of spelling
@@ -70,6 +72,11 @@ public class SpellingDetector implements Detector {
     }
     
     // REFACTOR -- look for common levels of abstraction and repetitive code.
+    /**
+     * Tests the spelling of tokens in the name.
+     * @param identifierName the name to test
+     * @return a summary of the classification and spelling of tokens
+     */
     @Override
     public SpellingSummaryInformation test( IdentifierName identifierName ) {
         // there is no rule for spelling -- it has to be correct
@@ -119,9 +126,12 @@ public class SpellingDetector implements Detector {
             else {
                 Token firstToken = identifierName.firstToken();
                 if ( firstToken != null ) {
-                    SpellingInformation spellingInformation = (SpellingInformation) firstToken.getInformationList(InformationClassification.SPELLING ).get( 0 );
-                    AcronymInformation acronymInformation = (AcronymInformation) firstToken.getInformationList(InformationClassification.ACRONYM ).get( 0 );
-                    isCorrect = spellingInformation.isCorrect() || acronymInformation.isCorrect();
+                    SpellingInformation spellingInformation = 
+                            (SpellingInformation) firstToken.getInformationList(InformationClassification.SPELLING ).get( 0 );
+                    AcronymInformation acronymInformation = 
+                            (AcronymInformation) firstToken.getInformationList(InformationClassification.ACRONYM ).get( 0 );
+                    isCorrect = spellingInformation.isCorrect() 
+                            || acronymInformation.isCorrect();
                 }
                 else {
                     isCorrect = false; // only thing I can do -- it makes some sense semantically -- this would include a correct iso3166 code being used in a single toke identifier name, which Gosling forbids
@@ -136,10 +146,14 @@ public class SpellingDetector implements Detector {
             
             List<Boolean> testList = new ArrayList<>();
             for ( Token token : identifierName.taggedTokens() ) {
-                spellingInformation = (SpellingInformation) token.getInformationList(InformationClassification.SPELLING ).get( 0 );
-                acronymInformation = (AcronymInformation) token.getInformationList(InformationClassification.ACRONYM ).get( 0 );
-                countryCodeInformation = (CountryCodeInformation) token.getInformationList(InformationClassification.COUNTRY_CODE ).get( 0 );
-                List<TokenInformation> prefixInformationList = token.getInformationList(InformationClassification.PREFIX );
+                spellingInformation = 
+                        (SpellingInformation) token.getInformationList(InformationClassification.SPELLING ).get( 0 );
+                acronymInformation = 
+                        (AcronymInformation) token.getInformationList(InformationClassification.ACRONYM ).get( 0 );
+                countryCodeInformation = 
+                        (CountryCodeInformation) token.getInformationList(InformationClassification.COUNTRY_CODE ).get( 0 );
+                List<TokenInformation> prefixInformationList = 
+                        token.getInformationList(InformationClassification.PREFIX );
                 if ( ! prefixInformationList.isEmpty() ) {
                     prefixInformation = (PrefixInformation) prefixInformationList.get( 0 );
                     testList.add( spellingInformation.isCorrect() 

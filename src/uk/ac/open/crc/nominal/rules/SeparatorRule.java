@@ -33,9 +33,9 @@ import uk.ac.open.crc.nominal.information.SeparatorInformation;
  *
  * Predicates for this rule and its variants are:
  * <ul>
- *  <li>programming languages rarely allow more than one separator character, 
+ *  <li>programming languages rarely allow consecutive separator characters, 
  * and languages that do, like Java, generally only approve of the use of one, 
- * by convention, reserving the other for the language.</li>
+ * by convention, sometimes reserving the other for the language/library.</li>
  *  <li>the use of consecutive separator characters is generally discouraged</li>
  *  <li>In Java, separators are generally specified for use in the names of 
  * constants which are defined as static and final. In practice, constant strings 
@@ -67,8 +67,10 @@ public class SeparatorRule extends AbstractRule {
         JAVA_SEPARATOR_SET.add( DOLLAR_SIGN );
     }
     
-    private static final String EXPLANATION_SEPARATOR_NOT_FOUND = "No separator characters found.";
-    private static final String EXPLANATION_SEPARATOR_FOUND = "Separators characters found.";
+    private static final String EXPLANATION_SEPARATOR_NOT_FOUND = 
+            "No separator characters found.";
+    private static final String EXPLANATION_SEPARATOR_FOUND = 
+            "Separators characters found.";
     
     
     private final Set<String> separatorSet;
@@ -87,7 +89,8 @@ public class SeparatorRule extends AbstractRule {
     public SeparatorRule( Set<String> separators, boolean multiplier ) {
         super( RuleType.SEPARATOR );
         if ( separators == null ) {
-            throw new IllegalArgumentException( "null argument passed to SeparatorRule constructor." );
+            throw new IllegalArgumentException( 
+                    "null argument passed to SeparatorRule constructor." );
         }
         this.separatorSet = new HashSet<>( separators );
         this.hasMultiplier = multiplier;
@@ -110,13 +113,15 @@ public class SeparatorRule extends AbstractRule {
         // first check that we don't have the special case of 
         // an identifier name composed only of separators
         if ( identifierName.nameString().matches( "^[\\$_]+$" ) ) {
-            information = new SeparatorInformation( false, false, false); // may need to review this idea of state, particularly the contains underscores and dollar signs
-            information.addExplanation( "identifier name composed solely of separator characters" );
+            information = new SeparatorInformation( false, false, false); // need to review this idea of state, particularly the contains underscores and dollar signs
+            information.addExplanation( 
+                    "identifier name composed solely of separator characters" );
         }
         else {
             // the test is against a regex built with normalised tokens
             // leading or trailing underscores means the test will fail
-            String identifierNameString = stripLeadingAndTrailingNonAlphaNumericCharacters( identifierName.nameString() );
+            String identifierNameString = 
+                    stripLeadingAndTrailingNonAlphaNumericCharacters( identifierName.nameString() );
             boolean isCorrect;
             // for many identifier names we do not expect separators to be used
             // So many will be defined with empty separator character sets.
@@ -126,10 +131,12 @@ public class SeparatorRule extends AbstractRule {
                 this.explanation = "single word identifier name";
             } 
             else if ( areSeparatorsExpected() ) {
-                String analogueRegex = buildIdealisedIdentifierNameRegex( identifierName.componentWords() );
+                String analogueRegex = 
+                        buildIdealisedIdentifierNameRegex( identifierName.componentWords() );
                 isCorrect = identifierNameString.toLowerCase().matches( analogueRegex );
                 // set up explanation 
-                this.explanation = isCorrect ? EXPLANATION_SEPARATOR_FOUND : EXPLANATION_SEPARATOR_NOT_FOUND;
+                this.explanation = 
+                        isCorrect ? EXPLANATION_SEPARATOR_FOUND : EXPLANATION_SEPARATOR_NOT_FOUND;
             }
             else {
                 // now check there are no separators present
@@ -191,7 +198,7 @@ public class SeparatorRule extends AbstractRule {
      * Classifies an identifier name according to whether it is expected to 
      * contain a separator character.
      * 
-     * @return {@code true} if the rule defines some separator characterss.
+     * @return {@code true} if the rule defines some separator characters.
      */
     private boolean areSeparatorsExpected() {
         return ! this.separatorSet.isEmpty();

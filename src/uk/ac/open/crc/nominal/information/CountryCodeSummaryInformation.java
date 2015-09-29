@@ -17,9 +17,15 @@ limitations under the License.
 package uk.ac.open.crc.nominal.information;
 
 /**
- * Records whether a identifier name contains a token that is an ISO country 
- * code. Full details are in the information object attached to the token,
- *
+ * Records whether a identifier name contains a token that is an ISO 3166 
+ * alpha 2 or alpha 3 country code. Full details are in the information 
+ * object attached to the token,
+ * <p>
+ * The semantics of this object are inaccurate. The object records the presence
+ * of an ISO 3166 country code in the name. Only JLS forbids the use of country 
+ * codes. The semantics will change when the language is expanded to specify
+ * the use of country codes. 
+ * </p>
  *
  * @author Simon Butler (simon@facetus.org.uk)
  */
@@ -27,11 +33,20 @@ public class CountryCodeSummaryInformation extends IdentifierInformation {
 
     private final boolean isCorrect;
     
+    /**
+     * Creates a summary of the presence of ISO 3166 country codes in the name.
+     * @param isCorrect {@code true} if any token contains a country code
+     */
     public CountryCodeSummaryInformation( final boolean isCorrect ) {
         super( InformationClassification.COUNTRY_CODE_SUMMARY );
         this.isCorrect = isCorrect;
     }
     
+    /**
+     * Misused semantics to indicate the presence of a country code in the name.
+     * @return {@code true} if a token in the name matches 
+     * an ISO 3166 country code
+     */
     @Override
     public boolean isCorrect() {
         return this.isCorrect;

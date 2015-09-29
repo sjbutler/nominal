@@ -20,7 +20,6 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import uk.ac.open.crc.nominal.IdentifierName;
-import uk.ac.open.crc.nominal.detectors.PhraseStructureDetector;
 import uk.ac.open.crc.nominal.information.PluralInformation;
 import uk.ac.open.crc.nominal.information.IdentifierInformation;
 import uk.ac.open.crc.nominal.information.InformationClassification;
@@ -33,7 +32,8 @@ import uk.ac.open.crc.nominal.information.PhraseInformation;
  * @author Simon Butler (simon@facetus.org.uk)
  */
 public class PluralRule extends AbstractRule {
-    private static final Logger LOGGER = LoggerFactory.getLogger(PluralRule.class );
+    private static final Logger LOGGER = 
+            LoggerFactory.getLogger(PluralRule.class );
     
     private final GrammaticalNumber grammaticalNumber;
     private boolean isPlural;

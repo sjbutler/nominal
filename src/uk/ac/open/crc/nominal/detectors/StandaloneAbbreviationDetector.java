@@ -23,7 +23,8 @@ import uk.ac.open.crc.nominal.rules.RulesetGroup;
 import uk.ac.open.crc.nominal.information.StandaloneAbbreviationInformation;
 
 /**
- *
+ * Determines if a name is a single token and a recognised abbreviation. 
+ * JLS permits the use of standalone abbreviations.
  *
  *
  * @author Simon Butler (simon@facetus.org.uk)

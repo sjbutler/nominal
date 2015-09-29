@@ -23,7 +23,7 @@ import uk.ac.open.crc.nominal.rules.RuleType;
 import uk.ac.open.crc.nominal.rules.RulesetGroup;
 
 /**
- * Wrap a {@code Rule} for cipher use.
+ * Wraps a {@code Rule} for cipher use.
  *
  *
  * @author Simon Butler (simon@facetus.org.uk)

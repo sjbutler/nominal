@@ -17,7 +17,8 @@ limitations under the License.
 package uk.ac.open.crc.nominal.information;
 
 /**
- *
+ * Annotates a single token name to record whether it is a type acronym, and 
+ * if so whether it is used correctly.
  *
  *
  * @author Simon Butler (simon@facetus.org.uk)

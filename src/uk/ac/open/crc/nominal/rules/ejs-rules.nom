@@ -17,7 +17,7 @@
 //
 // EJS rules
 // A set of identifier naming conventions extracted from the 
-// "The Elements of Java Style" Vermeulen et al.. 
+// "The Elements of Java Style" Vermeulen et al. 
 //
 //
 
@@ -70,7 +70,7 @@ enumeration-constant {
 // Vermeulen specifies standard typography, and that method identifier 
 // names should be verbs. He further specifies that method names should
 // follow the Java beans conventions of 'is', 'get' and 'set'
-// Idris nor these rules are designed to test the latter.
+// Nominal nor these rules are designed to test the latter.
 // 
 method {
     first-char: lower;
@@ -146,4 +146,8 @@ cipher-list default {
     s : String;
     v : *;
     x,y,z : int,double,float,long,short;
+}
+
+global {
+    acronyms: mixed;
 }

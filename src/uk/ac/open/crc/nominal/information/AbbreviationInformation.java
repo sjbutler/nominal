@@ -53,12 +53,19 @@ public class AbbreviationInformation extends TokenInformation {
     }
     
     
-    
+    /**
+     * Indicates if abbreviation is recognised.
+     * @return  {@code true} if abbreviation is recognised
+     */
     public boolean isKnownAbbreviation() {
         return this.isKnownAbbreviation;
     }
 
     
+    /**
+     * Identical in functionality to {@code isKnownAbbreviation}.
+     * @return {@code true} if abbreviation is recognised
+     */
     @Override
     public boolean isCorrect() {
         return this.isKnownAbbreviation;  /// REVIEW AND REVISE -- correctness is not that simple

@@ -24,8 +24,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
- *
+ * A central store for cipher maps. A map with the name "__common_ciphers__"
+ * is used to store a default set of ciphers and creates a rule where ciphers
+ * are not permitted and common usage is flagged as an error. Ciphers are 
+ * defined in the .nom rules file and lists may be specified with identifiers
+ * to allow the lists of ciphers to be applied in different rules.
  *
  * @author Simon Butler (simon@facetus.org.uk)
  */

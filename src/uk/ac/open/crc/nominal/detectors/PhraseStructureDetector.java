@@ -35,6 +35,12 @@ public class PhraseStructureDetector implements Detector {
         this.ruleSetGroup = ruleSetGroup;
     }
     
+    /**
+     * Tests whether the identified phrasal structure is permitted by 
+     * the current rules.
+     * @param identifierName a name to test
+     * @return an instance of {@code PhraseInformation} recording the result
+     */
     @Override
     public PhraseInformation test( IdentifierName identifierName ) {
         Rule rule = this.ruleSetGroup.get( identifierName.classification(), RuleType.PHRASE );

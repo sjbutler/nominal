@@ -17,7 +17,8 @@ limitations under the License.
 package uk.ac.open.crc.nominal.information;
 
 /**
- *
+ * Reports whether a token is a standalone abbreviation and 
+ * its use conforms with the specified rules.
  *
  *
  * @author Simon Butler (simon@facetus.org.uk)

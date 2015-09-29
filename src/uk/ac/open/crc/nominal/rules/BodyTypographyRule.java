@@ -62,6 +62,13 @@ public class BodyTypographyRule extends AbstractRule {
     // support variations in the capitalisation of acronyms.
     // Do not test the first character of the first token in the name 
     // -- that is the responsibility of another detector & rule.
+    /**
+     * Tests the given name.
+     * @param identifierName a name to test
+     * @return a summary of the correctness of the typography of individual 
+     * tokens in the name with the exception of the first character of the 
+     * first token.
+     */
     @Override
     public BodyCapitalisationSummaryInformation test( IdentifierName identifierName ) {
         

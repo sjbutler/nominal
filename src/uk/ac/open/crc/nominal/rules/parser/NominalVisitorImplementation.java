@@ -63,7 +63,8 @@ public class NominalVisitorImplementation extends NominalBaseVisitor<String> {
     @Override
     public String visitTypeRule( NominalParser.TypeRuleContext context ) {
         String ruleName = context.TYPE_SELECTOR().toString();
-        IdentifierClassification classification = IdentifierClassification.getClassificationFor( ruleName );
+        IdentifierClassification classification = 
+                IdentifierClassification.getClassificationFor( ruleName );
         this.currentRuleset = this.rulesetGroup.get( classification );
         
         if ( this.currentRuleset == null ) {
@@ -80,7 +81,8 @@ public class NominalVisitorImplementation extends NominalBaseVisitor<String> {
     @Override
     public String visitMethodRule( NominalParser.MethodRuleContext context ) {
         String ruleName = context.METHOD_SELECTOR().toString();
-        IdentifierClassification classification = IdentifierClassification.getClassificationFor( ruleName );
+        IdentifierClassification classification = 
+                IdentifierClassification.getClassificationFor( ruleName );
         this.currentRuleset = this.rulesetGroup.get( classification );
         
         if ( this.currentRuleset == null ) {
@@ -97,7 +99,8 @@ public class NominalVisitorImplementation extends NominalBaseVisitor<String> {
     @Override
     public String visitReferenceRule( NominalParser.ReferenceRuleContext context ) {
         String ruleName = context.REFERENCE_SELECTOR().toString();
-        IdentifierClassification classification = IdentifierClassification.getClassificationFor( ruleName );
+        IdentifierClassification classification = 
+                IdentifierClassification.getClassificationFor( ruleName );
         this.currentRuleset = this.rulesetGroup.get( classification );
         
         if ( this.currentRuleset == null ) {
@@ -114,7 +117,8 @@ public class NominalVisitorImplementation extends NominalBaseVisitor<String> {
     @Override
     public String visitLabelRule( NominalParser.LabelRuleContext context ) {
         String ruleName = context.LABEL_SELECTOR().toString();
-        IdentifierClassification classification = IdentifierClassification.getClassificationFor( ruleName );
+        IdentifierClassification classification = 
+                IdentifierClassification.getClassificationFor( ruleName );
         this.currentRuleset = this.rulesetGroup.get( classification );
         
         if ( this.currentRuleset == null ) {

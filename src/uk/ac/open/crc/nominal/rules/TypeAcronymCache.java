@@ -16,17 +16,15 @@ limitations under the License.
 
 package uk.ac.open.crc.nominal.rules;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.locks.ReentrantLock;
 import uk.ac.open.crc.idtk.SimpleNameTokeniser;
 
+//Some functionality may belong in a Types service class in idtk.
 /**
  * Provides a mechanism for creating type acronyms. When acronyms are 
  * created they are cached to save repetitive processing. 
- *
- * Some functionality may belong in a Types service class in idtk.
  *
  * @author Simon Butler (simon@facetus.org.uk)
  */

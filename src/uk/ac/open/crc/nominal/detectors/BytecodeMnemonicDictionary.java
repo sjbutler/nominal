@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
  * conventionally written, including those that contain underscores, such 
  * as {@code aload_1}. The second contains mnemonics where the underscore 
  * has been removed, so, for example, {@code aload_1} becomes {@code aload1}.
- *
+ * </p>
  *
  * @author Simon Butler (simon@facetus.org.uk)
  */

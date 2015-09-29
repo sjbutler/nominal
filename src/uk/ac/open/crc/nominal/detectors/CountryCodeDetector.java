@@ -36,7 +36,8 @@ import uk.ac.open.crc.nominal.rules.RulesetGroup;
  */
 public class CountryCodeDetector implements Detector {
 
-    private static final DictionaryManager countryCodeDictionaryManager =  new NormalisedIso3166DictionaryManager();
+    private static final DictionaryManager countryCodeDictionaryManager =  
+            new NormalisedIso3166DictionaryManager();
     
     private final RulesetGroup ruleSetGroup; // unused atm
     private final DictionarySet countryCodeDictionarySet;
@@ -46,6 +47,7 @@ public class CountryCodeDetector implements Detector {
         this.countryCodeDictionarySet = countryCodeDictionaryManager.dictionarySet();
     }
     
+    // to be revised when rules on country codes are implemented
     @Override
     public CountryCodeSummaryInformation test( final IdentifierName identifierName ) {
         List<Boolean> codesDetected = new ArrayList<>();

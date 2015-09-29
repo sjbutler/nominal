@@ -17,7 +17,7 @@ limitations under the License.
 package uk.ac.open.crc.nominal.information;
 
 /**
- *
+ * Summary of information about acronym typography in a name.
  *
  *
  * @author Simon Butler (simon@facetus.org.uk)
@@ -32,7 +32,10 @@ public class AcronymTypographySummaryInformation extends IdentifierInformation {
         this.isCorrect = isCorrect();
     }
     
-    
+    /**
+     * Indicates if the name follows the rules on acronym typography.
+     * @return {@code true} if acronyms are used in accordance with the rule.
+     */
     @Override
     public boolean isCorrect() {
         return this.isCorrect;

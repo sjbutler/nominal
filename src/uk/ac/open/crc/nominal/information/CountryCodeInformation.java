@@ -17,7 +17,7 @@ limitations under the License.
 package uk.ac.open.crc.nominal.information;
 
 /**
- * Records whether a token is an ISO country code.
+ * Records whether a token is an ISO 3166 alpha 2 or alpha 3 country code.
  *
  *
  * @author Simon Butler (simon@facetus.org.uk)
@@ -32,6 +32,13 @@ public class CountryCodeInformation extends TokenInformation {
         this.isIso3166_3 = isIso3166_3;
     }
     
+    // will be revised to reflect rules on country code use.
+    /**
+     * Misuse of this method to indicate that the token is a 
+     * country code.
+     * @return {@code true} iff the token is an ISO3166 two or three letter
+     * country code.
+     */
     @Override
     public boolean isCorrect() {
         return this.isIso3166_2 || this.isIso3166_3;

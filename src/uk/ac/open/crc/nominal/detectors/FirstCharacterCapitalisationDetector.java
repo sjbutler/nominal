@@ -39,7 +39,8 @@ public class FirstCharacterCapitalisationDetector implements Detector {
     @Override
     public FirstCharacterCapitalisationInformation test( IdentifierName identifierName ) {
         // get the rule & test
-        Rule rule = this.ruleSetGroup.get( identifierName.classification(), RuleType.FIRST_CHARACTER );
+        Rule rule = this.ruleSetGroup.get( 
+                identifierName.classification(), RuleType.FIRST_CHARACTER );
 
         return (FirstCharacterCapitalisationInformation) rule.test( identifierName );
     }

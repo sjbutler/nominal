@@ -17,16 +17,14 @@ limitations under the License.
 package uk.ac.open.crc.nominal.detectors;
 
 import java.util.ArrayList;
-import java.util.List;
 import uk.ac.open.crc.nominal.IdentifierName;
-import uk.ac.open.crc.nominal.information.Information;
 import uk.ac.open.crc.nominal.rules.RulesetGroup;
 
+// Would a chain of responsibility be better than a set, because of the need
+// to control execution order, which cannot be guaranteed by iterating 
+// over a set. 
 /**
- *
- * Would a chain of responsibility be better than a set, because I need
- * to control execution order, which I cannot guarantee with iterating 
- * over a set. 
+ * Manages the detectors and the order in which they are instantiated.
  *
  * @author Simon Butler (simon@facetus.org.uk)
  */
@@ -63,7 +61,11 @@ public class DetectorManager {
     }
     
     
-    
+    /**
+     * Tests the name.
+     * @param identifierName a name to test
+     * @return the tested name annotated with {@code Information} objects.
+     */
     public IdentifierName test( IdentifierName identifierName ) {
         
         this.detectorList.stream().forEach( (detector) -> { 

@@ -20,7 +20,7 @@ import uk.ac.open.crc.nominal.IdentifierName;
 import uk.ac.open.crc.nominal.information.LeadingUnderscoreInformation;
 
 /**
- *
+ * Checks for the use of leading underscores.
  *
  *
  * @author Simon Butler (simon@facetus.org.uk)
@@ -36,15 +36,24 @@ public class LeadingUnderscoreDetector implements Detector {
         if ( hasLeadingUnderscore ) {
             isResultingNameLegal = isResultingNameLegal( nameString );
         }
-        LeadingUnderscoreInformation information = new LeadingUnderscoreInformation( hasLeadingUnderscore, isResultingNameLegal );
+        LeadingUnderscoreInformation information = 
+                new LeadingUnderscoreInformation( 
+                        hasLeadingUnderscore, isResultingNameLegal );
         
         identifierName.add( information );
         return information;
     }
     
     
-    // not sure that this is correct -- REVIEW 
-    // determine what this is meant to do!!
+    // REVIEW 
+    // look at the use of dollar signs too, though maybe in another detector.
+    /**
+     * Identifies if a name is composed of at least one alphanumeric character
+     * in addition to the leading underscore(s).
+     * @param name the name being tested
+     * @return {@code true} iff the name contains at least one alphanumeric 
+     * character.
+     */
     private boolean isResultingNameLegal( String name )  {
         // deal with special case of name being composed solely of underscores or dollar signs
         if ( name.matches( "^[\\$_]+$" ) ) {

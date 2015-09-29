@@ -20,11 +20,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Summarises information about abbreviations in a name. Indicates where 
+ * recognised abbreviations are found in the name 
  *
  *
  * @author Simon Butler (simon@facetus.org.uk)
- * @version $Id: AbbreviationSummaryInformation.java 56 2015-04-02 18:43:02Z simon $
  */
 public class AbbreviationSummaryInformation extends IdentifierInformation {
 
@@ -56,7 +56,10 @@ public class AbbreviationSummaryInformation extends IdentifierInformation {
         throw new UnsupportedOperationException( "No notion of correctness for AbbreviationSummaryInformation" );
     }
 
-    
+    /**
+     * A list of indices of tokens containing a known abbreviation.
+     * @return a possibly empty list
+     */
     public List<Integer> abbreviationIndices() {
         return this.abbreviationIndices;
     }

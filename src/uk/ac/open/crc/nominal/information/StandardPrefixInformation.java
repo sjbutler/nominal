@@ -17,7 +17,7 @@ limitations under the License.
 package uk.ac.open.crc.nominal.information;
 
 /**
- *
+ * Records the use or not of redundant prefixes.
  *
  *
  * @author Simon Butler (simon@facetus.org.uk)

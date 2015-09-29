@@ -47,7 +47,8 @@ public class SeparatorDetector implements Detector {
     @Override
     public SeparatorInformation test( IdentifierName identifierName) {
         
-        Rule separatorRule = this.ruleSetGroup.get( identifierName.classification(), RuleType.SEPARATOR );
+        Rule separatorRule = this.ruleSetGroup.get( 
+                identifierName.classification(), RuleType.SEPARATOR );
         
         return (SeparatorInformation) separatorRule.test( identifierName );
     }

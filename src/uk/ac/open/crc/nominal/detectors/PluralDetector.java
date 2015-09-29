@@ -23,7 +23,7 @@ import uk.ac.open.crc.nominal.rules.RulesetGroup;
 import uk.ac.open.crc.nominal.information.PluralInformation;
 
 /**
- *
+ * Evaluates the name using {@code PluralRule}.
  *
  *
  * @author Simon Butler (simon@facetus.org.uk)
@@ -39,7 +39,8 @@ public class PluralDetector implements Detector {
     
     @Override
     public PluralInformation test( IdentifierName identifierName ) {
-        Rule rule = this.ruleSetGroup.get(identifierName.classification(), RuleType.PLURAL );
+        Rule rule = this.ruleSetGroup.get(
+                identifierName.classification(), RuleType.PLURAL );
         return (PluralInformation) rule.test( identifierName );
     }
     

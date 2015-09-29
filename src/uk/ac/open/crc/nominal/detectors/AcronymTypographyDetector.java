@@ -32,10 +32,20 @@ public class AcronymTypographyDetector implements Detector {
     
     private final RulesetGroup rulesetGroup;
     
+    /** 
+     * Creates a detector using the rule set.
+     * @param rulesetGroup a group of rules
+     */
     public AcronymTypographyDetector( RulesetGroup rulesetGroup ) {
         this.rulesetGroup = rulesetGroup;
     }
     
+    /**
+     * Tests the name for the correctness of the typography of any acronyms.
+     * @param identifierName a name to test
+     * @return a summary indicating which acronyms have the correct typography, 
+     * or {@code null} if there are no acronyms in the name.
+     */
     @Override
     public AcronymTypographySummaryInformation test( IdentifierName identifierName ) {
         Rule rule = this.rulesetGroup.get( identifierName.classification(), RuleType.ACRONYM );

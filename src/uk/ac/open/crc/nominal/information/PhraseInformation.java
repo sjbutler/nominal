@@ -19,7 +19,7 @@ package uk.ac.open.crc.nominal.information;
 import java.util.List;
 
 /**
- *
+ * Records the correctness of the phrasal structure used in the name.
  *
  *
  * @author Simon Butler (simon@facetus.org.uk)

@@ -47,7 +47,10 @@ public class Token {
         return this.text;
     }
     
-    
+    /**
+     * Add some information to the token.
+     * @param information A {@code TokenInformation} object 
+     */
     public void add( TokenInformation information ) {
         this.informationList.add( information );
     }
@@ -70,13 +73,14 @@ public class Token {
     public List<TokenInformation> getInformationList( InformationClassification informationClass ) {
         List<TokenInformation> classifiedInformationList = new ArrayList<>();
         
-        this.informationList.stream().filter( (information) -> ( information.classification() == informationClass ) ).forEach( (information) -> {
-            classifiedInformationList.add( information );
+        this.informationList.stream().filter( 
+                (information) -> 
+                        ( information.classification() == informationClass ) )
+                .forEach( (information) -> { 
+                    classifiedInformationList.add( information );
         } );
         
         return classifiedInformationList;
     }
-    
-    
     
 }

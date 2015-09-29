@@ -29,16 +29,29 @@ public class TaggedToken extends Token {
     private final String normalisedText;
     private final String tag;
     
+    /**
+     * Creates an instance of {@code TaggedToken}
+     * @param text the token text
+     * @param tag the PoS tag assigned by a PoS tagger
+     */
     public TaggedToken( String text, String tag ) {
         super( text );
         this.normalisedText = text.toLowerCase();
         this.tag = tag;
     }
     
+    /**
+     * Recovers the PoS tag.
+     * @return the PoS tag for the token
+     */
     public String tag() {
         return this.tag;
     }
     
+    /**
+     * The normalised (lower case) text of the token.
+     * @return the text is lower case.
+     */
     public String normalisedText() {
         return this.normalisedText;
     }

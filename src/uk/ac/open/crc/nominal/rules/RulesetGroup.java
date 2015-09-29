@@ -143,7 +143,7 @@ public class RulesetGroup {
     /**
      * Adds a {@link Ruleset Ruleset} to the group. NB this method overwrites 
      * any pre-existing {@code Ruleset} defined for the same 
-     * identifier classification ();
+     * identifier classification.
      * @param ruleset an instance of {@code Ruleset}
      */
     public void add( Ruleset ruleset ) {

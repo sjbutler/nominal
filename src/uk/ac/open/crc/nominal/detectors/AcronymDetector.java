@@ -40,12 +40,22 @@ public class AcronymDetector implements Detector {
     private final DictionaryManager dictionaryManager;
     private final DictionarySet acronymDictionaries;
     
+    /**
+     * Creates an acronym detector for the given rule set
+     * @param ruleSetGroup a set of rules
+     */
     public AcronymDetector( RulesetGroup ruleSetGroup ) {
         this.ruleSetGroup = ruleSetGroup;
         this.dictionaryManager = new AcronymDictionaryManager();
         this.acronymDictionaries = dictionaryManager.dictionarySet();
     }
     
+    /**
+     * Tests each token of the name to determine if it is an acronym and 
+     * annotates each token with the result.
+     * @param identifierName a name to test
+     * @return a summary of the results for the entire name.
+     */
     @Override
     public AcronymSummaryInformation test( IdentifierName identifierName ) {
         List<AcronymInformation> informationList = new ArrayList<>();

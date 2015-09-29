@@ -33,7 +33,6 @@ import uk.ac.open.crc.nominal.Token;
  * test -- it cannot test the negative. </p> THIS IS CHANGING
  *
  * @author Simon Butler (simon@facetus.org.uk)
- * @version $Id: PrefixRule.java 56 2015-04-02 18:43:02Z simon $
  */
 public class PrefixRule extends AbstractRule {
 

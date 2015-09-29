@@ -18,14 +18,14 @@ package uk.ac.open.crc.nominal.information;
 
 /**
  * This information is only attached to single token identifier names. 
- * It identifier whether the cipher is known, whether it is of 
+ * It identifies whether the cipher is known, whether it is of 
  * the correct type and whether it is correctly used.
  *
  * <p>
  * NB: an unknown cipher can never be correct. The test is whether the 
  * cipher is known and correctly used. Any other single character identifier 
  * name cannot be a cipher because it is not in the list of known ciphers.
- *
+ * </p>
  * @author Simon Butler (simon@facetus.org.uk)
  */
 public class CipherInformation extends IdentifierInformation {
@@ -65,6 +65,11 @@ public class CipherInformation extends IdentifierInformation {
         return this.isKnownCipher;
     }
     
+    /**
+     * Indicates if the cipher has been declared with the correct type.
+     * @return {@code true} if the type of the declaration matches a type 
+     * specified for the cipher in the current rule set.
+     */
     public boolean isCorrectType() {
         return this.isCorrectType;
     }

@@ -16,6 +16,7 @@ limitations under the License.
 
 package uk.ac.open.crc.nominal.rules;
 
+// maybe look at renaming this
 /**
  * Represents different kinds of grammatical number. 
  * @author Simon Butler (simon@facetus.org.uk)
@@ -23,7 +24,7 @@ package uk.ac.open.crc.nominal.rules;
 public enum GrammaticalNumber { // 'quantity' and 'number' are viable alternatives that may be more correct 
     PLURAL ( "plural" ),
     SINGLUAR ( "singular" ),
-    UNSPECIFIED ( "unspecified" ); // dual is only relevant (atm) for NPs, so unspecified rest of time
+    UNSPECIFIED ( "unspecified" ); 
     
     
     // -----------------

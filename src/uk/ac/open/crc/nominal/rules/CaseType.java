@@ -44,7 +44,8 @@ public enum CaseType {
      */
     public static CaseType getCaseTypeFor( String description ) {
         if ( description == null || description.isEmpty() ) {
-            throw new IllegalArgumentException( "null reference or empty String passed to method" );
+            throw new IllegalArgumentException( 
+                    "null reference or empty String passed to method" );
         }
         
         for ( CaseType caseType : CaseType.values() ) {
@@ -53,7 +54,8 @@ public enum CaseType {
             } 
         }
         
-        throw new IllegalArgumentException( "No valid case type found for: \"" + description + "\"");
+        throw new IllegalArgumentException( 
+                "No valid case type found for: \"" + description + "\"");
     }
     
     /**

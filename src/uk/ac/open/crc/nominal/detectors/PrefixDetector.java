@@ -28,7 +28,7 @@ import uk.ac.open.crc.nominal.information.PrefixInformation;
  * <p>
  * NB: the {@linkplain BrandingDictionary} is unpopulated and should be 
  * populated with any local branding before using the detector.
- *
+ * </p>
  *
  * @author Simon Butler (simon@facetus.org.uk)
  */
@@ -48,7 +48,5 @@ public class PrefixDetector implements Detector {
                 identifierName.classification() , RuleType.PREFIX );
         return (PrefixInformation) prefixRule.test( identifierName );
     }
-    
-    
     
 }

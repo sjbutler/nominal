@@ -16,12 +16,13 @@ limitations under the License.
 
 package uk.ac.open.crc.nominal.information;
 
+// to be revised when rules on trailing underscores are introduced
 /**
- *
+ * Used to annotate a name and records the presence of trailing underscores
+ * and their correctness.
  *
  *
  * @author Simon Butler (simon@facetus.org.uk)
- * @version $Id: TrailingUnderscoreInformation.java 56 2015-04-02 18:43:02Z simon $
  */
 public class TrailingUnderscoreInformation extends IdentifierInformation {
     private final boolean hasTrailingUnderscore;

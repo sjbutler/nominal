@@ -21,8 +21,7 @@ import uk.ac.open.crc.nominal.information.StandaloneAbbreviationInformation;
 import uk.ac.open.crc.mdsc.DictionarySet;
 
 /**
- *
- *
+ * Implements the rule for standalone abbreviations.
  *
  * @author Simon Butler (simon@facetus.org.uk)
  */

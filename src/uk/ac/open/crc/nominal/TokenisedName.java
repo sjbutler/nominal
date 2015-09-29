@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Encapsulates a tokenised name; a name with its tokens, part of
+ * Encapsulates a tokenised name: a name with its tokens, part of
  * speech tags for the tokens and a phrase summary. 
  *
  *
@@ -84,7 +84,10 @@ public class TokenisedName {
         return this.posTags;
     }
     
-    
+    /**
+     * Recovers the name as found in the source code.
+     * @return the original text of the name.
+     */
     public String nameString() {
         return this.nameString;
     }

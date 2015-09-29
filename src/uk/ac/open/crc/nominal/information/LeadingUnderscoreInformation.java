@@ -17,8 +17,10 @@ limitations under the License.
 package uk.ac.open.crc.nominal.information;
 
 /**
- *
- * REQUIRES A NOTION OF CORRECTNESS
+ * Contains information about the presence of one or more leading underscores. 
+ * The current notion of correctness is that leading underscores are not
+ * permitted. This can change when the nominal language is revised to define 
+ * the use of leading underscores and test the rule fully.
  *
  * @author Simon Butler (simon@facetus.org.uk)
  */
@@ -33,14 +35,27 @@ public class LeadingUnderscoreInformation extends IdentifierInformation {
         this.hasLeadingUnderscore = hasLeadingUnderscore;
         this.isResultingNameLegal = isResultingNameLegal;
     }
-    
+
+    /** 
+     * Indicates if one or more leading underscores are present.
+     * @return {@code true} when one or more leading underscores are present.
+     */
     public boolean hasLeadingUnderscore() {
         return this.hasLeadingUnderscore;
     }
     
+    // Review and revise concept behind name, and the name used
+    /**
+     * Indicates whether there are any alphanumeric components following the 
+     * leading underscore(s). 
+     * 
+     * @return {@code true} if the name contains characters other than the
+     * leading underscore(s)
+     */
     public boolean isResultingNameLegal() {
         return this.isResultingNameLegal;
     }
+    
     
     @Override
     public boolean isCorrect( ) {

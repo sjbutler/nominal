@@ -16,8 +16,12 @@ limitations under the License.
 
 package uk.ac.open.crc.nominal.information;
 
+
+// to be revised when language allows specification of redundant prefixes
 /**
- *
+ * Records whether a redundant prefix is present and if so, whether it 
+ * has been used 'correctly'.
+ * 
  * @author Simon Butler (simon@facetus.org.uk)
  */
 public class RedundantPrefixInformation extends IdentifierInformation {

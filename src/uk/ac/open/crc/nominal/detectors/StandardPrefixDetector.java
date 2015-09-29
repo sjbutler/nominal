@@ -35,7 +35,7 @@ import uk.ac.open.crc.nominal.rules.RulesetGroup;
 public class StandardPrefixDetector implements Detector {
 
     // two sets of standard prefixes that intersect
-    // species: {f,m}
+    // species/role: {f,m,p}
     // type: {b,c,d,f,i,l,o} = boolean/byte,char, double, float, int, long, object
     
     private final static HashMap<String,List<String>> prefixMap;

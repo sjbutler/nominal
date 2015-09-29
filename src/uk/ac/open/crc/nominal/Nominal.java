@@ -10,7 +10,6 @@ import uk.ac.open.crc.nominal.rules.RulesetGroupFactory;
  * Provides a means of initialising the library, and testing 
  * identifier names for compliance with conventions.
  *
- *
  * @author Simon Butler (simon@facetus.org.uk)
  */
 public class Nominal {
@@ -71,7 +70,8 @@ public class Nominal {
     }
     
     
-    private Nominal( File conventionsDefinitionFile, boolean withDefaults ) throws IOException {
+    private Nominal( File conventionsDefinitionFile, boolean withDefaults ) 
+            throws IOException {
         RulesetGroup rg;
         
         if ( withDefaults ) { 
@@ -88,7 +88,7 @@ public class Nominal {
     /**
      * Tests the name against the conventions specified.
      * @param identifierName a name to be tested.
-     * @return a reference to the name tested
+     * @return a reference to the name tested.
      */
     public IdentifierName test( IdentifierName identifierName ) {
         return detectorManager.test( identifierName );

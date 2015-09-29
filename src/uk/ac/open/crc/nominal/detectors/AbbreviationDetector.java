@@ -38,6 +38,10 @@ public class AbbreviationDetector implements Detector {
     private final DictionaryManager dictionaryManager;
     private final DictionarySet abbreviationDictionaries;
      
+    /**
+     * Creates a detector using the supplied rule set.
+     * @param ruleSetGroup the rules to be applied by the detector.
+     */
     public AbbreviationDetector( RulesetGroup ruleSetGroup ) {
         this.ruleSetGroup = ruleSetGroup;
         this.dictionaryManager = new AbbreviationDictionaryManager();
@@ -49,11 +53,11 @@ public class AbbreviationDetector implements Detector {
      * Checks each token to determine whether it is an abbreviation and 
      * annotates each token and the identifier name with results.
      * @param identifierName the identifier name to test.
-     * @return a summary of the results. The same object is attached to the identifier name.
+     * @return a summary of the results. The same object is attached to the 
+     * identifier name.
      */
     @Override
     public AbbreviationSummaryInformation test( IdentifierName identifierName ) {
-
         
         List<AbbreviationInformation> informationList = new ArrayList<>();
         
@@ -74,7 +78,8 @@ public class AbbreviationDetector implements Detector {
             informationList.add( information );
         }
         
-        AbbreviationSummaryInformation summaryInformation = new AbbreviationSummaryInformation( informationList );
+        AbbreviationSummaryInformation summaryInformation = 
+                new AbbreviationSummaryInformation( informationList );
        
         identifierName.add( summaryInformation );
         return summaryInformation;

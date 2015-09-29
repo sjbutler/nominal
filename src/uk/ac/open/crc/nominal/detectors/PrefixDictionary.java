@@ -19,7 +19,7 @@ package uk.ac.open.crc.nominal.detectors;
 import java.util.HashSet;
 
 /**
- *
+ * A small dictionary containing some common prefixes.
  *
  *
  * @author Simon Butler (simon@facetus.org.uk)

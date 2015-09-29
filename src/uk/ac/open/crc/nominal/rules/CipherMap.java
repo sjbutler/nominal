@@ -23,7 +23,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
+ * A map of cipher names to defined types. This class is instantiated from 
+ * the parser and has an identifier specified in the .nom file being parsed.
  *
  *
  * @author Simon Butler (simon@facetus.org.uk)
@@ -40,23 +41,46 @@ public class CipherMap {
     }
     
     
-    
+    /**
+     * Recovers the identifier used for this map of ciphers.
+     * @return an identifier
+     */
     public String identifier() {
         return this.identifier;
     }
     
-    public Map map() {
+    /** 
+     * Retrieves the map of cipher names and types.
+     * @return a map
+     */
+    public Map<String,Set<String>> map() {
         return this.map;
     }
     
+    /**
+     * Retrieves set of cipher names.
+     * @return a set of cipher names
+     */
     public Set<String> keys() {
         return this.map.keySet();
     }
     
+    /**
+     * Retrieves the set of types for a given cipher.
+     * @param cipher a cipher name
+     * @return a set of type names, or {@code null} if the cipher is not a member
+     * of the map.
+     */
     public Set<String> typeList( String cipher ) {
         return this.map.get( cipher );
     }
     
+    /**
+     * Adds a cipher and types to the map. The process is cumulative so 
+     * the same cipher may be added more than once
+     * @param cipher a cipher name
+     * @param types the type names associated with the cipher.
+     */
     public void put( String cipher, Set<String> types ) {
         if ( this.map.containsKey( cipher ) ) {
             Set<String> existingTypes = this.map.get( cipher );
@@ -71,6 +95,11 @@ public class CipherMap {
         return this.map.isEmpty();
     }
     
+    /**
+     * Indicates if the cipher is a member of the map.
+     * @param s a cipher name
+     * @return {@code true} if the cipher is a member of the map.
+     */
     public boolean isKnownCipher( String s ) {
         return this.map.containsKey( s );
     }

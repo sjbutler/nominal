@@ -20,8 +20,6 @@ package uk.ac.open.crc.nominal.information;
  * Represents the information known about whether the token is a 
  * prefix. This class should only ever be attached to the first token
  * of an identifier name.
- * 
- * 
  *
  * @author Simon Butler (simon@facetus.org.uk)
  */

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Summary of position of acronyms in names.
  *
  *
  * @author Simon Butler (simon@facetus.org.uk)
@@ -51,6 +51,10 @@ public class AcronymSummaryInformation extends IdentifierInformation {
         throw new UnsupportedOperationException( "No notion of correctness for acronym summary" );
     }
     
+    /**
+     * Recovers indices of acronym tokens.
+     * @return a list of indices of tokens in name that are acronyms. May be empty.
+     */
     public List<Integer> acronymIndices() {
         return this.acronymIndices;
     }

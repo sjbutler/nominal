@@ -225,5 +225,23 @@ public class RulesetGroupFactory {
             localRuleSet = new Ruleset( IdentifierClassification.LOCAL_VARIABLE );
             rulesetGroup.add( localRuleSet );
         }
+        
+        Ruleset classRuleSet = rulesetGroup.get( IdentifierClassification.CLASS );
+        if ( classRuleSet == null ) {
+            classRuleSet = new Ruleset( IdentifierClassification.CLASS );
+            rulesetGroup.add( classRuleSet );
+        }
+        
+        Ruleset methodRuleSet = rulesetGroup.get( IdentifierClassification.METHOD );
+        if ( methodRuleSet == null ) {
+            methodRuleSet = new Ruleset( IdentifierClassification.METHOD );
+            rulesetGroup.add( methodRuleSet );
+        }
+        
+        Ruleset labelRuleSet = rulesetGroup.get( IdentifierClassification.LABEL );
+        if ( labelRuleSet == null ) {
+            labelRuleSet = new Ruleset( IdentifierClassification.LABEL );
+            rulesetGroup.add( labelRuleSet );
+        }
     }
 }

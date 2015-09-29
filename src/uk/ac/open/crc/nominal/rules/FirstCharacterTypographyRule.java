@@ -32,12 +32,17 @@ import uk.ac.open.crc.nominal.information.FirstCharacterCapitalisationInformatio
  */
 public class FirstCharacterTypographyRule extends AbstractRule {
     
-    private static final Logger LOGGER = LoggerFactory.getLogger(FirstCharacterTypographyRule.class );
+    private static final Logger LOGGER = 
+            LoggerFactory.getLogger(FirstCharacterTypographyRule.class );
     
-    private static final String UPPER_TRUE = "identifier name begins with upper case character";
-    private static final String UPPER_FALSE = "identifier name does not begin with upper case character";
-    private static final String LOWER_TRUE = "identifier name begins with lower case character";
-    private static final String LOWER_FALSE = "identifier name does not begin with lower case character";
+    private static final String UPPER_TRUE = 
+            "identifier name begins with upper case character";
+    private static final String UPPER_FALSE = 
+            "identifier name does not begin with upper case character";
+    private static final String LOWER_TRUE = 
+            "identifier name begins with lower case character";
+    private static final String LOWER_FALSE = 
+            "identifier name does not begin with lower case character";
     
     private final CaseType caseType;
     private String explanation;

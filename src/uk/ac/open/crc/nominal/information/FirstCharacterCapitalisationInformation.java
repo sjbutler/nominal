@@ -17,8 +17,10 @@ limitations under the License.
 package uk.ac.open.crc.nominal.information;
 
 /**
- *
- *
+ * Information concerning the capitalisation of the first character of the 
+ * first alphanumeric token of a name. NB where a 
+ * name begins with an underscore, for example, the first alphanumeric 
+ * character may be a digit.
  *
  * @author Simon Butler (simon@facetus.org.uk)
  */
@@ -40,15 +42,28 @@ public class FirstCharacterCapitalisationInformation extends IdentifierInformati
         addExplanation( explanation );
     }
     
-    
+    /**
+     * Indicates if the first character is upper case.
+     * @return {@code true} if first character is upper case
+     */
     public boolean isUpperCase() {
         return this.isUpperCase;
     }
     
+    /**
+     * Indicates if first character has correct typography.
+     * @return {@code true} iff the first non-separator character has the 
+     * correct typography
+     */
+    @Override
     public boolean isCorrect() {
         return this.isCorrect;
     }
     
+    /**
+     * Indicates if first non-separator character is a digit.
+     * @return {@code true} if first character is a digit.
+     */
     public boolean isDigit() {
         return this.isDigit;
     }

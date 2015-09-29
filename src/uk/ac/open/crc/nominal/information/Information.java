@@ -18,9 +18,8 @@ package uk.ac.open.crc.nominal.information;
 import java.util.List;
 
 /**
- *
+ * Common interface for information reporting objects.
  * @author Simon Butler (simon@facetus.org.uk)
- * @version $Id: Information.java 56 2015-04-02 18:43:02Z simon $
  */
 public interface Information {
     public InformationClassification classification();

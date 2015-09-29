@@ -17,7 +17,9 @@ limitations under the License.
 package uk.ac.open.crc.nominal.information;
 
 /**
- *
+ * Summarises the {@code BodyCapitalisationInformation} objects for a name
+ * to give correctness of typography of all tokens with the exception of the 
+ * first character of the first token.
  *
  *
  * @author Simon Butler (simon@facetus.org.uk)
@@ -31,6 +33,12 @@ public class BodyCapitalisationSummaryInformation extends IdentifierInformation 
         this.isCorrect = isCorrect;
     }
     
+    /**
+     * Indicates the correctness of the typography of all the tokens with the 
+     * exception of the first character of a name.
+     * @return {@code true} if typography of tokens is correct (with the 
+     * exception of the first character of the first token)
+     */
     @Override
     public boolean isCorrect() {
         return this.isCorrect;

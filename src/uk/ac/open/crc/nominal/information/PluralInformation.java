@@ -17,7 +17,7 @@ limitations under the License.
 package uk.ac.open.crc.nominal.information;
 
 /**
- *
+ * Indicates if the name is pluralised.
  *
  *
  * @author Simon Butler (simon@facetus.org.uk)
@@ -41,19 +41,35 @@ public class PluralInformation extends IdentifierInformation {
         this.isPlural = isPlural;
     }
 
+    /**
+     * Indicates is pluralisation rule is adhered to.
+     * @return {@code true} iff singular or plural are used correctly
+     */
     @Override
     public boolean isCorrect() {
         return this.isCorrect;
     }
 
+    /**
+     * Indicates if the rule specified the use of a plural.
+     * @return {@code true} if a plural was specified in the rule.
+     */
     public boolean isPluralExpected() {
         return this.isPluralExpected;
     }
 
+    /**
+     * Indicates if the rule for plurals is 'unspecified'.
+     * @return {@code true} if plural use is unspecified
+     */
     public boolean isUnspecified() {
         return this.isUnspecified;
     }
     
+    /**
+     * Indicates if the name is a plural.
+     * @return {@code true} if the name is a plural.
+     */
     public boolean isPlural() {
         return this.isPlural;
     }

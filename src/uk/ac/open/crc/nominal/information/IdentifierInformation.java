@@ -40,11 +40,20 @@ public abstract class IdentifierInformation implements Information {
         return this.classification;
     }
     
+    /**
+     * Retrieves the list of explanations.
+     * @return a {@code List} of messages
+     */
     @Override
     public List<String> explanations() {
         return this.explanations;
     }
     
+    /**
+     * Adds a (terse) message explaining the classification made by 
+     * a given rule.
+     * @param explanation a brief message
+     */
     public void addExplanation( String explanation ) {
         this.explanations.add( explanation );
     }

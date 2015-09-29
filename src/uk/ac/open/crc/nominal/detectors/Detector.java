@@ -19,7 +19,7 @@ import uk.ac.open.crc.nominal.IdentifierName;
 import uk.ac.open.crc.nominal.information.Information;
 
 /**
- *
+ * Interface for all detectors.
  * @author Simon Butler (simon@facetus.org.uk)
  */
 public interface Detector {
