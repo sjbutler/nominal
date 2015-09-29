@@ -190,58 +190,17 @@ public class RulesetGroupFactory {
     }
     
     
-    // inserts dummy rulesets in the 
+    // inserts dummy rulesets into any gaps in the
     // hierarchy to prevent NPEs during the recursive search up the tree
-    // for rules. Could be done better :-)
     private static void addDummyRulesets( RulesetGroup rulesetGroup ) {
-        Ruleset fieldRuleSet = rulesetGroup.get( IdentifierClassification.FIELD );
-        if ( fieldRuleSet == null  ) {
-            fieldRuleSet = new Ruleset( IdentifierClassification.FIELD );
-            rulesetGroup.add( fieldRuleSet );
-            // may need to insert field-constant and field-variable where only their children are defined to ensure the rule search cascades up to field
-            Ruleset fieldConstantRuleSet = rulesetGroup.get( IdentifierClassification.FIELD_CONSTANT );
-            if ( fieldConstantRuleSet == null ) {
-                fieldConstantRuleSet = new Ruleset( IdentifierClassification.FIELD_CONSTANT );
-                // default underscores and capitalisation? Though any child 
-                // should have defined those rules
-                rulesetGroup.add( fieldConstantRuleSet );
-            }
-            Ruleset fieldVariableRuleSet = rulesetGroup.get( IdentifierClassification.FIELD_VARIABLE );
-            if ( fieldVariableRuleSet == null ) {
-                fieldVariableRuleSet = new Ruleset( IdentifierClassification.FIELD_VARIABLE );
-                
-                rulesetGroup.add( fieldVariableRuleSet );
+        
+        for ( IdentifierClassification ic : IdentifierClassification.values() ) {
+            Ruleset rs = rulesetGroup.get( ic );
+            if ( rs == null ) {
+                rs = new Ruleset( ic );
+                rulesetGroup.add( rs );
             }
         }
         
-        Ruleset formalRuleSet = rulesetGroup.get( IdentifierClassification.FORMAL_ARGUMENT );
-        if ( formalRuleSet == null ) {
-            formalRuleSet = new Ruleset( IdentifierClassification.FORMAL_ARGUMENT );
-            rulesetGroup.add( formalRuleSet );
-        }
-        
-        Ruleset localRuleSet = rulesetGroup.get( IdentifierClassification.LOCAL_VARIABLE );
-        if ( localRuleSet == null ) {
-            localRuleSet = new Ruleset( IdentifierClassification.LOCAL_VARIABLE );
-            rulesetGroup.add( localRuleSet );
-        }
-        
-        Ruleset classRuleSet = rulesetGroup.get( IdentifierClassification.CLASS );
-        if ( classRuleSet == null ) {
-            classRuleSet = new Ruleset( IdentifierClassification.CLASS );
-            rulesetGroup.add( classRuleSet );
-        }
-        
-        Ruleset methodRuleSet = rulesetGroup.get( IdentifierClassification.METHOD );
-        if ( methodRuleSet == null ) {
-            methodRuleSet = new Ruleset( IdentifierClassification.METHOD );
-            rulesetGroup.add( methodRuleSet );
-        }
-        
-        Ruleset labelRuleSet = rulesetGroup.get( IdentifierClassification.LABEL );
-        if ( labelRuleSet == null ) {
-            labelRuleSet = new Ruleset( IdentifierClassification.LABEL );
-            rulesetGroup.add( labelRuleSet );
-        }
     }
 }
