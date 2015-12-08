@@ -29,8 +29,6 @@ import uk.ac.open.crc.nominal.information.PrefixInformation;
  * NB: the {@linkplain BrandingDictionary} is unpopulated and should be 
  * populated with any local branding before using the detector.
  * </p>
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class PrefixDetector implements Detector {
 
@@ -38,6 +36,10 @@ public class PrefixDetector implements Detector {
     
     private final RulesetGroup ruleSetGroup;
     
+    /**
+     * Creates a detector.
+     * @param ruleSetGroup a set of rules to apply 
+     */
     public PrefixDetector( RulesetGroup ruleSetGroup ) {
         this.ruleSetGroup = ruleSetGroup;
     }

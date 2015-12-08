@@ -36,9 +36,6 @@ import uk.ac.open.crc.nominal.rules.parser.NominalVisitorImplementation;
  * A group of static factory methods that create complete 
  * sets of rule sets {@link Ruleset} from various input sources.
  * See each method for the supported type of input.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class RulesetGroupFactory {
     private static final Logger LOGGER = LoggerFactory.getLogger(RulesetGroupFactory.class );
@@ -46,7 +43,6 @@ public class RulesetGroupFactory {
     private static final String DEFAULT_RULES_FILE = "ajc-rules.nom";
     private static final String GOSLING_RULES_FILE = "jls-rules.nom";
     private static final String VERMEULEN_RULES_FILE = "ejs-rules.nom";
-  
     
     /**
      * Creates a {@code RulesetGroup} using one of the stored definitions.
@@ -105,7 +101,8 @@ public class RulesetGroupFactory {
      * @return an instance of {@code RulesetGroup}.
      * @throws java.io.FileNotFoundException if specified file is not found.
      */
-    public static RulesetGroup createRulesetGroup ( File conventionsDefinitionFile ) throws IOException {
+    public static RulesetGroup createRulesetGroup ( 
+            File conventionsDefinitionFile ) throws IOException {
         RulesetGroup rulesetGroup = new RulesetGroup();
         
         // read the source file and parse it adding rules
@@ -121,21 +118,21 @@ public class RulesetGroupFactory {
             throw e; 
         }
         
-        ANTLRInputStream input = new ANTLRInputStream( new BufferedReader( fileReader ) );
+        ANTLRInputStream input = 
+                new ANTLRInputStream( new BufferedReader( fileReader ) );
         NominalLexer nominalLexer = new NominalLexer( input );
         CommonTokenStream tokens = new CommonTokenStream( nominalLexer );
         NominalParser nominalParser = new NominalParser( tokens );
         ParseTree parseTree = nominalParser.file();
         
-        // now start the walk with an injected instance of RulesetGroup
-        NominalVisitor nominalVisitor = new NominalVisitorImplementation( rulesetGroup );
+        NominalVisitor nominalVisitor = 
+                new NominalVisitorImplementation( rulesetGroup );
         nominalVisitor.visit( parseTree );
         
         addDummyRulesets( rulesetGroup );
         
         return rulesetGroup;
     }
-    
     
     /**
      * Creates a  <code>RulesetGroup</code> consisting of the default rules
@@ -146,11 +143,13 @@ public class RulesetGroupFactory {
      * </p>
      * @param conventionsDefinitionFile a file containing convention 
      * definitions in nominal's language
-     * @return an instance of {@code RulesetGroup}.
-     * @throws java.io.IOException if internal file is not found in jar.
-     * @throws java.io.FileNotFoundException if external nominal file is not found.
+     * @return an instance of {@code RulesetGroup}
+     * @throws java.io.IOException if internal file is not found in jar
+     * @throws java.io.FileNotFoundException if external nominal (.nom) file 
+     * is not found
      */
-    public static RulesetGroup createRulesetGroupWithDefaults( File conventionsDefinitionFile ) throws IOException {
+    public static RulesetGroup createRulesetGroupWithDefaults( 
+            File conventionsDefinitionFile ) throws IOException {
         RulesetGroup rulesetGroup;
         try {
             rulesetGroup = createDefaultRulesetGroup( "ajc" );
@@ -174,14 +173,15 @@ public class RulesetGroupFactory {
             throw e; 
         }
         
-        ANTLRInputStream input = new ANTLRInputStream( new BufferedReader( fileReader ) );
+        ANTLRInputStream input = 
+                new ANTLRInputStream( new BufferedReader( fileReader ) );
         NominalLexer nominalLexer = new NominalLexer( input );
         CommonTokenStream tokens = new CommonTokenStream( nominalLexer );
         NominalParser nominalParser = new NominalParser( tokens );
         ParseTree parseTree = nominalParser.file();
         
-        // now start the walk with an injected instance of RulesetGroup
-        NominalVisitor nominalVisitor = new NominalVisitorImplementation( rulesetGroup );
+        NominalVisitor nominalVisitor = 
+                new NominalVisitorImplementation( rulesetGroup );
         nominalVisitor.visit( parseTree );
         
         addDummyRulesets( rulesetGroup );
@@ -190,7 +190,7 @@ public class RulesetGroupFactory {
     }
     
     
-    // inserts dummy rulesets into any gaps in the
+    // inserts emptyy rulesets into any gaps in the
     // hierarchy to prevent NPEs during the recursive search up the tree
     private static void addDummyRulesets( RulesetGroup rulesetGroup ) {
         

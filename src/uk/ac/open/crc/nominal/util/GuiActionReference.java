@@ -21,9 +21,6 @@ import java.util.Set;
 
 /**
  * A reference of Java library classes that represent actions.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class GuiActionReference {
 

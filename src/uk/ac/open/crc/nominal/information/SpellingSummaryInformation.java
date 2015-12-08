@@ -18,16 +18,28 @@ package uk.ac.open.crc.nominal.information;
 
 import java.util.List;
 
+// Is this a practical proposition?
+// Review the reasoning behind this class and the states
+// it is expected to be able to report.
+// There is also a great deal of payload that is never
+// used. Why?
 /**
  * Summarises the spelling information for the entire identifier name.
- * Is this a practical proposition?
- *
- * @author Simon Butler (simon@facetus.org.uk)
+ * 
  */
 public class SpellingSummaryInformation extends IdentifierInformation {
 
     private final boolean isCorrect;
     
+    // look at the parameters -- most are unused. See comment above. 
+    /**
+     * Creates a summary information object.
+     * @param isCorrect indicates whether the name is correctly spelt
+     * @param isSpellingCorrect a list of the correctness of the spelling of each token
+     * @param abbreviationInformation a
+     * @param acronymInformation a
+     * @param cipherInformation a
+     */
     public SpellingSummaryInformation( 
             final boolean isCorrect,
             final List<Boolean> isSpellingCorrect, 

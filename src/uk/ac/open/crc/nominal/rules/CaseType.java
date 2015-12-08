@@ -18,7 +18,6 @@ package uk.ac.open.crc.nominal.rules;
 
 /**
  * Represents typographical case.
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public enum CaseType {
 
@@ -65,4 +64,5 @@ public enum CaseType {
     public String description() {
         return this.description;
     }
+    
 }

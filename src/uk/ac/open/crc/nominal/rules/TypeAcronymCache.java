@@ -25,12 +25,14 @@ import uk.ac.open.crc.idtk.SimpleNameTokeniser;
 /**
  * Provides a mechanism for creating type acronyms. When acronyms are 
  * created they are cached to save repetitive processing. 
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class TypeAcronymCache {
     private static TypeAcronymCache instance = null;
-    
+
+    /**
+     * Retrieves the instance of this class,
+     * @return the instance of this class
+     */
     public static TypeAcronymCache getInstance() {
         if ( instance == null ) {
             instance = new TypeAcronymCache();

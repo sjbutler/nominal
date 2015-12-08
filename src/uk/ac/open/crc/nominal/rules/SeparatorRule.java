@@ -41,8 +41,6 @@ import uk.ac.open.crc.nominal.information.SeparatorInformation;
  * constants which are defined as static and final. In practice, constant strings 
  * are often named using mixed case and underscores. </li>
  * </ul>
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class SeparatorRule extends AbstractRule {
 
@@ -100,8 +98,6 @@ public class SeparatorRule extends AbstractRule {
     /**
      * A default constructor that creates a rule that does not allow the use 
      * of separators.
-     * 
-     * 
      */
     public SeparatorRule() {
         this( new HashSet<>(), false );

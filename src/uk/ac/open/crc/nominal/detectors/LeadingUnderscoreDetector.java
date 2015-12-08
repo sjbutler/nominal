@@ -19,14 +19,18 @@ package uk.ac.open.crc.nominal.detectors;
 import uk.ac.open.crc.nominal.IdentifierName;
 import uk.ac.open.crc.nominal.information.LeadingUnderscoreInformation;
 
+// implementation to be revised when use of leadin underscores can be defined
 /**
  * Checks for the use of leading underscores.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class LeadingUnderscoreDetector implements Detector {
 
+    /**
+     * Evaluates a name against a static rule set forbidding the use of
+     * leading underscores.
+     * @param identifierName a name to evaluate
+     * @return in information object 
+     */
     @Override
     public LeadingUnderscoreInformation test( IdentifierName identifierName ) {
         // imprecise test -- need to check for '$_' too
@@ -44,9 +48,10 @@ public class LeadingUnderscoreDetector implements Detector {
         return information;
     }
     
-    
     // REVIEW 
     // look at the use of dollar signs too, though maybe in another detector.
+    // also need to consider reporting that first character is letter 
+    // so that revised name would be accepted by compiler.
     /**
      * Identifies if a name is composed of at least one alphanumeric character
      * in addition to the leading underscore(s).
@@ -55,7 +60,8 @@ public class LeadingUnderscoreDetector implements Detector {
      * character.
      */
     private boolean isResultingNameLegal( String name )  {
-        // deal with special case of name being composed solely of underscores or dollar signs
+        // deal with special case of name being composed solely of 
+        // underscores or dollar signs
         if ( name.matches( "^[\\$_]+$" ) ) {
             return false;
         }

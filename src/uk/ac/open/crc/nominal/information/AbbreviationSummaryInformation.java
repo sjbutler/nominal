@@ -22,16 +22,18 @@ import java.util.List;
 /**
  * Summarises information about abbreviations in a name. Indicates where 
  * recognised abbreviations are found in the name 
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class AbbreviationSummaryInformation extends IdentifierInformation {
 
     private final List<Boolean> isAbbreviationList;
     private final List<Integer> abbreviationIndices;
 
-    public AbbreviationSummaryInformation( final List<AbbreviationInformation> informationList ) {
+    /**
+     * Creates a summary of the abbreviations found in a name's tokens.
+     * @param informationList a list of token abbreviation objects
+     */
+    public AbbreviationSummaryInformation( 
+            final List<AbbreviationInformation> informationList ) {
         super( InformationClassification.ABBREVIATION_SUMMARY );
 
         this.isAbbreviationList = new ArrayList<>();
@@ -53,12 +55,13 @@ public class AbbreviationSummaryInformation extends IdentifierInformation {
     public boolean isCorrect() {
         // there is really no notion of correctness, other than the 
         // abbreviations being recognised
-        throw new UnsupportedOperationException( "No notion of correctness for AbbreviationSummaryInformation" );
+        throw new UnsupportedOperationException( 
+                "No notion of correctness for AbbreviationSummaryInformation" );
     }
 
     /**
      * A list of indices of tokens containing a known abbreviation.
-     * @return a possibly empty list
+     * @return a list which is empty if there are no abbreviations in the name
      */
     public List<Integer> abbreviationIndices() {
         return this.abbreviationIndices;

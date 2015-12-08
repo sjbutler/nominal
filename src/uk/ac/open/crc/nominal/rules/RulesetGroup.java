@@ -26,20 +26,15 @@ import org.slf4j.LoggerFactory;
  * may be comprehensive, containing a {@code Ruleset} for each 
  * {@linkplain IdentifierClassification}, or partial with a {@code Ruleset}
  * for only some of the species sub-types.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class RulesetGroup {
     private static final Logger LOGGER = LoggerFactory.getLogger(RulesetGroup.class );
     private final HashMap<IdentifierClassification, Ruleset> rulesets;
-    private final static int HASHMAP_CAPACITY;
+    private final static int HASHMAP_CAPACITY = 
+            IdentifierClassification.values().length; // number of terms defined in IdentifierClassification enumeration
     
     private final Map<RuleType,Rule> defaultRules;
     
-    static {
-        HASHMAP_CAPACITY  = IdentifierClassification.values().length; // number of terms defined in IdentifierClassification enumeration
-    }
     
     /**
      * Creates a new instance of {@code RuleSetGroup}.
@@ -99,7 +94,9 @@ public class RulesetGroup {
      * @param ruleType a key for the type of rule requested
      * @return an instance of {@code Rule}
      */
-    public Rule get( IdentifierClassification classification, RuleType ruleType ) {
+    public Rule get( 
+            IdentifierClassification classification, 
+            RuleType ruleType ) {
         Ruleset ruleset = this.get( classification );
         if ( ruleset == null ) {
             LOGGER.error(
@@ -107,7 +104,6 @@ public class RulesetGroup {
                     classification.description());
             throw new IllegalStateException(); 
         }
-    
         
         IdentifierClassification parentClassification = classification.parent();
         
@@ -138,8 +134,6 @@ public class RulesetGroup {
         return rule;
     }
     
-    
-
     /**
      * Adds a {@link Ruleset Ruleset} to the group. NB this method overwrites 
      * any pre-existing {@code Ruleset} defined for the same 

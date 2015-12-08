@@ -25,14 +25,15 @@ import uk.ac.open.crc.mdsc.NormalisedIso3166DictionaryManager;
 
 /**
  * Provides mdsc dictionaries for nominal classes.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class MdscDictionaryPool {
         
     private static MdscDictionaryPool instance = null;
-    
+
+    /**
+     * Retrieves the instance of this class.
+     * @return the instance of this class
+     */
     public static MdscDictionaryPool getInstance() {
         if ( instance == null ) {
             instance = new MdscDictionaryPool();
@@ -40,7 +41,6 @@ public class MdscDictionaryPool {
         
         return instance;
     }
-    
     
     //---------------------------------------------
     private final DictionaryManager abbreviationDictionaryManager;
@@ -51,9 +51,6 @@ public class MdscDictionaryPool {
     private final DictionarySet acronymDictionaries;
     private final DictionaryManager iso3166DictionaryManager;
     private final DictionarySet iso3166Dictionaries;
-    
-    
-    
     
     private MdscDictionaryPool() {
         this.abbreviationDictionaryManager = new AbbreviationDictionaryManager();
@@ -66,23 +63,34 @@ public class MdscDictionaryPool {
         this.iso3166Dictionaries = this.iso3166DictionaryManager.dictionarySet();
     }
     
-    
-    
+    /**
+     * Retrieves the abbreviation dictionaries.
+     * @return a set of dictionaries
+     */
     public DictionarySet abbreviationDictionaries() {
         return this.abbreviationDictionaries;
     }
     
-    
+    /**
+     * Retrieves the acronym dictionaries.
+     * @return a set of dictionaries
+     */
     public DictionarySet acronymDictionaries() {
         return this.acronymDictionaries;
     }
     
-    
+    /**
+     * Retrieves the word dictionaries
+     * @return a set of dictionaries
+     */
     public DictionarySet wordDictionaries() {
         return this.wordDictionaries;
     }
     
-    
+    /**
+     * Retrieves the dictionaries of ISO 3166 country codes.
+     * @return a set of dictionaries
+     */
     public DictionarySet iso3166Dictionaries() {
         return this.iso3166Dictionaries;
     }

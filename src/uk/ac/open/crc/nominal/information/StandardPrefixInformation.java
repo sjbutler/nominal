@@ -18,28 +18,38 @@ package uk.ac.open.crc.nominal.information;
 
 /**
  * Records the use or not of redundant prefixes.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class StandardPrefixInformation extends IdentifierInformation {
 
     private final boolean isCorrect;
     private final boolean hasPrefix;
     
+    /**
+     * Creates an information object.
+     * @param isCorrect indicates whether a prefix is correctly used 
+     * @param hasPrefix indicates whether a known prefix is present
+     */
     public StandardPrefixInformation( final boolean isCorrect, final boolean hasPrefix ) {
         super( InformationClassification.STANDARD_PREFIX );
         this.isCorrect = isCorrect;
         this.hasPrefix = hasPrefix;
     }
     
+    /**
+     * Indicates whether a prefix is correctly used.
+     * @return true if the prefix is correctly used
+     */
     @Override
     public boolean isCorrect() {
         return this.isCorrect;
     }
     
-    
+    /**
+     * Indicates whether a prefix is present.
+     * @return true is a know prefix is present
+     */
     public boolean hasPrefix() {
         return this.hasPrefix;
     }
+    
 }

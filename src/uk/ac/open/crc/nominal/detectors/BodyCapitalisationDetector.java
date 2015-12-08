@@ -20,26 +20,31 @@ import uk.ac.open.crc.nominal.IdentifierName;
 import uk.ac.open.crc.nominal.rules.Rule;
 import uk.ac.open.crc.nominal.rules.RulesetGroup;
 import uk.ac.open.crc.nominal.rules.RuleType;
-import uk.ac.open.crc.nominal.information.BodyCapitalisationInformation;
 import uk.ac.open.crc.nominal.information.BodyCapitalisationSummaryInformation;
 
 /**
  * Checks the capitalisation of all tokens in a name
  * with the exception of the first character of the 
  * first token.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class BodyCapitalisationDetector implements Detector {
 
     private final RulesetGroup ruleSetGroup;
     
+    /**
+     * Creates  detector.
+     * @param ruleSetGroup a rule set to use 
+     */
     public BodyCapitalisationDetector( RulesetGroup ruleSetGroup ) {
         this.ruleSetGroup = ruleSetGroup;
     }
     
-    
+    /**
+     * Tests each token of the name conforms to the capitalisation rules 
+     * specified in the rule set passed to the constructor.
+     * @param identifierName a name to test
+     * @return a summary of the correctness of the whole name
+     */
     @Override
     public BodyCapitalisationSummaryInformation test( IdentifierName identifierName ) {
         Rule rule = this.ruleSetGroup.get( identifierName.classification(), RuleType.BODY );

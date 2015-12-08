@@ -20,8 +20,6 @@ package uk.ac.open.crc.nominal.information;
  * Represents the information known about whether the token is a 
  * prefix. This class should only ever be attached to the first token
  * of an identifier name.
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class PrefixInformation extends TokenInformation {
 
@@ -33,11 +31,16 @@ public class PrefixInformation extends TokenInformation {
     
     /**
      * Constructor.
-     * @param isCorrect indicates if the prefix usage is correct
-     * @param isPrefix indicates whether the token has been recognised by the dictionary as a prefix
-     * @param isPrefixIgnoreCase indicates the result of a case insensitive test of the token
+     * @param isCorrect indicates whether the prefix usage is correct
+     * @param isPrefix indicates whether the token has been recognised by 
+     * the dictionary as a prefix
+     * @param isPrefixIgnoreCase indicates the result of a case insensitive 
+     * test of the token
      */
-    public PrefixInformation( boolean isCorrect, boolean isPrefix, boolean isPrefixIgnoreCase ) {
+    public PrefixInformation( 
+            boolean isCorrect, 
+            boolean isPrefix, 
+            boolean isPrefixIgnoreCase ) {
         super( InformationClassification.PREFIX );
         this.isCorrect = isCorrect;
         this.isPrefix = isPrefix;

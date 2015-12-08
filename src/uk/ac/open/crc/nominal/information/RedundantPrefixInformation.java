@@ -21,8 +21,6 @@ package uk.ac.open.crc.nominal.information;
 /**
  * Records whether a redundant prefix is present and if so, whether it 
  * has been used 'correctly'.
- * 
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class RedundantPrefixInformation extends IdentifierInformation {
     
@@ -32,6 +30,14 @@ public class RedundantPrefixInformation extends IdentifierInformation {
     private final boolean isSpeciesPrefix;
     private final boolean isCaseSensitivePrefix;
     
+    /**
+     * Creates an information object.
+     * @param isCorrect whether the token conforms to the user specified rule 
+     * for redundant prefix use
+     * @param isTypePrefix indicates whether the token is a type prefix
+     * @param isSpeciesPrefix indicates whether the token is a species prefix
+     * @param isCaseSensitivePrefix the result of a case sensitive
+     */
     public RedundantPrefixInformation( 
             final boolean isCorrect, 
             final boolean isTypePrefix, 
@@ -45,23 +51,45 @@ public class RedundantPrefixInformation extends IdentifierInformation {
         this.isCaseSensitivePrefix = isCaseSensitivePrefix;
     }
     
+    /**
+     * Indicates whether a redundant prefix has been used according to the 
+     * rule specified by the user.
+     * @return true if the redundant prefix is correctly used
+     */
     @Override
     public boolean isCorrect() {
         return this.isCorrect;
     }
     
+    /**
+     * Indicates whether the token is a recognised redundant prefix.
+     * @return true if the token is a known redundant prefix
+     */
     public boolean isRedundantPrefix() {
         return this.isRedundantPrefix;
     }
     
+    /**
+     * Indicates whether the token is a type prefix.
+     * @return true if the token is a type prefix
+     */
     public boolean isTypePrefix() {
         return this.isTypePrefix;
     }
     
+    /**
+     * Indicates whether the token is a species prefix.
+     * @return true if the token is a species prefix
+     */
     public boolean isSpeciesPrefix() {
         return this.isSpeciesPrefix;
     }
     
+    /**
+     * Indicates whether the token is a redundant prefix and has the 
+     * expected case.
+     * @return true if the token is a prefix and has the expected case
+     */
     public boolean isCaseSensitivePrefix() {
         return this.isCaseSensitivePrefix;
     }

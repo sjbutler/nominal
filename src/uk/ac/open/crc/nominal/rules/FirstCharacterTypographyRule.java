@@ -26,9 +26,6 @@ import uk.ac.open.crc.nominal.information.FirstCharacterCapitalisationInformatio
 // back to the tree of responsibility again :-)
 /**
  * Embodies a rule for the first alphabetic character of an identifier name.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class FirstCharacterTypographyRule extends AbstractRule {
     
@@ -50,7 +47,7 @@ public class FirstCharacterTypographyRule extends AbstractRule {
     /**
      * Creates a rule for the specified {@linkplain CaseType}.
      * @param caseType must be {@code CaseType.LOWER} or {@code CaseType.UPPER}
-     * otherwise instantiation will throw an {@code IllegalArgumentException}.
+     * otherwise instantiation will throw an {@code IllegalArgumentException}
      */
     public FirstCharacterTypographyRule( CaseType caseType ) {
         super( RuleType.FIRST_CHARACTER );
@@ -66,7 +63,13 @@ public class FirstCharacterTypographyRule extends AbstractRule {
         this.explanation = "";
     }
     
-    
+    /**
+     * Determines whether the first character of the given name is capitalised
+     * according to the user defined rule.
+     * @param identifierName an identifier name
+     * @return an information object recording the result of the tests that 
+     * has been used to annotate the name
+     */
     @Override
     public FirstCharacterCapitalisationInformation test( IdentifierName identifierName ) {
         boolean isCorrect = false;

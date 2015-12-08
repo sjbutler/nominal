@@ -25,18 +25,24 @@ import uk.ac.open.crc.nominal.information.StandaloneAbbreviationInformation;
 /**
  * Determines if a name is a single token and a recognised abbreviation. 
  * JLS permits the use of standalone abbreviations.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class StandaloneAbbreviationDetector implements Detector {
 
     private final RulesetGroup ruleSetGroup;
      
+    /**
+     * Creates a detector.
+     * @param ruleSetGroup a set of rules  
+     */
     public StandaloneAbbreviationDetector( RulesetGroup ruleSetGroup ) {
         this.ruleSetGroup = ruleSetGroup;
     }
     
+    /**
+     * Evaluates the name against the rules specified by the user.
+     * @param identifierName a name to evaluate
+     * @return an information object summarising the results
+     */
     @Override
     public StandaloneAbbreviationInformation test( IdentifierName identifierName ) {
         Rule standaloneAbbreviationRule = 

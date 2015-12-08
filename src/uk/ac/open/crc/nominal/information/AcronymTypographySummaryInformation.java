@@ -18,18 +18,18 @@ package uk.ac.open.crc.nominal.information;
 
 /**
  * Summary of information about acronym typography in a name.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class AcronymTypographySummaryInformation extends IdentifierInformation {
-
     
-    private boolean isCorrect;
+    private final boolean isCorrect;
     
+    /**
+     * Creates a summary information object.
+     * @param isCorrect indicates whether acronyms adhere to the specified typography
+     */
     public AcronymTypographySummaryInformation( boolean isCorrect ) {
         super( InformationClassification.ACRONYM_TYPOGRAPHY_SUMMARY );
-        this.isCorrect = isCorrect();
+        this.isCorrect = isCorrect;
     }
     
     /**

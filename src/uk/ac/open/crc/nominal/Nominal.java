@@ -9,8 +9,6 @@ import uk.ac.open.crc.nominal.rules.RulesetGroupFactory;
 /**
  * Provides a means of initialising the library, and testing 
  * identifier names for compliance with conventions.
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class Nominal {
     

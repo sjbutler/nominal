@@ -20,13 +20,11 @@ import java.util.ArrayList;
 import uk.ac.open.crc.nominal.IdentifierName;
 import uk.ac.open.crc.nominal.rules.RulesetGroup;
 
-// Would a chain of responsibility be better than a set, because of the need
+// Would a chain/tree of responsibility be better than a set, because of the need
 // to control execution order, which cannot be guaranteed by iterating 
 // over a set. 
 /**
  * Manages the detectors and the order in which they are instantiated.
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class DetectorManager {
 

@@ -31,20 +31,18 @@ import uk.ac.open.crc.nominal.Token;
  * 
  * <p>NB: do not instantiate this class in an attempt to implement a 'no prefix' 
  * test -- it cannot test the negative. </p> THIS IS CHANGING
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class PrefixRule extends AbstractRule {
 
     private static final String EXPLANATION_PREFIX_PRESENT = "Expected prefix found";
     private static final String EXPLANATION_PREFIX_ABSENT = "Expected prefix not found";
     
-    private static final PrefixDictionary prefixDictionary;
-    private static final BrandingDictionary brandingDictionary;
+    private static final PrefixDictionary PREFIX_DICTIONARY;
+    private static final BrandingDictionary BRANDING_DICTIONARY;
     
     static {
-        prefixDictionary = PrefixDictionary.getInstance();
-        brandingDictionary = BrandingDictionary.getInstance();
+        PREFIX_DICTIONARY = PrefixDictionary.getInstance();
+        BRANDING_DICTIONARY = BrandingDictionary.getInstance();
     }
     
     private final List<String> prefixes;
@@ -52,6 +50,10 @@ public class PrefixRule extends AbstractRule {
     
     private final boolean prefixesExpected;
     
+    /**
+     * Creates a prefix rule using the provided list of prefixes.
+     * @param prefixes a list of prefixes
+     */
     public PrefixRule( List<String> prefixes ) {
         super( RuleType.PREFIX );
         this.prefixes = new ArrayList<>( prefixes );
@@ -69,8 +71,7 @@ public class PrefixRule extends AbstractRule {
   
     /**
      * The result of this test is only valid for the first non-separator token
-     * in the identifier name, and is not valid for single token identifier 
-     * names. 
+     * in a multi-token identifier name. 
      * @param identifierName an identifier name.
      * @return a {@code PrefixInformation} instance, or null where the 
      * test cannot be applied &ndash; i.e. a single token name or a separator only.
@@ -105,12 +106,12 @@ public class PrefixRule extends AbstractRule {
         }
         PrefixInformation information = new PrefixInformation( 
                 isCorrect,
-                prefixDictionary.isPrefix( text ), 
-                prefixDictionary.isPrefixIgnoreCase( text ));
+                PREFIX_DICTIONARY.isPrefix( text ), 
+                PREFIX_DICTIONARY.isPrefixIgnoreCase( text ));
         
-        information.setBranding( brandingDictionary.isBrand( text ) );
+        information.setBranding( BRANDING_DICTIONARY.isBrand( text ) );
         information.setBrandingIgnoreCase( 
-                brandingDictionary.isBrandIgnoreCase( text.toLowerCase() ) );
+                BRANDING_DICTIONARY.isBrandIgnoreCase( text.toLowerCase() ) );
 
         if ( firstToken != null ) {
             information.addExplanation( 
@@ -131,15 +132,15 @@ public class PrefixRule extends AbstractRule {
         Token firstToken = identifierName.firstToken();
         if ( firstToken != null ) {
             String text = identifierName.firstToken().text();
-            boolean isCorrect = ! prefixDictionary.isPrefix( text );
+            boolean isCorrect = ! PREFIX_DICTIONARY.isPrefix( text );
             PrefixInformation information = new PrefixInformation( 
                     isCorrect,
-                    prefixDictionary.isPrefix( text ), 
-                    prefixDictionary.isPrefixIgnoreCase( text ));
+                    PREFIX_DICTIONARY.isPrefix( text ), 
+                    PREFIX_DICTIONARY.isPrefixIgnoreCase( text ));
 
-            information.setBranding( brandingDictionary.isBrand( text ) );
+            information.setBranding( BRANDING_DICTIONARY.isBrand( text ) );
             information.setBrandingIgnoreCase( 
-                    brandingDictionary.isBrandIgnoreCase( text.toLowerCase() ) );
+                    BRANDING_DICTIONARY.isBrandIgnoreCase( text.toLowerCase() ) );
 
             information.addExplanation( 
                     isCorrect 

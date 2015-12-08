@@ -23,9 +23,6 @@ import uk.ac.open.crc.nominal.information.TypeAcronymInformation;
 // e.g. HtmlEditorKit ek; suggest at least 2 characters required.
 /**
  * A {@code Rule} used to detect and evaluate type acronyms.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class TypeAcronymRule extends AbstractRule {
     private static final TypeAcronymCache taCache = TypeAcronymCache.getInstance();
@@ -58,7 +55,8 @@ public class TypeAcronymRule extends AbstractRule {
         boolean isTypeAcronym;
         if ( identifierName.tokenCount() == 1 ) {
             String typeAcronym = taCache.acronym( identifierName.type() );
-            isTypeAcronym = identifierName.nameString().toLowerCase().equals( typeAcronym );
+            isTypeAcronym = 
+                    identifierName.nameString().toLowerCase().equals( typeAcronym );
         }
         else {
             isTypeAcronym = false;

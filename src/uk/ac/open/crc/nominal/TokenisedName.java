@@ -22,8 +22,6 @@ import java.util.List;
  * Encapsulates a tokenised name: a name with its tokens, part of
  * speech tags for the tokens and a phrase summary. 
  *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class TokenisedName {
     private final String nameString;

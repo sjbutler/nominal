@@ -24,14 +24,15 @@ import uk.ac.open.crc.nominal.rules.RulesetGroup;
 
 /**
  * Recovers and applies the defined separator rules.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class SeparatorDetector implements Detector {
 
     private final RulesetGroup ruleSetGroup;
     
+    /**
+     * Creates a detector.
+     * @param ruleSetGroup a set of rules to apply 
+     */
     public SeparatorDetector( RulesetGroup ruleSetGroup ) {
         this.ruleSetGroup = ruleSetGroup;
     }

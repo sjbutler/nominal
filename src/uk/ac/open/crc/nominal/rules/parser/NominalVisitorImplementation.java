@@ -40,9 +40,6 @@ import uk.ac.open.crc.nominal.rules.TypeAcronymRule;
 
 /**
  * Visitor that creates rules defined in .nom files.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class NominalVisitorImplementation extends NominalBaseVisitor<String> {
     private static final Logger LOGGER = LoggerFactory.getLogger( NominalVisitorImplementation.class );
@@ -53,6 +50,12 @@ public class NominalVisitorImplementation extends NominalBaseVisitor<String> {
     
     private Set<String> phrases;
     
+    /**
+     * Creates a visitor and injects a rule set group instance to be 
+     * populated from the rules in the .nom file being parsed.
+     * 
+     * @param ruleSetGroup a rule set group
+     */
     public NominalVisitorImplementation( RulesetGroup ruleSetGroup ) {
         super();
         this.rulesetGroup = ruleSetGroup;
@@ -152,7 +155,8 @@ public class NominalVisitorImplementation extends NominalBaseVisitor<String> {
     // this is defined or not and off by default
     // so when defined this allows standalone abbreviations
     @Override
-    public String visitStandaloneAbbreviation( NominalParser.StandaloneAbbreviationContext context ) {
+    public String visitStandaloneAbbreviation( 
+            NominalParser.StandaloneAbbreviationContext context ) {
         
         this.currentRuleset.add( new StandaloneAbbreviationRule( true ) );
         
@@ -184,7 +188,8 @@ public class NominalVisitorImplementation extends NominalBaseVisitor<String> {
     
     
     @Override
-    public String visitFirstCharDefinition( NominalParser.FirstCharDefinitionContext context ) {
+    public String visitFirstCharDefinition( 
+            NominalParser.FirstCharDefinitionContext context ) {
         String value = context.firstCharValue().getText();
         CaseType caseType = CaseType.getCaseTypeFor( value );
         this.currentRuleset.add(new FirstCharacterTypographyRule( caseType ) );
@@ -199,7 +204,8 @@ public class NominalVisitorImplementation extends NominalBaseVisitor<String> {
     // and to create and add phrase rules following 
     // visit to children
     @Override
-    public String visitTypeContentDefinition( NominalParser.TypeContentDefinitionContext context ) {
+    public String visitTypeContentDefinition( 
+            NominalParser.TypeContentDefinitionContext context ) {
         this.phrases = new HashSet<>();
         
         visitChildren( context );
@@ -212,7 +218,8 @@ public class NominalVisitorImplementation extends NominalBaseVisitor<String> {
     }
     
     @Override
-    public String visitMethodContentDefinition( NominalParser.MethodContentDefinitionContext context ) {
+    public String visitMethodContentDefinition( 
+            NominalParser.MethodContentDefinitionContext context ) {
         this.phrases = new HashSet<>();
         
         visitChildren( context );
@@ -242,7 +249,8 @@ public class NominalVisitorImplementation extends NominalBaseVisitor<String> {
     
     
     @Override
-    public String visitLabelContentDefinition( NominalParser.LabelContentDefinitionContext context ) {
+    public String visitLabelContentDefinition( 
+            NominalParser.LabelContentDefinitionContext context ) {
         this.phrases = new HashSet<>();
         
         visitChildren( context );
@@ -275,9 +283,11 @@ public class NominalVisitorImplementation extends NominalBaseVisitor<String> {
     }
     
     @Override
-    public String visitSeparatorDefinition( NominalParser.SeparatorDefinitionContext context ) {
+    public String visitSeparatorDefinition( 
+            NominalParser.SeparatorDefinitionContext context ) {
         Set<String> separators = new HashSet<>();
-        context.separatorValue().SEPARATOR_CHARACTER().stream().forEach( (separatorCharacter) -> {
+        context.separatorValue().SEPARATOR_CHARACTER()
+                .stream().forEach( (separatorCharacter) -> {
             separators.add( separatorCharacter.getText() );
         } );
         boolean hasMultiplier = context.separatorValue().MULTIPLIER() != null; // as multiplier has only one possible meaning ATM
@@ -345,8 +355,10 @@ public class NominalVisitorImplementation extends NominalBaseVisitor<String> {
     
     
     @Override
-    public String visitAcronymTypographyRule( NominalParser.AcronymTypographyRuleContext context ) {
-        CaseType caseType = CaseType.getCaseTypeFor( context.acronymTypography().getText() );
+    public String visitAcronymTypographyRule( 
+            NominalParser.AcronymTypographyRuleContext context ) {
+        CaseType caseType = 
+                CaseType.getCaseTypeFor( context.acronymTypography().getText() );
         
         AcronymTypographyRule rule = new AcronymTypographyRule( caseType );
         this.rulesetGroup.add( rule );

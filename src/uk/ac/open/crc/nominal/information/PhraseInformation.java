@@ -20,9 +20,6 @@ import java.util.List;
 
 /**
  * Records the correctness of the phrasal structure used in the name.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class PhraseInformation extends IdentifierInformation {
 
@@ -30,7 +27,14 @@ public class PhraseInformation extends IdentifierInformation {
     private final String phraseSummary;
     private final List<String> posTags;
     private final boolean isPlural;
-    
+
+    /**
+     * Creates an information object.  
+     * @param isCorrect indicates whether the phrase found matches one of those 
+     * specified in the rule set
+     * @param phraseSummary a summary of the phrase found
+     * @param posTags the PoS tags found
+     */
     public PhraseInformation( 
             boolean isCorrect, 
             String phraseSummary, 
@@ -42,7 +46,8 @@ public class PhraseInformation extends IdentifierInformation {
         if ( this.posTags != null ) {
             int lastIndex = this.posTags.size() - 1;
             if ( this.phraseSummary.toUpperCase().endsWith( "NP" ) ) {
-                this.isPlural = this.posTags.get( lastIndex ).toUpperCase().endsWith( "NNS" );
+                this.isPlural = 
+                        this.posTags.get( lastIndex ).toUpperCase().endsWith( "NNS" );
             }
             else {
                 this.isPlural = false;
@@ -53,16 +58,28 @@ public class PhraseInformation extends IdentifierInformation {
         }
     }
     
-    
+    /**
+     * Indicates whether the phrase found matches one specified in the rule set.
+     * @return true if the phrase found is specified in the rule set
+     */
     @Override
     public boolean isCorrect() {
         return this.isCorrect;
     }
     
+    /**
+     * Retrieves the phrase summary.
+     * @return a phrase summary
+     */
     public String phraseSummary() {
         return this.phraseSummary;
     }
     
+    /**
+     * Indicates whether the phrase found is tagged as a plural. The method 
+     * is only relevant if the name consists of or ends in a noun phrase
+     * @return true if the name is considered plural
+     */
     public boolean isPlural() {
         return isPlural;
     }

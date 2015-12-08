@@ -38,6 +38,10 @@ public class CipherMapStore {
     
     private static CipherMapStore instance = null;
     
+    /**
+     * Retrieves the instance of this object.
+     * @return the instance of this object
+     */
     public static CipherMapStore getInstance() {
         if ( instance == null ) {
             instance = new CipherMapStore();
@@ -45,9 +49,9 @@ public class CipherMapStore {
         
         return instance;
     }
-    
+
+    // ---------------------------------
     private final Map<String,CipherMap> cipherMaps;
-    
     
     private CipherMapStore() {
         this.cipherMaps = new HashMap<>();
@@ -57,7 +61,7 @@ public class CipherMapStore {
         String mapName = "__common_ciphers__";
         CipherMap cm = new CipherMap( mapName );
         this.cipherMaps.put( mapName, cm );
-        // now populate the map. Using the expanded set to flag more 'offenders'.
+        // now populate the map using the expanded set to flag more 'offenders'.
         Set<String> types = new HashSet<>();
         types.add( "boolean" );
         types.add( "Boolean" );
@@ -105,7 +109,13 @@ public class CipherMapStore {
         cm.put( "v", types );
     }
     
-    public void store( String key, CipherMap cipherMap ) {
+    
+    /**
+     * Adds a cipher map to the store.
+     * @param cm a cipher map
+     */
+    public void add( CipherMap cm ) {
+        String key = cm.identifier();
         if ( this.cipherMaps.containsKey( key ) ) {
             LOGGER.error( 
                     "Duplicate cipher list declared with identifier "
@@ -113,15 +123,35 @@ public class CipherMapStore {
                     key );
         }
         
-        this.cipherMaps.put( key, cipherMap );
+        this.cipherMaps.put( key, cm );
     }
     
-    public CipherMap get( String cipherMapKey ) {
-        CipherMap cm = this.cipherMaps.get( cipherMapKey );
-        if ( cm == null ) {
-            LOGGER.warn( "No cipher map found for key: \"{}\"", cipherMapKey );
+    /**
+     * Adds an instance of {@code CipherMap} to the store and associates it
+     * with the given key. The key 
+     * @param key the name of a cipher map
+     * @param cm a cipher map
+     */
+    public void store( String key, CipherMap cm ) {
+        if ( this.cipherMaps.containsKey( key ) ) {
+            LOGGER.error( 
+                    "Duplicate cipher list declared with identifier "
+                            + "\"{}\"\nOverwriting previously stored list.", 
+                    key );
         }
-        return cm;
+        
+        this.cipherMaps.put( key, cm );
+    }
+    
+    /**
+     * Retrieves the cipher map associated with the given key. The method 
+     * returns null when the key is unrecognised.
+     * @param cipherMapKey a key
+     * @return the map associated with the key, or null if the 
+     * key is not recognised
+     */
+    public CipherMap get( String cipherMapKey ) {
+        return this.cipherMaps.get( cipherMapKey );
     }
     
     

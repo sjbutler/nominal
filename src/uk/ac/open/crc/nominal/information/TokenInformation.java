@@ -23,14 +23,16 @@ import java.util.List;
  * Common implementation of the {@code Information} interface to annotate tokens 
  * with the result of token based rule tests.
  *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public abstract class TokenInformation implements Information {
 
     private final InformationClassification classification;
     private final List<String> explanations;
     
+    /**
+     * Creates an information object with the specified classification.
+     * @param classification 
+     */
     protected TokenInformation( InformationClassification classification ) {
         this.classification = classification;
         this.explanations = new ArrayList<>();
@@ -45,12 +47,19 @@ public abstract class TokenInformation implements Information {
         return this.classification;
     }
     
-    
+    /**
+     * Recovers a list of explanations.
+     * @return a list of explanations
+     */
     @Override
     public List<String> explanations() {
         return this.explanations;
     }
     
+    /**
+     * Adds an explanation to the list.
+     * @param explanation an explanation
+     */
     public void addExplanation( String explanation ) {
         this.explanations.add( explanation );
     }

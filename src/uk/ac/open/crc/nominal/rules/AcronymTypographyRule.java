@@ -30,16 +30,13 @@ import uk.ac.open.crc.nominal.information.InformationClassification;
 
 /**
  * A configurable rule for acronym typography.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class AcronymTypographyRule extends AbstractRule {
 
-    private static final String firstTokenMixedLc = "^[a-z0-9]+$";
-    private static final String firstTokenMixedUc = "^[A-Z0-9][a-z0-9]*$";
-    private static final String otherTokenMixed = "^[A-Z0-9][a-z0-9]*$";
-    private static final String upper = "^[A-Z0-9]+$";
+    private static final String FIRST_TOKEN_MIXED_LC_PATTERN = "^[a-z0-9]+$";
+    private static final String FIRST_TOKEN_MIXED_UC_PATTERN = "^[A-Z0-9][a-z0-9]*$";
+    private static final String OTHER_TOKEN_MIXED_CASE_PATTERN = "^[A-Z0-9][a-z0-9]*$";
+    private static final String OTHER_TOKEN_UPPER_CASE_PATTERN = "^[A-Z0-9]+$";
     
     private final CaseType caseType;
     private String firstTokenPattern;
@@ -54,10 +51,10 @@ public class AcronymTypographyRule extends AbstractRule {
         this.caseType = caseType;
         
         if ( this.caseType == CaseType.MIXED ) {
-            this.otherTokenPattern = otherTokenMixed;
+            this.otherTokenPattern = OTHER_TOKEN_MIXED_CASE_PATTERN;
         }
         else {
-            this.otherTokenPattern = upper;
+            this.otherTokenPattern = OTHER_TOKEN_UPPER_CASE_PATTERN;
         }
     }
     
@@ -72,22 +69,22 @@ public class AcronymTypographyRule extends AbstractRule {
         // set first token using name context
         if ( identifierName.species().isClassOrInterface() ) {
             if ( this.caseType == CaseType.MIXED ) {
-                this.firstTokenPattern = firstTokenMixedUc;
+                this.firstTokenPattern = FIRST_TOKEN_MIXED_UC_PATTERN;
             }
             else {
-                this.firstTokenPattern = upper;
+                this.firstTokenPattern = OTHER_TOKEN_UPPER_CASE_PATTERN;
             }
         }
         else if ( identifierName.species() == Species.FIELD ) {
             if ( isConstant( identifierName.modifiers() ) ) {
-                this.firstTokenPattern = upper;
+                this.firstTokenPattern = OTHER_TOKEN_UPPER_CASE_PATTERN;
             }
             else {
-                this.firstTokenPattern = firstTokenMixedLc;
+                this.firstTokenPattern = FIRST_TOKEN_MIXED_LC_PATTERN;
             }
         }
         else {
-                this.firstTokenPattern = firstTokenMixedLc;
+                this.firstTokenPattern = FIRST_TOKEN_MIXED_LC_PATTERN;
         }
         
         AcronymTypographySummaryInformation summaryInformation = null;
@@ -136,4 +133,5 @@ public class AcronymTypographyRule extends AbstractRule {
         return modifiers.contains( Modifier.FINAL ) 
                 && modifiers.contains( Modifier.STATIC );
     }
+    
 }

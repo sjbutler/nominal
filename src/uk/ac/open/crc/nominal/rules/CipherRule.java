@@ -28,12 +28,9 @@ import uk.ac.open.crc.nominal.information.CipherInformation;
 // NB: instances of this class created by the nominal parser.
 // the cipher map is populated by the same parser and
 // probably after this object is instantiated, hence
-// the lazy load of the specified cipher map. 
+// the lazy assignment of the reference to the specified cipher map. 
 /**
  * Embodies the rules on cipher use.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class CipherRule extends IdentifierRule {
     private static final Logger LOGGER = LoggerFactory.getLogger( CipherRule.class );
@@ -72,19 +69,20 @@ public class CipherRule extends IdentifierRule {
      * @param identifierName an identifier name to be evaluated
      * @return a {@code CipherInformation} object, or {@code null} if the 
      * identifier name consists of more than a single token, or is 
-     * not a reference.
+     * not a reference
      */
     @Override
     public CipherInformation test( IdentifierName identifierName ) {
         // populate the map
-        if ( cipherMap == null || cipherMap.isEmpty() ) {
-            cipherMap = CipherMapStore.getInstance().get( this.cipherMapKey );
-            if ( cipherMap.isEmpty() ) {
+        if ( this.cipherMap == null || this.cipherMap.isEmpty() ) {
+            this.cipherMap = CipherMapStore.getInstance().get( this.cipherMapKey );
+            if ( this.cipherMap == null || this.cipherMap.isEmpty() ) {
                 LOGGER.error( 
                         "No ciphers defined for cipher list identifier \"{}\"", 
-                        cipherMapKey );
-                throw new IllegalStateException( "Undefined cipher list: " 
-                        + cipherMapKey );
+                        this.cipherMapKey );
+                throw new IllegalStateException( 
+                        String.format( "Undefined cipher list: %s", 
+                        this.cipherMapKey ) );
             }
         }
                 
@@ -125,7 +123,8 @@ public class CipherRule extends IdentifierRule {
             return information;
         }
         else {
-            return null; // do not annotate to identifier name or token
+            return null; // do not annotate identifier name or token
         }
     }
+    
 }

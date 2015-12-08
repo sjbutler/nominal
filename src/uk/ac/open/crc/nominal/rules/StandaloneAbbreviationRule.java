@@ -22,8 +22,6 @@ import uk.ac.open.crc.mdsc.DictionarySet;
 
 /**
  * Implements the rule for standalone abbreviations.
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class StandaloneAbbreviationRule extends IdentifierRule {
     private final DictionarySet abbreviationDictionaries;
@@ -33,19 +31,38 @@ public class StandaloneAbbreviationRule extends IdentifierRule {
     
     private final boolean isPermitted;
 
+    /** 
+     * Creates a default rule which does not allow the use of 
+     * standalone abbreviations. 
+     */
     public StandaloneAbbreviationRule() {
         this( false );
     }
     
+    /**
+     * Creates a rule for standalone abbreviations.
+     * @param isPermitted indicates whether standalone abbreviations
+     * are permitted
+     */
     public StandaloneAbbreviationRule( final boolean isPermitted ) {
         super( RuleType.STANDALONE_ABBREVIATION );
         this.isPermitted = isPermitted;
-        this.abbreviationDictionaries = MdscDictionaryPool.getInstance().abbreviationDictionaries();
-        this.wordDictionaries = MdscDictionaryPool.getInstance().wordDictionaries();
-        this.acronymDictionaries = MdscDictionaryPool.getInstance().acronymDictionaries();
-        this.iso3166Dictionaries = MdscDictionaryPool.getInstance().iso3166Dictionaries();
+        this.abbreviationDictionaries = 
+                MdscDictionaryPool.getInstance().abbreviationDictionaries();
+        this.wordDictionaries = 
+                MdscDictionaryPool.getInstance().wordDictionaries();
+        this.acronymDictionaries = 
+                MdscDictionaryPool.getInstance().acronymDictionaries();
+        this.iso3166Dictionaries = 
+                MdscDictionaryPool.getInstance().iso3166Dictionaries();
     }
     
+    
+    /**
+     * Determines whether the specified name adheres to the rule.
+     * @param identifierName a name to evaluate
+     * @return an information object
+     */
     @Override
     public StandaloneAbbreviationInformation test( IdentifierName identifierName ) {
         StandaloneAbbreviationInformation information;
@@ -78,30 +95,30 @@ public class StandaloneAbbreviationRule extends IdentifierRule {
         return information;
     }
     
-    private boolean isRecognisedWord( String s ) {
-        return  isAcronym( s ) || isWord( s );
+    private boolean isRecognisedWord( String token ) {
+        return  isAcronym( token ) || isWord( token );
     }
     
     
-    private boolean isWord( String s ) {
-            return this.wordDictionaries.spellCheck( s )
+    private boolean isWord( String token ) {
+            return this.wordDictionaries.spellCheck( token )
                     .stream().anyMatch( result -> result.isCorrect() );
         
     }
     
-    private boolean isAcronym( String s ) {
-            return this.acronymDictionaries.spellCheck( s )
+    private boolean isAcronym( String token ) {
+            return this.acronymDictionaries.spellCheck( token )
                     .stream().anyMatch( result -> result.isCorrect() );
     }
     
-    private boolean isAbbreviation( String s ) {
-            return this.abbreviationDictionaries.spellCheck( s )
+    private boolean isAbbreviation( String token ) {
+            return this.abbreviationDictionaries.spellCheck( token )
                     .stream().anyMatch( result -> result.isCorrect() );
     }
     
     
-    private boolean isIso3166Code( String s ) {
-        return this.iso3166Dictionaries.spellCheck( s )
+    private boolean isIso3166Code( String token ) {
+        return this.iso3166Dictionaries.spellCheck( token )
                 .stream().anyMatch( result -> result.isCorrect() );
     }
 }

@@ -20,10 +20,16 @@ import uk.ac.open.crc.nominal.information.Information;
 
 /**
  * Interface for all detectors.
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public interface Detector {
 
+    /**
+     * Applies the rules to the name detecting any violations of the 
+     * specific rule tested annotating the name with an appropriate 
+     * information object and returning it.
+     * @param identifierName a name to evaluate
+     * @return an information object
+     */
     public Information test(IdentifierName identifierName );
     
 }

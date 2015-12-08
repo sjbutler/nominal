@@ -24,8 +24,6 @@ import java.util.Set;
  * A {@code Ruleset} is relatively costly to instantiate and should be 
  * instantiated and potentially cached by another object. 
  * 
- * @author Simon Butler (simon@facetus.org.uk)
- * 
  */
 public class Ruleset { // class needs to be public as it will be used outside the package
 
@@ -34,7 +32,7 @@ public class Ruleset { // class needs to be public as it will be used outside th
     
     /**
      * Creates an instance of {@code RuleSet} for the given classification.
-     * @param classification sub-species of identifier name the rule set applies to.
+     * @param classification sub-species of identifier name the rule set applies to
      */
     public Ruleset ( IdentifierClassification classification ) {
         this.classification = classification;
@@ -66,13 +64,20 @@ public class Ruleset { // class needs to be public as it will be used outside th
         return this.classification;
     }
     
-    
+    /**
+     * Retrieves the rule for the specified rule type. Null is returned where
+     * the rule is not defined in this rule set, in which case it is 
+     * reasonable to assume the rule is inherited from another rule set in the 
+     * rule set group until it can be established that no rule is defined.
+     * @param ruleType a rule type
+     * @return a rule or null if the rule is not explicitly defined 
+     */
     public Rule getRule( RuleType ruleType ) {
         return this.rules.get( ruleType );
     }
     
 
-    // FOR TESTING ONLY. REVIEW DESIGN IF THERE IS ANY TEMPTATION 
+    // IMPLEMENTED FOR TESTING ONLY. REVIEW DESIGN IF THERE IS ANY TEMPTATION 
     // TO USE THIS METHOD FOR ANY PURPOSE OTHER THAN TESTING.
     //
     final Set<Rule> rules() {

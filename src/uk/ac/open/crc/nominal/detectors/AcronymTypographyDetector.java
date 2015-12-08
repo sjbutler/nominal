@@ -24,9 +24,6 @@ import uk.ac.open.crc.nominal.rules.RulesetGroup;
 
 /**
  * Entry point to investigate and record the typography of acronyms.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class AcronymTypographyDetector implements Detector {
     

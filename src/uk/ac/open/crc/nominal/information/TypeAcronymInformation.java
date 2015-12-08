@@ -19,27 +19,39 @@ package uk.ac.open.crc.nominal.information;
 /**
  * Annotates a single token name to record whether it is a type acronym, and 
  * if so whether it is used correctly.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class TypeAcronymInformation extends IdentifierInformation {
 
     private final boolean isCorrect;
     private final boolean isTypeAcronym;
     
+    /**
+     * Creates an information object.
+     * @param isCorrect indicates whether the use of a type acronym accords to 
+     * the specified rules
+     * @param isTypeAcronym indicates if the name used is a type acronym
+     */
     public TypeAcronymInformation( boolean isCorrect, final boolean isTypeAcronym ) {
         super(InformationClassification.TYPE_ACRONYM );
         this.isCorrect = isCorrect;
         this.isTypeAcronym = isTypeAcronym;
     }
     
+    /**
+     * Indicates whether the type acronym, if present, is used according to the
+     * user specified rules.
+     * @return true if any type acronym is used according to the specified rules
+     */
     @Override
     public boolean isCorrect() {
         return this.isCorrect;
     }
     
-    public boolean isTyepAcronym() {
+    /**
+     * Indicates whether the token is a type acronym.
+     * @return true if the token is a type acronym
+     */
+    public boolean isTypeAcronym() {
         return this.isTypeAcronym;
     }
     

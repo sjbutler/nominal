@@ -21,8 +21,6 @@ import uk.ac.open.crc.nominal.information.Information;
 
 /**
  * The interface for rules.
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public interface Rule {
 
@@ -36,7 +34,8 @@ public interface Rule {
     /**
      * Intended for internal use.
      * 
-     * @return a {@linkplain RuleType} indicating the type of rule embodied in the object.
+     * @return a {@linkplain RuleType} indicating the type of rule 
+     * embodied in the object.
      */
     public RuleType ruleType();
 }

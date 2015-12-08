@@ -45,13 +45,11 @@ import uk.ac.open.crc.nominal.util.CollectionReference;
  * 
  * <p>The results of specific tests can be recovered using the {@code boolean} 
  * methods provided by the class. 
- * </p.
- * @author Simon Butler (simon@facetus.org.uk)
+ * </p>
  */
 public class IdentifierName {
 
     private static final Logger LOGGER = LoggerFactory.getLogger( IdentifierName.class );
-    
     
     private final TokenisedName tokenisedName;
     
@@ -76,14 +74,14 @@ public class IdentifierName {
     
     /**
      * Creates an instance of {@code IdentifierName}.
-     * @param tokenisedName
-     * @param typeName
-     * @param species
-     * @param modifiers
-     * @param argumentCount
-     * @param superTypes
-     * @param isArrayDeclaration
-     * @param isLoopControlVariable 
+     * @param tokenisedName an instance of {@code TokenisedName} 
+     * @param typeName the type of the declaration
+     * @param species the species of the declaration
+     * @param modifiers a list of modifiers
+     * @param argumentCount the number of arguments passed (0  for non-methods, 0..n for constructors and methods)
+     * @param superTypes a list of implemented interfaces
+     * @param isArrayDeclaration indicates whether the declaration is an array
+     * @param isLoopControlVariable indicates whether the declaration is a loop control variable
      */
     public IdentifierName( 
             TokenisedName tokenisedName,
@@ -222,7 +220,7 @@ public class IdentifierName {
     
     /**
      * The species of the identifier name. 
-     * @return 
+     * @return a species
      */
     public Species species() {
         return this.species;
@@ -478,7 +476,7 @@ public class IdentifierName {
         
         TypeAcronymInformation information = (TypeAcronymInformation) list.get( 0 );
         
-        return information.isTyepAcronym();
+        return information.isTypeAcronym();
     }
     
     /**

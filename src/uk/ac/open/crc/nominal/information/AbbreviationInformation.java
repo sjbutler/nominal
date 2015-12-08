@@ -22,31 +22,31 @@ import uk.ac.open.crc.mdsc.Result;
 /**
  * Represents the information known about whether a token is an 
  * abbreviation.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class AbbreviationInformation extends TokenInformation {
 
     private final List<Result> resultList;
     
-    private boolean isKnownAbbreviation;
+    private final boolean isKnownAbbreviation;
     
     private final boolean shouldBeExpanded;
     
     private final boolean isExpandable;
     
     private final boolean isBranding;
-  
-    public AbbreviationInformation( List<Result> resultList ) {
+
+    /**
+     * Creates an information object using a list of spell
+     * checking results from an abbreviation dictionary.
+     * @param resultList a list of results from mdsc
+     */
+    public AbbreviationInformation( final List<Result> resultList ) {
         super( InformationClassification.ABBREVIATION );
         this.resultList = resultList;
-        this.isKnownAbbreviation = false;
-        for ( Result result : resultList ) {
-            if ( result.isCorrect() ) {
-                this.isKnownAbbreviation = true;
-            }
-        }
+        
+        this.isKnownAbbreviation = 
+                resultList.stream().anyMatch( result -> result.isCorrect() );
+        
         this.shouldBeExpanded = false;
         this.isExpandable = false;
         this.isBranding = false;

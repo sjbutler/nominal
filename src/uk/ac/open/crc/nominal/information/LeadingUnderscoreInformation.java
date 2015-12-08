@@ -19,16 +19,25 @@ package uk.ac.open.crc.nominal.information;
 /**
  * Contains information about the presence of one or more leading underscores. 
  * The current notion of correctness is that leading underscores are not
- * permitted. This can change when the nominal language is revised to define 
- * the use of leading underscores and test the rule fully.
- *
- * @author Simon Butler (simon@facetus.org.uk)
+ * permitted. This implementation will change when the nominal language is 
+ * revised to define the use of leading underscores and test the rule fully.
  */
 public class LeadingUnderscoreInformation extends IdentifierInformation {
 
     private final boolean hasLeadingUnderscore;
     private final boolean isResultingNameLegal;
     
+    // need to review and revise the isResultingNameLegal behaviour
+    // so that it reflects an alphabetical character starting the name
+    // when stripped of underscores. Need also to implement a 
+    // 'is resulting name empty' functionality
+    /**
+     * Creates an information object reporting leading underscores in a name.
+     * @param hasLeadingUnderscore indicates whether one or more leading 
+     * underscores are present
+     * @param isResultingNameLegal indicates whether the name is permitted by 
+     * the Java grammar when any leading underscores are removed
+     */
     public LeadingUnderscoreInformation( 
             boolean hasLeadingUnderscore, boolean isResultingNameLegal ) {
         super( InformationClassification.UNDERSCORE_LEADING );
@@ -56,7 +65,11 @@ public class LeadingUnderscoreInformation extends IdentifierInformation {
         return this.isResultingNameLegal;
     }
     
-    
+    /**
+     * The fixed notion of correctness is that a name should not have a 
+     * leading underscore. This behaviour will be revised.
+     * @return true if the names has one or more leading underscores
+     */
     @Override
     public boolean isCorrect( ) {
         return !this.hasLeadingUnderscore;

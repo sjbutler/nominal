@@ -20,9 +20,6 @@ import java.util.HashSet;
 
 /**
  * A small dictionary containing some common prefixes.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class PrefixDictionary {
 
@@ -33,6 +30,10 @@ public class PrefixDictionary {
     
     private static PrefixDictionary instance = null;
     
+    /**
+     * Retrieves the instance of this object.
+     * @return the instance of this object
+     */
     public static PrefixDictionary getInstance() {
         if ( instance == null ) {
             instance = new PrefixDictionary();

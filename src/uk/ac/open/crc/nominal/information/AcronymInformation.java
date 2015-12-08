@@ -21,26 +21,20 @@ import uk.ac.open.crc.mdsc.Result;
 
 /**
  * Identifies a token as an acronym. 
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class AcronymInformation extends TokenInformation {
     private final List<Result> resultList;
-    private boolean isCorrect;
-    private boolean isKnownAcronym; // is this not implied??
-    private boolean isCorrectTypography; // typography tested elsewhere
+    private final boolean isCorrect;
+    private final boolean isKnownAcronym; // is this not implied??
+    private final boolean isCorrectTypography; // typography tested elsewhere
     
     public AcronymInformation( final List<Result> resultList ) {
         super( InformationClassification.ACRONYM );
         this.resultList = resultList;
         this.isCorrectTypography = false; // see AcronymTypographyInformation
-        for ( Result result : this.resultList ) {
-            if ( result.isCorrect() ) {
-                this.isCorrect = true;
-                this.isKnownAcronym = true;
-            }
-        }
+        this.isKnownAcronym =
+                this.resultList.stream().anyMatch( result -> result.isCorrect() );
+        this.isCorrect = this.isKnownAcronym;
     }
     
     @Override
@@ -48,6 +42,10 @@ public class AcronymInformation extends TokenInformation {
         return this.isCorrect;
     }
     
+    /**
+     * Indicates whether the token is a known acronym.
+     * @return true if the token is a known acronym
+     */
     public boolean isKnownAcronym() {
         return this.isKnownAcronym;
     }

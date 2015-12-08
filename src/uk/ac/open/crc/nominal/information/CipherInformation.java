@@ -26,7 +26,6 @@ package uk.ac.open.crc.nominal.information;
  * cipher is known and correctly used. Any other single character identifier 
  * name cannot be a cipher because it is not in the list of known ciphers.
  * </p>
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class CipherInformation extends IdentifierInformation {
 

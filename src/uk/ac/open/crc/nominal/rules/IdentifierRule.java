@@ -18,12 +18,13 @@ package uk.ac.open.crc.nominal.rules;
 
 /**
  * Base class for rules.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public abstract class IdentifierRule extends AbstractRule {
 
+    /**
+     * Creates a rule of the specified type.
+     * @param ruleType a rule type
+     */
     public IdentifierRule( RuleType ruleType ) {
         super( ruleType );
     }

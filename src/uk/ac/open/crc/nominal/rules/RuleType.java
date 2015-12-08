@@ -18,20 +18,29 @@ package uk.ac.open.crc.nominal.rules;
 
 /**
  * Keys to identify {@code Rule}s. 
- * 
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public enum RuleType {
+    /** Identifies a rule for the capitalisation of acronyms. */
     ACRONYM( "acronym capitalisation" ),
+    /** Identifies a rule for the typography of the name excluding the first character */
     BODY( "body capitalisation" ),
+    /** Identifies a rule for ciphers. */
     CIPHER( "cipher" ),
+    /** Identifies a rule for the typography of the first character. */
     FIRST_CHARACTER( "first character capitalisation" ),
+    /** Identifies a rule for phrases. */
     PHRASE( "phrase structure" ),
+    /** Identifies a rule for prefixes. */
     PREFIX( "prefix" ) ,
+    /** Identifies a rule for redundant prefixes. */
     REDUNDANT_PREFIX( "redundant prefix" ),
+    /** Identifies a rule for separators. */
     SEPARATOR( "separators" ),
+    /** Identifies a rule for standalone abbreviations. */
     STANDALONE_ABBREVIATION( "standalone abbreviation" ),
+    /** Identifies a type acronym rule. */
     TYPE_ACRONYM( "type acronym" ),
+    /** Identifies a pluralisation rule. */
     PLURAL( "grammatical number" );
     
     

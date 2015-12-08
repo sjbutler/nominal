@@ -20,9 +20,6 @@ import java.util.HashSet;
 
 /**
  * A reference for checking branding.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class BrandingDictionary {
 
@@ -73,7 +70,7 @@ public class BrandingDictionary {
      * @return {@code true} iff the branding is recognised
      */
     public boolean isBrandIgnoreCase( String token ) {
-        // log if the dictionary is empty
+        // log if the dictionary is empty?
         return this.normalisedBrands.contains( token.toLowerCase() );
     }
     
@@ -81,7 +78,7 @@ public class BrandingDictionary {
      * Indicates whether the dictionary is unpopulated.
      * <p>
      * See if this is any use. Delete if not.
-     * 
+     * </p>
      * @return {@code true} if the dictionary is empty. 
      */
     public boolean isEmpty() {

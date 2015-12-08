@@ -3,13 +3,14 @@ package uk.ac.open.crc.nominal.information;
 /**
  * Information object annotating an acronym token to 
  * indicate the correctness of the typography.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class AcronymTypographyInformation extends TokenInformation {
     private final boolean isCorrect;
     
+    /** 
+     * Creates an information object.
+     * @param isCorrect indicates correctness of acronym typography
+     */
     public AcronymTypographyInformation( final boolean isCorrect ) {
         super( InformationClassification.ACRONYM_TYPOGRAPHY );
         this.isCorrect = isCorrect;
@@ -25,6 +26,5 @@ public class AcronymTypographyInformation extends TokenInformation {
     public boolean isCorrect() {
         return this.isCorrect;
     }
-    
     
 }

@@ -19,7 +19,6 @@ import java.util.List;
 
 /**
  * Common interface for information reporting objects.
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public interface Information {
     public InformationClassification classification();

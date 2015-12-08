@@ -27,9 +27,6 @@ import uk.ac.open.crc.nominal.information.PhraseInformation;
 
 /**
  * Represents a plural rule.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class PluralRule extends AbstractRule {
     private static final Logger LOGGER = 
@@ -47,14 +44,15 @@ public class PluralRule extends AbstractRule {
     public PluralRule( boolean isPlural ) {
         super(RuleType.PLURAL );
         this.isPlural = isPlural;
-        this.grammaticalNumber = this.isPlural ? GrammaticalNumber.PLURAL : GrammaticalNumber.SINGLUAR;
+        this.grammaticalNumber = this.isPlural 
+                                 ? GrammaticalNumber.PLURAL 
+                                 : GrammaticalNumber.SINGLUAR;
     }
-
     
     /**
      * Creates a default 'unspecified' plural rule for the given rule set. This
      * will cause the test method to return a result that is correct and 
-     * that 
+     * that indicates no plural was expected.
      */
     public PluralRule() {
         super( RuleType.PLURAL );
@@ -84,7 +82,6 @@ public class PluralRule extends AbstractRule {
         isPluralised = phraseInformation.isPlural();
         
         if ( ! isUnspecified ) {
-            
             isPluralExpected = this.isPlural;
 
             isCorrect = (isPluralExpected && isPluralised) 

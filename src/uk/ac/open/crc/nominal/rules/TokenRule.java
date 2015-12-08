@@ -19,11 +19,13 @@ package uk.ac.open.crc.nominal.rules;
 /**
  * A rule that applies to a token.
  *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 abstract public class TokenRule extends AbstractRule {
 
+    /**
+     * Creates a rule for tokens of the specified rule type.
+     * @param ruleType a rule type
+     */
     public TokenRule( RuleType ruleType ) {
         super( ruleType );
     }

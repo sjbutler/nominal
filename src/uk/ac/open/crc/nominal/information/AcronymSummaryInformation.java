@@ -21,15 +21,16 @@ import java.util.List;
 
 /**
  * Summary of position of acronyms in names.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class AcronymSummaryInformation extends IdentifierInformation {
 
     private final List<Boolean> isAcronymList;
     private final List<Integer> acronymIndices;
     
+    /**
+     * Creates a summary of the token information objects in a name.
+     * @param informationList a list of token acronym information 
+     */
     public AcronymSummaryInformation( final List<AcronymInformation> informationList ) {
         super( InformationClassification.ACRONYM_SUMMARY );
         

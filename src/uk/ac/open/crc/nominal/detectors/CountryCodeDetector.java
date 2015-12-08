@@ -30,9 +30,6 @@ import uk.ac.open.crc.nominal.rules.RulesetGroup;
 
 /**
  * Provides a detector for ISO3166 country codes. 
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class CountryCodeDetector implements Detector {
 
@@ -42,6 +39,10 @@ public class CountryCodeDetector implements Detector {
     private final RulesetGroup ruleSetGroup; // unused atm
     private final DictionarySet countryCodeDictionarySet;
     
+    /**
+     * Creates the detector.
+     * @param ruleSetGroup a rule set to apply
+     */
     public CountryCodeDetector( final RulesetGroup ruleSetGroup ) {
         this.ruleSetGroup = ruleSetGroup;
         this.countryCodeDictionarySet = countryCodeDictionaryManager.dictionarySet();

@@ -21,6 +21,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import uk.ac.open.crc.mdsc.DictionarySet;
 import uk.ac.open.crc.mdsc.Result;
 import uk.ac.open.crc.nominal.IdentifierName;
@@ -28,9 +29,6 @@ import uk.ac.open.crc.nominal.information.PhraseInformation;
 
 /**
  * Represents a phrase rule. 
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class PhraseRule extends IdentifierRule {
     
@@ -47,7 +45,7 @@ public class PhraseRule extends IdentifierRule {
     
     /**
      * Creates an instance of {@code PhraseRule}.
-     * @param phrases The phrase embodied by the rule. Should be a member of the set {&hellip;}
+     * @param phrases the phrases specified by the rule
      */
     public PhraseRule( Set<String> phrases ) {
         super( RuleType.PHRASE );
@@ -61,6 +59,12 @@ public class PhraseRule extends IdentifierRule {
     // needs to understand 'none' as a rule
     // need to understand how 'none' should be used -- suggest for single 
     // token identifier names that are single character or other abbreviations.
+    // maybe 'none' can be declared for a non-rule, i.e. a permissive rule
+    /**
+     * Evaluates the name using the user specified phrase rule.
+     * @param identifierName a name to evaluate
+     * @return an information object
+     */
     @Override
     public PhraseInformation test( IdentifierName identifierName ) {
         PhraseInformation returnedInformation = null;
@@ -131,9 +135,6 @@ public class PhraseRule extends IdentifierRule {
         return information;
     }
 
-    
-    
-    // use map, collect ... 
     /**
      * 
      * {@inheritDoc}
@@ -141,32 +142,17 @@ public class PhraseRule extends IdentifierRule {
      */
     @Override
     public String toString() {
-        StringBuilder output = new StringBuilder();
-        this.phrases.stream().forEach( (phrase) -> {
-            output.append( phrase ).append( " " );
-        } );
-        
-        return output.toString();
+        return this.phrases.stream().collect( Collectors.joining( ", " ) );
     }
     
     private String createExplanation() {
         StringBuilder explanation = new StringBuilder( "Expected " );
-        ArrayList<String> phraseList = new ArrayList<>( this.phrases ); 
-        Collections.sort( phraseList );
-        int listSize = phraseList.size();
-        if ( listSize > 1 ) {
+        if ( this.phrases.size() > 1 ) {
             explanation.append( "one of: " );
         }
         
-        int remainingItems = listSize - 1;
-        // replace following with lambda using map and collect
-        for ( String phrase : phraseList ) {
-            explanation.append( phrase );
-            if ( remainingItems > 0 ) {
-                explanation.append( ", " );
-            }
-            remainingItems--;
-        }
+        explanation.append( 
+                this.phrases.stream().sorted().collect( Collectors.joining( ", " ) ) );
         
         return explanation.toString();
     }

@@ -28,9 +28,6 @@ import uk.ac.open.crc.nominal.rules.RulesetGroup;
 /**
  * Detects a range of standard prefixes recognising them as such and 
  * determining the correctness of their use. 
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class StandardPrefixDetector implements Detector {
 

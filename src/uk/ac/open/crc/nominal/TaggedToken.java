@@ -20,9 +20,6 @@ package uk.ac.open.crc.nominal;
 /**
  * Represents a single token in a tokenised identifier name with 
  * its associated PoS tag.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class TaggedToken extends Token {
 

@@ -18,9 +18,6 @@ package uk.ac.open.crc.nominal.information;
 
 /**
  * Records whether a token is an ISO 3166 alpha 2 or alpha 3 country code.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class CountryCodeInformation extends TokenInformation {
     private final boolean isIso3166_2;
@@ -32,7 +29,8 @@ public class CountryCodeInformation extends TokenInformation {
         this.isIso3166_3 = isIso3166_3;
     }
     
-    // will be revised to reflect rules on country code use.
+    // will be revised to reflect rules on country code use when they are
+    // implemented.
     /**
      * Misuse of this method to indicate that the token is a 
      * country code.

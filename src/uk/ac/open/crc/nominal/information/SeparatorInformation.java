@@ -18,10 +18,8 @@ package uk.ac.open.crc.nominal.information;
 
 /**
  * Represents the results of a number of tests performed on the identifier name
- * for prefixes.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
+ * for the presence of separators. This class will evolve when the language 
+ * is updated to allow the specification of separator use.
  */
 public class SeparatorInformation extends IdentifierInformation {
 
@@ -30,8 +28,15 @@ public class SeparatorInformation extends IdentifierInformation {
     private final boolean hasDollarSigns;
     private boolean hasContiguousUnderscores;
     private final boolean isCorrect;
-    private boolean areWordBoundariesMarked;
+    private boolean areTokenBoundariesMarked;
     
+    /**
+     * Constructor.
+     * @param isCorrect indicates whether separator use follows the user 
+     * specified rules
+     * @param hasUnderscores indicates whether the name contains underscores
+     * @param hasDollarSigns indicates whether the name contains dollar signs
+     */
     public SeparatorInformation( 
             boolean isCorrect, 
             boolean hasUnderscores, 
@@ -42,9 +47,13 @@ public class SeparatorInformation extends IdentifierInformation {
         this.hasDollarSigns = hasDollarSigns;
         this.hasUnderscores = hasUnderscores;
         this.hasContiguousUnderscores = false;
-        this.areWordBoundariesMarked = false;
+        this.areTokenBoundariesMarked = false;
     }
     
+    /**
+     * Indicates whether separator use follows the user specified rules.
+     * @return true if the separator use rules have been followed
+     */
     @Override
     public boolean isCorrect() {
         return this.isCorrect;
@@ -60,37 +69,58 @@ public class SeparatorInformation extends IdentifierInformation {
         return this.hasSeparators;
     }
     
+    /** 
+     * Indicates whether the name contains underscores.
+     * @return true iff the name contains one or more underscores
+     */
     public boolean hasUndercores() {
         return this.hasUnderscores;
     }
     
+    /**
+     * Indicates whether the name contains dollar signs.
+     * @return true iff the name contains one or more dollar sign
+     */
     public boolean hasDollarSigns() {
         return this.hasDollarSigns;
     }
     
+    /**
+     * Sets a field to indicate whether the name contains contiguous underscores.
+     * @param hasContiguousUnderscores true if contiguous underscores 
+     * are found in the name
+     */
     public void hasContiguousUnderscores( boolean hasContiguousUnderscores ) {
         this.hasContiguousUnderscores = hasContiguousUnderscores;
     }
     
+    /**
+     * Sets a field to indicate whether the name contains contiguous separators.
+     * @return true iff contiguous separators are found in the name
+     */
     public boolean hasContiguousSeparators() {
         return this.hasContiguousUnderscores;
     }
     
-    public void areWordBoundariesMarked( boolean areWordBoundariesMarked ) {
-        this.areWordBoundariesMarked = areWordBoundariesMarked;
+    /**
+     * Sets a field to indicate whether word/token boundaries are marked with 
+     * separators.
+     * @param areTokenBoundariesMarked true iff a separator is found between 
+     * each token
+     */
+    public void areTokenBoundariesMarked( boolean areTokenBoundariesMarked ) {
+        this.areTokenBoundariesMarked = areTokenBoundariesMarked;
     }
     
     /**
-     * Indicates whether underscores mark all the word boundaries. The definition
-     * of a word boundary is that determined by intt, which may find fewer or 
-     * more word boundaries than the developer inserted.
+     * Indicates whether underscores mark all the token boundaries. The definition
+     * of a token boundary is that determined by intt, which may find fewer or 
+     * more token boundaries than the developer inserted.
      * @return {@code true} if intt and the developer agree on the number and 
      * placement of underscores.
      */
-    public boolean areWordBoundariesMarked( ) {
-        return this.areWordBoundariesMarked;
+    public boolean areTokenBoundariesMarked( ) {
+        return this.areTokenBoundariesMarked;
     }
-    
-    
     
 }

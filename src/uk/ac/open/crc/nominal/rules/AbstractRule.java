@@ -18,9 +18,6 @@ package uk.ac.open.crc.nominal.rules;
 
 /**
  * Common implementations for all {@code Rule} classes.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 abstract public class AbstractRule implements Rule {
 

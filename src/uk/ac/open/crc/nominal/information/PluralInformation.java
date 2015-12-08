@@ -17,10 +17,8 @@ limitations under the License.
 package uk.ac.open.crc.nominal.information;
 
 /**
- * Indicates if the name is pluralised.
+ * Carries information about the pluralisation of a name.
  *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class PluralInformation extends IdentifierInformation {
 
@@ -29,6 +27,14 @@ public class PluralInformation extends IdentifierInformation {
     private final boolean isUnspecified;
     private final boolean isPlural;
 
+    /**
+     * Creates an information object.
+     * @param isCorrect indicates whether the rule on pluralisation has be 
+     * correctly applied in the name tested
+     * @param isPluralExpected does the rule indicate that a plural is to be used
+     * @param isUnspecified indicates if pluralisaton is specified
+     * @param isPlural indicates whether a plural has been found
+     */
     public PluralInformation(
             final boolean isCorrect,
             final boolean isPluralExpected,
@@ -42,7 +48,7 @@ public class PluralInformation extends IdentifierInformation {
     }
 
     /**
-     * Indicates is pluralisation rule is adhered to.
+     * Indicates if the specified pluralisation rule is adhered to.
      * @return {@code true} iff singular or plural are used correctly
      */
     @Override
@@ -51,7 +57,7 @@ public class PluralInformation extends IdentifierInformation {
     }
 
     /**
-     * Indicates if the rule specified the use of a plural.
+     * Indicates whether the rule specified the use of a plural.
      * @return {@code true} if a plural was specified in the rule.
      */
     public boolean isPluralExpected() {
@@ -59,7 +65,7 @@ public class PluralInformation extends IdentifierInformation {
     }
 
     /**
-     * Indicates if the rule for plurals is 'unspecified'.
+     * Indicates whether the rule for plurals is 'unspecified'.
      * @return {@code true} if plural use is unspecified
      */
     public boolean isUnspecified() {

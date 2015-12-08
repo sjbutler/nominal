@@ -24,9 +24,6 @@ import uk.ac.open.crc.nominal.rules.RulesetGroup;
 
 /**
  * Wraps a phrase rule.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class PhraseStructureDetector implements Detector {
     private final RulesetGroup ruleSetGroup;

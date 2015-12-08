@@ -16,28 +16,37 @@ limitations under the License.
 
 package uk.ac.open.crc.nominal.information;
 
-// to be revised when rules on trailing underscores are introduced
+// to be revised when user define rules on trailing underscores are introduced
 /**
  * Used to annotate a name and records the presence of trailing underscores
  * and their correctness.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class TrailingUnderscoreInformation extends IdentifierInformation {
     private final boolean hasTrailingUnderscore;
     
+    /**
+     * Creates an information object.
+     * @param hasTrailingUnderscore true if one or more trailing underscores 
+     * are present
+     */
     public TrailingUnderscoreInformation( final boolean hasTrailingUnderscore ) {
         super( InformationClassification.UNDERSCORE_TRAILING );
         this.hasTrailingUnderscore = hasTrailingUnderscore;
     }
     
-    
+    /**
+     * Indicates whether one or more trailing underscores have been found.
+     * @return true if the name has a trailing underscore
+     */
     public boolean hasTrailingUnderscore() {
         return this.hasTrailingUnderscore;
     }
     
-    
+    /**
+     * Indicates whether the use of trailing underscores is correct.
+     * @return false as the use of trailing underscores currently considered 
+     * incorrect
+     */
     @Override
     public boolean isCorrect() {
         return !this.hasTrailingUnderscore;

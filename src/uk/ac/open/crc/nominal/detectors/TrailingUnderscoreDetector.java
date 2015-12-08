@@ -22,8 +22,6 @@ import uk.ac.open.crc.nominal.information.TrailingUnderscoreInformation;
 /**
  * Detects the presence of trailing underscores.
  *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class TrailingUnderscoreDetector implements Detector {
 

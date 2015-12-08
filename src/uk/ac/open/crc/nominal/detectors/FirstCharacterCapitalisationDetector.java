@@ -25,13 +25,15 @@ import uk.ac.open.crc.nominal.information.FirstCharacterCapitalisationInformatio
 /**
  * Determines the correctness of the capitalisation of the first character 
  * of an identifier name.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class FirstCharacterCapitalisationDetector implements Detector {
     private final RulesetGroup ruleSetGroup;
     
+
+    /**
+     * Creates the detector.
+     * @param ruleSetGroup a rule set to apply
+     */
     public FirstCharacterCapitalisationDetector( RulesetGroup ruleSetGroup ) {
         this.ruleSetGroup = ruleSetGroup;
     }

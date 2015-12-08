@@ -17,8 +17,6 @@ package uk.ac.open.crc.nominal.information;
 
 /**
  * Keys used to distinguish information objects. 
- * 
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public enum InformationClassification {
     ABBREVIATION,

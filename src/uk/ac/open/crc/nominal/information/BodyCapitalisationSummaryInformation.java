@@ -20,9 +20,6 @@ package uk.ac.open.crc.nominal.information;
  * Summarises the {@code BodyCapitalisationInformation} objects for a name
  * to give correctness of typography of all tokens with the exception of the 
  * first character of the first token.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class BodyCapitalisationSummaryInformation extends IdentifierInformation {
 

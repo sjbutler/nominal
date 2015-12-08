@@ -21,9 +21,6 @@ import java.util.Set;
 
 /**
  * Fixed reference of standard redundant prefixes.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class PrefixReference {
 

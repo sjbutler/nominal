@@ -24,14 +24,15 @@ import uk.ac.open.crc.nominal.information.PluralInformation;
 
 /**
  * Evaluates the name using {@code PluralRule}.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class PluralDetector implements Detector {
 
     private final RulesetGroup ruleSetGroup;
     
+    /**
+     * Creates a detector to apply the given rule set.
+     * @param ruleSetGroup rule sets to apply
+     */
     public PluralDetector( RulesetGroup ruleSetGroup ) {
         this.ruleSetGroup = ruleSetGroup;
     }

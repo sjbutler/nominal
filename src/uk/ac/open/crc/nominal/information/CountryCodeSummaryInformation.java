@@ -26,8 +26,6 @@ package uk.ac.open.crc.nominal.information;
  * codes. The semantics will change when the language is expanded to specify
  * the use of country codes. 
  * </p>
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class CountryCodeSummaryInformation extends IdentifierInformation {
 

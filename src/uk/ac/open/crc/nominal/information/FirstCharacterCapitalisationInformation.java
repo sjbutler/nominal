@@ -21,8 +21,6 @@ package uk.ac.open.crc.nominal.information;
  * first alphanumeric token of a name. NB where a 
  * name begins with an underscore, for example, the first alphanumeric 
  * character may be a digit.
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class FirstCharacterCapitalisationInformation extends IdentifierInformation {
 
@@ -30,6 +28,15 @@ public class FirstCharacterCapitalisationInformation extends IdentifierInformati
     private final boolean isCorrect;
     private final boolean isDigit;
     
+    /**
+     * Encapsulates information about the capitalisation of the first 
+     * alphanumeric (or non-separator) character found in a name.
+     * @param isCorrect indicates if the typography of the first character 
+     * matches the user specified rule
+     * @param isUpperCase indicates if the first character is upper case
+     * @param isDigit indicates if the first character is a digit
+     * @param explanation a string explaining the output
+     */
     public FirstCharacterCapitalisationInformation( 
             boolean isCorrect, 
             boolean isUpperCase, 

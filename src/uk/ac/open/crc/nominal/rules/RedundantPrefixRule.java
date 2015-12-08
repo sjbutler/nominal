@@ -21,10 +21,12 @@ import uk.ac.open.crc.nominal.information.RedundantPrefixInformation;
 
 /**
  * Implements a rule for the detection of redundant prefixes.
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class RedundantPrefixRule extends AbstractRule {
-    
+
+    /** 
+     * Creates a redundant prefix rule.
+     */
     public RedundantPrefixRule() {
         super( RuleType.REDUNDANT_PREFIX );
     }
@@ -66,4 +68,5 @@ public class RedundantPrefixRule extends AbstractRule {
         
         return information;
     }
+    
 }

@@ -19,7 +19,6 @@ package uk.ac.open.crc.nominal.rules;
 // maybe look at renaming this
 /**
  * Represents different kinds of grammatical number. 
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public enum GrammaticalNumber { // 'quantity' and 'number' are viable alternatives that may be more correct 
     PLURAL ( "plural" ),
@@ -44,12 +43,14 @@ public enum GrammaticalNumber { // 'quantity' and 'number' are viable alternativ
     
     /**
      * Obtains a grammatical number for a given description. 
-     * @param description a {@code String} that is a member of the set {"plural", "singular", "unspecified"}
+     * @param description a {@code String} that is a member of the 
+     * set {"plural", "singular", "unspecified"}
      * @return a grammatical number value.
      */
     public static final GrammaticalNumber getDualFor( String description ) {
         if ( description == null || description.isEmpty() ) {
-            throw new IllegalArgumentException( "null reference or empty String passed to getValenceFor()" );
+            throw new IllegalArgumentException( 
+                    "null reference or empty String passed to getDualFor()" );
         }
         
         for ( GrammaticalNumber dualValue : GrammaticalNumber.values() ) {
@@ -58,7 +59,9 @@ public enum GrammaticalNumber { // 'quantity' and 'number' are viable alternativ
             }
         }
         
-        throw new IllegalArgumentException( "No valid instance of Valence found with description matching: \"" + description + "\"" );
+        throw new IllegalArgumentException( 
+                String.format( "No valid instance of GrammaticalNumber found "
+                        + "with description matching: \"%s\"", description ) );
     }
     
 }

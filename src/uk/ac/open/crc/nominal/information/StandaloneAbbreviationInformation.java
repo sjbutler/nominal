@@ -19,15 +19,19 @@ package uk.ac.open.crc.nominal.information;
 /**
  * Reports whether a token is a standalone abbreviation and 
  * its use conforms with the specified rules.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class StandaloneAbbreviationInformation extends IdentifierInformation {
     private final boolean isCorrect;
     private final boolean isPresent;
     private final boolean isPermitted;
     
+    /**
+     * Creates an information object.
+     * @param isCorrect indicates whether an known abbreviation is present and 
+     * its use is permitted
+     * @param isPresent indicates whether an abbreviation is present
+     * @param isPermitted indicates whether the rules permit the use of an abbreviation
+     */
     public StandaloneAbbreviationInformation( 
             boolean isCorrect, 
             boolean isPresent,
@@ -38,15 +42,27 @@ public class StandaloneAbbreviationInformation extends IdentifierInformation {
         this.isPermitted = isPermitted;
     }
     
+    /**
+     * Indicates whether the abbreviation is present and permitted.
+     * @return true if the abbreviation is present and permitted
+     */
     @Override
     public boolean isCorrect() {
         return this.isCorrect;
     }
     
+    /**
+     * Indicates whether an abbreviation is present.
+     * @return true if an abbreviation is present
+     */
     public boolean isPresent() {
         return this.isPresent;
     }
     
+    /**
+     * Indicates whether the rules permit the use of abbreviations.
+     * @return true if the rules permit the use of abbreviations
+     */
     public boolean isPermitted() {
         return this.isPermitted;
     }

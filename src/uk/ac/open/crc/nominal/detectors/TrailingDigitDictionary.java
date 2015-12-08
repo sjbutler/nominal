@@ -22,10 +22,8 @@ import java.util.HashSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 /**
+ * A simple dictionary of trailing digit abbreviations.
  *
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class TrailingDigitDictionary {
 
@@ -33,6 +31,10 @@ public class TrailingDigitDictionary {
     
     private static TrailingDigitDictionary instance = null;
     
+    /**
+     * Retrieves the instance of this class.
+     * @return the instance of this class
+     */
     static TrailingDigitDictionary getInstance() {
         if ( instance == null ) {
             instance = new TrailingDigitDictionary();
@@ -62,9 +64,14 @@ public class TrailingDigitDictionary {
         }
     }
     
-    
+    /**
+     * Indicates if the given string is found in the dictonary.
+     * @param string a token to test
+     * @return true iff the string is recognised
+     */
     boolean isAbbreviation( String string ) {
         return this.abbreviations.contains( string );
     }
+    
 }
 

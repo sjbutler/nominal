@@ -24,16 +24,24 @@ import uk.ac.open.crc.nominal.information.RedundantPrefixInformation;
 
 /**
  * Examines reference names for the use of redundant prefixes.
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class RedundantPrefixDetector implements Detector {
     
     private final RulesetGroup rulesetGroup;
     
+    /**
+     * Creates a detector.
+     * @param rulesetGroup a set of rules to apply 
+     */
     public RedundantPrefixDetector( RulesetGroup rulesetGroup ) {
         this.rulesetGroup = rulesetGroup;
     }
     
+    /**
+     * Evaluates a name against the rules specified in the constructor.
+     * @param identifierName a name to evaluate
+     * @return an information object summarising the result
+     */
     @Override
     public RedundantPrefixInformation test( IdentifierName identifierName ) {
         RedundantPrefixInformation information = null;

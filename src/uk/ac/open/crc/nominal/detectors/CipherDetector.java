@@ -24,14 +24,15 @@ import uk.ac.open.crc.nominal.rules.RulesetGroup;
 
 /**
  * Wraps a {@code Rule} for cipher use.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class CipherDetector implements Detector {
 
-    private final RulesetGroup ruleSetGroup; // to be used to replace the static set of ciphers above
+    private final RulesetGroup ruleSetGroup; 
     
+    /** 
+     * Creates a detector.
+     * @param ruleSetGroup a rule set to apply in the detector 
+     */
     public CipherDetector( RulesetGroup ruleSetGroup ) {
         this.ruleSetGroup = ruleSetGroup;
     }

@@ -20,8 +20,6 @@ package uk.ac.open.crc.nominal.information;
  * Carries information about the use of one or more trailing digits in 
  * an identifier name. This object should only be used to annotate the 
  * last or final token of an identifier name.
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class TrailingDigitInformation extends TokenInformation {
     private final boolean isTrailingDigit;
@@ -29,6 +27,10 @@ public class TrailingDigitInformation extends TokenInformation {
     private boolean isAcceptableUsage;
     private boolean isKnownPattern;
     
+    /**
+     * Constructs the information object.
+     * @param isTrailingDigit indicates whether the token has a trailing digit
+     */
     public TrailingDigitInformation( boolean isTrailingDigit ) {
         super( InformationClassification.TRAILING_DIGIT );
         this.isTrailingDigit = isTrailingDigit;
@@ -37,36 +39,70 @@ public class TrailingDigitInformation extends TokenInformation {
         this.isKnownPattern = false;
     }
     
+    /**
+     * Indicates whether the use of a trailing digit is acceptable.
+     * @return true if the trailing digit is used in an acceptable way
+     */
     public boolean isAcceptable() {
         return this.isAcceptableUsage;
     }
     
+    /**
+     * Sets a field indicating whether the use of the trailing digit is acceptable.
+     * @param isAcceptableUsage true if the trailing digit is used in an acceptable way
+     */
     public void setIsAcceptable( boolean isAcceptableUsage ) {
         this.isAcceptableUsage = isAcceptableUsage;
     }
     
+    /**
+     * Indicates whether a trailing digit is present.
+     * @return true if the final token has a trailing digit
+     */
     public boolean isTrailingDigit() {
         return this.isTrailingDigit;
     }
     
+    /**
+     * Indicates whether the token is a known abbreviation.
+     * @return true is the token is a recognised abbreviation
+     */
     public boolean isKnownAbbreviation() {
         return this.isKnownAbbreviation;
     }
     
+    /**
+     * Sets whether the token is a recognised abbreviation.
+     * @param isKnown whether the token is a recognised abbreviation.
+     */
     public void setKnownAbbreviation( boolean isKnown ) {
         this.isKnownAbbreviation = isKnown;
     }
     
+    /**
+     * Indicates whether the token follows a known pattern such as an ISO or RFC
+     * reference, or a hexadecimal number.
+     * @return true if the token follows a recognised pattern
+     */
     public boolean isKnownPattern() {
         return this.isKnownPattern;
     }
     
+    /**
+     * Sets whether the token follows a recognised patter.
+     * @param isKnownPattern whether the token follows a recognised pattern
+     */
     public void setKnownPattern( boolean isKnownPattern ) {
         this.isKnownPattern = isKnownPattern;
     }
     
     
-    // UGLY -- may need to rethink this. Perhaps a clearer definition of correctness is required
+    // UGLY -- may need to rethink this. Perhaps a clearer definition of 
+    // correctness is required
+    /**
+     * Indicates whether the use of the trailing digit is considered correct.
+     * @return true if the trailing digit is considered correct.
+     */
     @Override
     public boolean isCorrect() {
         return this.isAcceptableUsage;

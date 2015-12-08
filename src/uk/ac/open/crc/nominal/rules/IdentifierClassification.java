@@ -24,12 +24,12 @@ import uk.ac.open.crc.nominal.IdentifierName;
 import uk.ac.open.crc.nominal.util.GuiActionReference;
 
 /**
- * A set of classifiers for identifier names. The classifiers reflect 
+ * A set of classifiers for Java identifier names. The classifiers reflect 
  * groups of identifier names that may have specific typographical and 
  * linguistic rules.
  * <p>NB: this is not an exhaustive or complete list. The intention is that 
- * the classifications are <strong>useful</strong> and will be expanded as necessary.</p>
- * @author Simon Butler (simon@facetus.org.uk)
+ * the classifications are <strong>useful</strong> and will be expanded as 
+ * necessary.</p>
  */
 public enum IdentifierClassification {
     
@@ -39,9 +39,10 @@ public enum IdentifierClassification {
     INTERFACE_MIX_IN ( "interface-mix-in" ),
     CLASS_GUI_ACTION ( "class-gui-action" ),
     CLASS_STATIC_SERVICES ( "class-static-services" ),
-    CONSTRUCTOR ( "constructor" ),  // note that this is never tested
+    CONSTRUCTOR ( "constructor" ),  // pointless to test for typography and content
     
-    // Enumerations and annotations -- not used ATM, but in for completeness and expansion
+    // Enumerations and annotations 
+    // -- not used ATM, but in for completeness and expansion
     ANNOTATION ( "annotation" ),
     ANNOTATION_MEMBER ( "annotation-member" ),
     ENUMERATION ( "enumeration" ),
@@ -98,7 +99,8 @@ public enum IdentifierClassification {
 
     // --------------------
     // set up the hierarchy
-    private static final HashMap<IdentifierClassification,IdentifierClassification> hierarchy;
+    private static final 
+            HashMap<IdentifierClassification,IdentifierClassification> hierarchy;
     
     static {
         hierarchy = new HashMap<>();
@@ -179,7 +181,9 @@ public enum IdentifierClassification {
         }
         
         throw new IllegalArgumentException( 
-                "No classification found with name: \"" + description + "\"" );
+                String.format( 
+                        "No classification found with name: \"%s\"", 
+                        description ) );
     }
     
     /**
@@ -189,7 +193,8 @@ public enum IdentifierClassification {
      * @param identifierName a name to be classified
      * @return the classification of the name
      */
-    public static IdentifierClassification getClassificationFor( IdentifierName identifierName ) {
+    public static IdentifierClassification getClassificationFor( 
+            IdentifierName identifierName ) {
         Species species = identifierName.species();
         
         if ( species.isClassOrInterface() ) {
@@ -225,7 +230,8 @@ public enum IdentifierClassification {
     }
     
     
-    private static IdentifierClassification classifyMethod( IdentifierName identifierName ) {
+    private static IdentifierClassification classifyMethod( 
+            IdentifierName identifierName ) {
         boolean hasArguments = identifierName.argumentCount() > 0;
         boolean isVoid = isVoid( identifierName );
         boolean isBoolean = isBoolean( identifierName );
@@ -233,19 +239,23 @@ public enum IdentifierClassification {
         IdentifierClassification classification;
         
         if (isVoid ) {
-            classification = hasArguments ? METHOD_VOID_ARGS : METHOD_VOID_NOARGS;
+            classification = hasArguments 
+                             ? METHOD_VOID_ARGS : METHOD_VOID_NOARGS;
         }
         else if ( isBoolean ) {
-            classification = hasArguments ? METHOD_BOOLEAN_ARGS : METHOD_BOOLEAN_NOARGS;
+            classification = hasArguments 
+                             ? METHOD_BOOLEAN_ARGS : METHOD_BOOLEAN_NOARGS;
         }
         else {
-            classification = hasArguments ? METHOD_NON_BOOLEAN_ARGS : METHOD_NON_BOOLEAN_NOARGS;
+            classification = hasArguments 
+                             ? METHOD_NON_BOOLEAN_ARGS : METHOD_NON_BOOLEAN_NOARGS;
         }
         
         return classification;
     }
     
-    private static IdentifierClassification classifyClassOrInterface( IdentifierName identifierName ) {
+    private static IdentifierClassification classifyClassOrInterface( 
+            IdentifierName identifierName ) {
         IdentifierClassification classification;
         
         if ( identifierName.species().isClass() ) {
@@ -272,7 +282,8 @@ public enum IdentifierClassification {
     // boolean|collection|other & species
     // treat fields separately
     // candidate for refactoring
-    private static IdentifierClassification classifyReference( IdentifierName identifierName ) {
+    private static IdentifierClassification classifyReference( 
+            IdentifierName identifierName ) {
         if ( identifierName.species() == Species.FIELD ) {
             return classifyField( identifierName );
         }
@@ -308,7 +319,8 @@ public enum IdentifierClassification {
         return classification;
     }
     
-    private static IdentifierClassification classifyField( IdentifierName identifierName ) {
+    private static IdentifierClassification classifyField( 
+            IdentifierName identifierName ) {
         boolean isBoolean = isBoolean( identifierName );
         boolean isCollection = isCollection( identifierName );
         boolean isString = isString( identifierName );
@@ -347,7 +359,8 @@ public enum IdentifierClassification {
     }
 
     
-    private static IdentifierClassification classifyRemainder( IdentifierName identifierName ) {
+    private static IdentifierClassification classifyRemainder( 
+            IdentifierName identifierName ) {
         IdentifierClassification classification;
         
         switch ( identifierName.species() ) {
@@ -379,7 +392,8 @@ public enum IdentifierClassification {
     // created for consistent representation of abstraction
     // and, who knows, we may wish to create a finer-grained 
     // classification of constructors one day.
-    private static IdentifierClassification classifyConstructor( IdentifierName identifierName ) {
+    private static IdentifierClassification classifyConstructor( 
+            IdentifierName identifierName ) {
         return CONSTRUCTOR;
     }
     
@@ -403,16 +417,15 @@ public enum IdentifierClassification {
     }
     
     // crude!! -- waiting for javaref
+    // may also need to be redefined for Java 8 as genuine mixins may be created
+    // may be worth borrowing nomenclature from Gil & Maman
     private static boolean isMixInInterface( IdentifierName identifierName ) {
         return identifierName.species().isInterface() 
                 && identifierName.nameString().endsWith( "able" );
-
-        // needs javaref
-//        throw new UnsupportedOperationException();
     }
     
     private static boolean isString( IdentifierName identifierName ) {
-        return "String".equals(  identifierName.type() ) 
+        return "String".equals( identifierName.type() ) 
                 || "java.lang.String".equals( identifierName.type() );
     }
     

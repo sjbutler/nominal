@@ -25,9 +25,6 @@ import uk.ac.open.crc.nominal.information.TokenInformation;
  * Represents a single token in a split identifier name. This class 
  * carries information about any transformations required to correct 
  * the token.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class Token {
 

@@ -30,8 +30,6 @@ import uk.ac.open.crc.nominal.rules.RulesetGroup;
 
 /**
  * Establishes whether the tokens of an identifier name are known abbreviations.
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class AbbreviationDetector implements Detector {
     private final RulesetGroup ruleSetGroup;  // not currently used. Will need to be used to identify legitimate use of abbreviations other than ciphers

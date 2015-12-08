@@ -25,15 +25,16 @@ import uk.ac.open.crc.nominal.information.TrailingDigitInformation;
  * Determines whether an identifier name contains a trailing digit, and whether
  * that use of a trailing digit is acceptable. This functionality is 
  * currently unavailable. It will be reinstated soon.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class TrailingDigitDetector implements Detector {
 
     private final TrailingDigitDictionary dictionary;
 //    private final IdentifierNameStore identifierNameStore;
     
+    /**
+     * Creates a detector. The detector is currently unavailable.
+     * @throws UnsupportedOperationException if the constructor is invoked
+     */
     public TrailingDigitDetector() {
         throw new UnsupportedOperationException( "Functionality to be implemented." );
 //        this.dictionary = TrailingDigitDictionary.getInstance();
@@ -116,7 +117,10 @@ public class TrailingDigitDetector implements Detector {
         return false;
     }
     
-    
+    // the idea is that a1 on its own is not good practice
+    // however, a1, a2 ... maybe particularly for parameters
+    // in comparator methods and methods processing 2 or more
+    // similar instances in a generic way.
     private boolean isIsolated( IdentifierName identifierName, List<IdentifierName> siblings ) {
         if ( ! siblings.isEmpty() ) {
             // we need to determine if there are more than one of a given 
@@ -148,7 +152,7 @@ public class TrailingDigitDetector implements Detector {
     // ------
     // the following tests may need to be moved somewhere else 
     // as they are utility tests and may prove useful to intt
-    // and any abbreviaton expansion code. 
+    // and any abbreviaton expansion code. idtk?
     
     private boolean isRfcPattern( String string ) {
         return string.matches( "^(?iu)rfc\\d+$" );

@@ -30,9 +30,6 @@ import uk.ac.open.crc.nominal.rules.RulesetGroup;
 
 /**
  * Identifies whether any tokens in the name are acronyms.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class AcronymDetector implements Detector {
     private final RulesetGroup ruleSetGroup; // redundant, unless/until the user can add acronyms to the rules.

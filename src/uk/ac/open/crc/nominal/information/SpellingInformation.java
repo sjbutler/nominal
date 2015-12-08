@@ -21,10 +21,8 @@ import java.util.List;
 import uk.ac.open.crc.mdsc.Result;
 
 /**
- * Indicates whether a word is spelt correctly and provides a 
+ * Indicates whether a word/token is spelt correctly and provides a 
  * record of the dictionaries consulted.
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class SpellingInformation extends TokenInformation {
     private final boolean isCorrect;

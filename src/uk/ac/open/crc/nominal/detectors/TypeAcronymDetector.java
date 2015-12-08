@@ -23,36 +23,38 @@ import uk.ac.open.crc.nominal.rules.RuleType;
 import uk.ac.open.crc.nominal.rules.RulesetGroup;
 
 /**
- * Detects the use of type acronyms for single token reference names. Type 
+ * Detects the use of type acronyms for single token reference names. Type
  * acronyms are specified for formal arguments and local
  * variable identifier names in Chapter 6 of the Java
  * Language Specification. They are also found in field names
- * and this detector tests field, formal argument and local 
- * variable names. 
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
+ * and this detector tests field, formal argument and local
+ * variable names.
  */
 public class TypeAcronymDetector implements Detector {
 
     private final RulesetGroup ruleSetGroup;
 
-    public TypeAcronymDetector(RulesetGroup ruleSetGroup) {
+    /**
+     * Creates a detector.
+     * @param ruleSetGroup a set of rules to apply 
+     */
+    public TypeAcronymDetector ( RulesetGroup ruleSetGroup ) {
         this.ruleSetGroup = ruleSetGroup;
     }
 
     /**
      * Evaluates the content of a reference identifier name.
+     *
      * @param identifierName a name to be evaluated
      * @return a {@code TypeAcronymInformation} object or {@code null} if
-     * a non-reference species is tested. 
+     * a non-reference species is tested.
      */
     @Override
-    public TypeAcronymInformation test( IdentifierName identifierName ) {
-        TypeAcronymInformation information = null; 
+    public TypeAcronymInformation test ( IdentifierName identifierName ) {
+        TypeAcronymInformation information = null;
         if ( identifierName.species().isReference() ) {
-            Rule taRule = this.ruleSetGroup.get( 
-                    identifierName.classification(), 
+            Rule taRule = this.ruleSetGroup.get(
+                    identifierName.classification(),
                     RuleType.TYPE_ACRONYM );
             information = (TypeAcronymInformation) taRule.test( identifierName );
         }

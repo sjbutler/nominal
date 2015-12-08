@@ -22,9 +22,6 @@ import java.util.List;
 /**
  * Abstract class implemented by all information classes
  * used to annotate {@code IdentifierName} instances.
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public abstract class IdentifierInformation implements Information {
     private final InformationClassification classification;
@@ -54,7 +51,7 @@ public abstract class IdentifierInformation implements Information {
      * a given rule.
      * @param explanation a brief message
      */
-    public void addExplanation( String explanation ) {
+    public final void addExplanation( String explanation ) {
         this.explanations.add( explanation );
     }
     

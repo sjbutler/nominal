@@ -42,8 +42,6 @@ import uk.ac.open.crc.nominal.rules.MdscDictionaryPool;
  * Classifies each token in the name. This class also manages
  * instantiation and invocation of the abbreviation, acronym, 
  * acronym typography, cipher, country code, and type acronym detectors.
- * 
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class SpellingDetector implements Detector {
 
@@ -60,7 +58,10 @@ public class SpellingDetector implements Detector {
     private final CountryCodeDetector countryCodeDetector;
     private final TypeAcronymDetector typeAcronymDetector;
     
-    
+    /**
+     * Creates a detector. 
+     * @param ruleSetGroup a set of rules to apply 
+     */
     public SpellingDetector( RulesetGroup ruleSetGroup ) {
         this.ruleSetGroup = ruleSetGroup;
         this.abbbreviationDetector = new AbbreviationDetector( ruleSetGroup );
@@ -84,10 +85,9 @@ public class SpellingDetector implements Detector {
         // particularly for formal arguments and local variables
         // need to exclude prefixes from spelling check 
         
-        
         // now iterate over the tokens
         List<TaggedToken> taggedTokens = identifierName.taggedTokens();
-        ArrayList<Boolean> isSpellingCorrect = new ArrayList<>();
+        List<Boolean> isSpellingCorrect = new ArrayList<>();
         for ( TaggedToken token : taggedTokens ) {
             List<Result> results = DICTIONARY.spellCheck( token.normalisedText() );
             SpellingInformation information = new SpellingInformation( results );
@@ -105,7 +105,8 @@ public class SpellingDetector implements Detector {
         // test for cipher -- cipher returns null if the test is not appropriate (i.e. >1 tokens)
         CipherInformation cipherInformation = 
                 this.cipherDetector.test( identifierName );
-        // test for country codes
+        // test for country codes -- will incorporate in notion of correctness, 
+        // when a rule can be defined by the user
         CountryCodeSummaryInformation countryCodeSummaryInformation = 
                 this.countryCodeDetector.test( identifierName );
         // check for a Gosling acronym
@@ -170,7 +171,6 @@ public class SpellingDetector implements Detector {
             isCorrect = ! testList.contains( false );
         }
         
-        
         SpellingSummaryInformation summaryInformation = 
                 new SpellingSummaryInformation( 
                         isCorrect,
@@ -182,4 +182,5 @@ public class SpellingDetector implements Detector {
         
         return summaryInformation;
     }
+    
 }

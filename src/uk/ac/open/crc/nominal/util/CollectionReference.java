@@ -22,8 +22,6 @@ import java.util.Set;
 /**
  * A simple reference of collection class names.
  *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class CollectionReference {
 

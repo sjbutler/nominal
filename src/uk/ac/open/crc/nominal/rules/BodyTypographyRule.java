@@ -27,9 +27,6 @@ import uk.ac.open.crc.nominal.information.BodyCapitalisationSummaryInformation;
 /**
  * Embodies a rule for the capitalisation of the component words of 
  * an identifier name. 
- *
- *
- * @author Simon Butler (simon@facetus.org.uk)
  */
 public class BodyTypographyRule extends AbstractRule {
 
@@ -48,7 +45,7 @@ public class BodyTypographyRule extends AbstractRule {
      * Creates an instance of the rule with the strict parameter set to 
      * {@code false}.
      * @param caseType The case in which the body of the identifier name is expected
-     * to be.
+     * to be
      */
     public BodyTypographyRule( CaseType caseType ) {
         super( RuleType.BODY ); 
@@ -102,14 +99,17 @@ public class BodyTypographyRule extends AbstractRule {
     
     private BodyCapitalisationInformation checkCapitalisation( final Token token ) {
         boolean isCorrect;
-        if ( this.caseType == CaseType.UPPER ) {
-            isCorrect = token.text().matches( "^[A-Z0-9]+$" );
-        }
-        else if (this.caseType == CaseType.MIXED ) {
-            isCorrect = token.text().matches( "^[A-Z0-9][a-z0-9]*$");
-        }
-        else {
-            isCorrect = token.text().matches( "^[a-z0-9]+$");
+        
+        switch ( this.caseType ) {
+            case UPPER:
+                isCorrect = token.text().matches( "^[A-Z0-9]+$" );
+                break;
+            case MIXED:
+                isCorrect = token.text().matches( "^[A-Z0-9][a-z0-9]*$");
+                break;
+            default:
+                isCorrect = token.text().matches( "^[a-z0-9]+$");
+                break;
         }
         
         BodyCapitalisationInformation information = 
@@ -145,8 +145,6 @@ public class BodyTypographyRule extends AbstractRule {
         return information;
     }
     
-    
-    
     /**
      * Provides a textual description of the rule applied.
      * @return A textual description of the rule applied.
@@ -155,7 +153,6 @@ public class BodyTypographyRule extends AbstractRule {
     public String toString() {
         return this.caseType.description(); 
     }
-    
     
     private void setExplanation( boolean isCorrect ) {
         switch ( this.caseType ) {
