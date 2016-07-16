@@ -24,7 +24,7 @@ Dependencies
 ============
 nominal has the following dependencies:
  1. SLF4J - nominal uses SLF4J for logging. Incorporating SLF4J in 
-    (exisitng) code is straightforward. A copy of slf4j-api.x.x.x.jar 
+    (existing) code is straightforward. A copy of slf4j-api.x.x.x.jar 
     must be on the classpath when compiling and running nominal. 
     Another slf4j jar will also be required to support logging 
     -- see http://slf4j.org/ for more information

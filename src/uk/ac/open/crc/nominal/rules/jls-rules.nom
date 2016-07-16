@@ -88,7 +88,7 @@ field-constant {
     first-char: upper;
     body: upper;
     separator: _;
-    content: AdjP,AdvP,NP,PP,VP,complex;
+    content: AdjP,AdvP,NP,PP,VP,complex,abbreviation;
 }
 
 field-variable {
