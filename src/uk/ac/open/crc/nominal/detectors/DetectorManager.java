@@ -1,5 +1,6 @@
 /*
  Copyright (C) 2013-2015 The Open University
+ Copyright (C) 2017 Simon Butler
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -66,9 +67,9 @@ public class DetectorManager {
      */
     public IdentifierName test( IdentifierName identifierName ) {
         
-        this.detectorList.stream().forEach( (detector) -> { 
-            detector.test( identifierName );
-        } );
+        this.detectorList
+                .stream()
+                .forEach( detector -> detector.test( identifierName ) );
         
         return identifierName;
     }

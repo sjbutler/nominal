@@ -1,5 +1,6 @@
 /*
  Copyright (C) 2013-2015 The Open University
+ Copyright (C) 2017 Simon Butler
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -54,34 +55,30 @@ public class CountryCodeDetector implements Detector {
         List<Boolean> codesDetected = new ArrayList<>();
         
         for ( Token token : identifierName.taggedTokens() ) {
-            CountryCodeInformation information;
-            if ( token.text().length() <= 3 ) {
-                List<Result> results = this.countryCodeDictionarySet.spellCheck( token.text() );
-                boolean isThreeLetterCode = false;
-                boolean isTwoLetterCode = false;
-                for ( Result result : results ) {
-                    switch ( result.dictionaryName() ) {
-                        case "iso3166-2":
-                            isTwoLetterCode = result.isCorrect();
-                            break;
-                        case "iso3166-3":
-                            isThreeLetterCode = result.isCorrect();
-                            break;
-                    }
-                }
-                information = new CountryCodeInformation( isTwoLetterCode, isThreeLetterCode );
-            }
-            else {
-                information = new CountryCodeInformation( false, false );
-            }
+            CountryCodeInformation information = createCountryCodeInformation(token);
             codesDetected.add( information.isCorrect() );
             token.add( information );
         }
         
-        CountryCodeSummaryInformation summaryInformation = new CountryCodeSummaryInformation( codesDetected.contains( true ) );
+        CountryCodeSummaryInformation summaryInformation 
+                = new CountryCodeSummaryInformation( codesDetected.contains( true ) );
         identifierName.add( summaryInformation );
         
         return summaryInformation;
     }
     
+    
+    private CountryCodeInformation createCountryCodeInformation(Token token) {
+        boolean isThreeLetterCode = false;
+        boolean isTwoLetterCode = false;
+        if ( token.text().length() <= 3 ) {
+            List<Result> results = this.countryCodeDictionarySet.spellCheck( token.text() );
+            
+            isTwoLetterCode = results.stream()
+                    .anyMatch( r -> r.isCorrect() && r.dictionaryName().equals( "iso3166-2") );
+            isThreeLetterCode = results.stream()
+                    .anyMatch( r ->  r.isCorrect() && r.dictionaryName().equals( "iso3166-3") );
+        }
+        return new CountryCodeInformation( isTwoLetterCode, isThreeLetterCode );
+    }
 }

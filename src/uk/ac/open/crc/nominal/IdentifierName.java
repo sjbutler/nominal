@@ -51,6 +51,9 @@ public class IdentifierName {
 
     private static final Logger LOGGER = LoggerFactory.getLogger( IdentifierName.class );
     
+    private static final String entityUid = "";
+    private static final String containerUid = "";
+    
     private final TokenisedName tokenisedName;
     
     private final TypeName typeName;
@@ -69,8 +72,6 @@ public class IdentifierName {
     private final boolean isCollectionReference;
     private final boolean isLoopControlVariable;
     
-    private final String entityUid = "";
-    private final String containerUid = "";
     
     /**
      * Creates an instance of {@code IdentifierName}.
@@ -280,11 +281,10 @@ public class IdentifierName {
         List<IdentifierInformation> classifiedInformationList = new ArrayList<>();
         
         this.informationList.stream().filter( 
-                (information) -> 
-                        ( information.classification() == informationClass ) )
-                .forEach( (information) -> { 
-                    classifiedInformationList.add( information );
-        } );
+                information -> 
+                        information.classification() == informationClass )
+                .forEach( information ->  
+                    classifiedInformationList.add( information ) );
         
         return classifiedInformationList;
     }
@@ -305,13 +305,13 @@ public class IdentifierName {
     
     
     // modal expansion
-    public ArrayList<Token> expandedTokens() {
+    public List<Token> expandedTokens() {
         throw new UnsupportedOperationException();
     }
     
     
     // abbreviation expansion plus modals, plus recombination
-    public ArrayList<Token> fullyExpandedTokens() {
+    public List<Token> fullyExpandedTokens() {
         throw new UnsupportedOperationException();
     }
     
@@ -731,11 +731,11 @@ public class IdentifierName {
     // if they could be more widely used.
     private String simplifyTypeName( String typeName ) {
         // strip everything to the left of the rightmost dot, including the dot
-        int lastDotIndex = typeName.lastIndexOf( "." );
+        int lastDotIndex = typeName.lastIndexOf( '.' );
         String s = lastDotIndex == -1 ? typeName : typeName.substring( lastDotIndex + 1 );
         
         // strip everything to the right of the first left angle bracket, including the bracket. 
-        int lAngleIndex = s.indexOf( "<" );
+        int lAngleIndex = s.indexOf( '<' );
         return lAngleIndex == -1 ? s : s.substring( 0, lAngleIndex );
     }
 

@@ -1,5 +1,6 @@
 /*
  Copyright (C) 2013-2015 The Open University
+ Copyright (C) 2017 Simon Butler
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -21,6 +22,7 @@ import uk.ac.open.crc.nominal.information.Information;
 /**
  * Interface for all detectors.
  */
+@FunctionalInterface
 public interface Detector {
 
     /**

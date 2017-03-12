@@ -1,23 +1,22 @@
 /*
- Copyright (C) 2013-2015 The Open University
+    Copyright (C) 2013-2015 The Open University
+    Copyright (C) 2017 Simon Butler
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
+        http://www.apache.org/licenses/LICENSE-2.0
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
  */
 
 package uk.ac.open.crc.nominal.rules;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -80,7 +79,7 @@ public class PhraseRule extends IdentifierRule {
                     information = noneTest( identifierName );
                     break;
                 case "complex":
-                    boolean isComplex = ( phraseSummary.split( " " ).length > 2 ); // crude test saying that 3 or more top level components are complex. Not sure the reductionist parser well ever allow this to be true.
+                    boolean isComplex = phraseSummary.split( " " ).length > 2 ; // crude test saying that 3 or more top level components are complex. Not sure the reductionist parser well ever allow this to be true.
                     information = new PhraseInformation( 
                             isComplex, 
                             phraseSummary, 
@@ -116,7 +115,7 @@ public class PhraseRule extends IdentifierRule {
             boolean isKnownAbbreviation = false;
             for ( Result result : abbreviationDictionary.spellCheck( token ) ) {
                 if ( result.isCorrect() ) {
-                    isKnownAbbreviation = true;
+                    isKnownAbbreviation = true; // there is a matchAny() or similar, is there not?
                     break;
                 }
             }

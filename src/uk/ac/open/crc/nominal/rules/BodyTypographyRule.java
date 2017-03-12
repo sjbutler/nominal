@@ -1,17 +1,17 @@
 /*
- Copyright (C) 2013-2015 The Open University
+    Copyright (C) 2013-2015 The Open University
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
+        http://www.apache.org/licenses/LICENSE-2.0
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
  */
 
 package uk.ac.open.crc.nominal.rules;
@@ -30,12 +30,18 @@ import uk.ac.open.crc.nominal.information.BodyCapitalisationSummaryInformation;
  */
 public class BodyTypographyRule extends AbstractRule {
 
-    private static final String EXPLANATION_MIXED_FAILURE = "identifier does not match mixed case format";
-    private static final String EXPLANATION_MIXED_SUCCESS = "identifier matches mixed case format";
-    private static final String EXPLANATION_UPPER_FAILURE = "identifier does not match upper case format";
-    private static final String EXPLANATION_UPPER_SUCCESS = "identifier matches upper case format";
-    private static final String EXPLANATION_LOWER_FAILURE = "identifier does not match lower case format";
-    private static final String EXPLANATION_LOWER_SUCCESS = "identifier matches lower case format";
+    private static final String EXPLANATION_MIXED_FAILURE 
+            = "identifier does not match mixed case format";
+    private static final String EXPLANATION_MIXED_SUCCESS 
+            = "identifier matches mixed case format";
+    private static final String EXPLANATION_UPPER_FAILURE 
+            = "identifier does not match upper case format";
+    private static final String EXPLANATION_UPPER_SUCCESS 
+            = "identifier matches upper case format";
+    private static final String EXPLANATION_LOWER_FAILURE 
+            = "identifier does not match lower case format";
+    private static final String EXPLANATION_LOWER_SUCCESS 
+            = "identifier matches lower case format";
     
     
     private final CaseType caseType;
@@ -83,7 +89,6 @@ public class BodyTypographyRule extends AbstractRule {
                 information = checkCapitalisation( tokens.get( i ) );
             }
             isTokenCorrectList.add( information.isCorrect() );
-            
         }
         
         isCorrect = ! isTokenCorrectList.contains( false );

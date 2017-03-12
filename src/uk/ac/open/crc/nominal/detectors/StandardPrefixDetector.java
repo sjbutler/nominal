@@ -35,7 +35,7 @@ public class StandardPrefixDetector implements Detector {
     // species/role: {f,m,p}
     // type: {b,c,d,f,i,l,o} = boolean/byte,char, double, float, int, long, object
     
-    private final static HashMap<String,List<String>> prefixMap;
+    private static final HashMap<String,List<String>> prefixMap;
     
     static {
         prefixMap = new HashMap<>();
@@ -114,10 +114,8 @@ public class StandardPrefixDetector implements Detector {
             final String prefix, 
             final Species species ) {
         
-        return ( species == Species.FIELD 
-                        && ( "m".equals( prefix ) || "f".equals( prefix ) ) 
-                || ( species == Species.FORMAL_ARGUMENT 
-                && "p".equals( prefix ) ) );
+        return isStandardFieldPrefix( prefix, species )
+                || isStandardFormalArgumentPrefix( prefix, species );
     }
     
     private boolean isTypedPrefix( final String prefix ) {
@@ -126,5 +124,13 @@ public class StandardPrefixDetector implements Detector {
     
     private boolean prefixMatchesType( final String prefix, final String type ) {
         return prefixMap.get( prefix ).contains( type );
+    }
+    
+    private boolean isStandardFieldPrefix( String prefix, Species species ) {
+        return species == Species.FIELD && ( "m".equals( prefix ) || "f".equals( prefix ) );
+    }
+    
+    private boolean isStandardFormalArgumentPrefix( final String prefix, final Species species ) {
+        return species == Species.FORMAL_ARGUMENT && "p".equals( prefix );
     }
 }

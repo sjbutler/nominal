@@ -61,7 +61,11 @@ public class SpellingInformation extends TokenInformation {
      */
     public List<String> successfulDictionaries() {
         ArrayList<String> dictionaries = new ArrayList<>();
-        this.results.stream().forEach( (result)->{ if ( result.isCorrect() ) { dictionaries.add( result.dictionaryName() ); } });
+        this.results.stream()
+                .forEach( result -> { 
+                    if ( result.isCorrect() ) { 
+                        dictionaries.add( result.dictionaryName() ); 
+                    } });
         return dictionaries;
     }
     
@@ -71,7 +75,11 @@ public class SpellingInformation extends TokenInformation {
      */
     public List<String> failedDictionaries() {
         ArrayList<String> dictionaries = new ArrayList<>();
-        this.results.stream().forEach( (result)->{ if ( ! result.isCorrect() ) { dictionaries.add( result.dictionaryName() ); } });
+        this.results.stream()
+                .forEach( result -> { 
+                    if ( ! result.isCorrect() ) { 
+                        dictionaries.add( result.dictionaryName() ); 
+                    } });
         return dictionaries;
     }
     

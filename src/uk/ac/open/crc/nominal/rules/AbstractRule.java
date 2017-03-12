@@ -19,7 +19,7 @@ package uk.ac.open.crc.nominal.rules;
 /**
  * Common implementations for all {@code Rule} classes.
  */
-abstract public class AbstractRule implements Rule {
+public abstract class AbstractRule implements Rule {
 
     private final RuleType ruleType;
     

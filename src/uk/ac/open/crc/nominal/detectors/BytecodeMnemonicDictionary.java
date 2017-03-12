@@ -68,8 +68,9 @@ public class BytecodeMnemonicDictionary {
         }
         catch ( IOException e ) {
             LOGGER.error( 
-                    "problem encountered reading bytecode mnemonics from jar : {}", 
-                    e.getMessage());
+                    "problem encountered reading bytecode mnemonics from jar : {}\n{}", 
+                    e.getMessage(),
+                    e );
         }
     }
     
@@ -107,8 +108,8 @@ public class BytecodeMnemonicDictionary {
      */
     public boolean isMnemonicIgnoreCase( String string ) {
         String normalisedString = string.toLowerCase();
-        return ( isMnemonic( normalisedString ) 
-                || isContractedMnemonic( normalisedString) );
+        return isMnemonic( normalisedString ) 
+               || isContractedMnemonic( normalisedString );
     }
     
 }

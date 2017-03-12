@@ -1,5 +1,6 @@
 /*
  Copyright (C) 2013-2015 The Open University
+ Copyright (C) 2017 Simon Butler
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -48,7 +49,6 @@ public class SpellingDetector implements Detector {
     private static final DictionarySet DICTIONARY = 
             MdscDictionaryPool.getInstance().wordDictionaries();
     
-    
     private final RulesetGroup ruleSetGroup;  // not used, this is a test of spelling
     
     private final AbbreviationDetector abbbreviationDetector;
@@ -88,13 +88,13 @@ public class SpellingDetector implements Detector {
         // now iterate over the tokens
         List<TaggedToken> taggedTokens = identifierName.taggedTokens();
         List<Boolean> isSpellingCorrect = new ArrayList<>();
-        for ( TaggedToken token : taggedTokens ) {
+        taggedTokens.forEach( token -> {
             List<Result> results = DICTIONARY.spellCheck( token.normalisedText() );
             SpellingInformation information = new SpellingInformation( results );
             boolean isTokenSpellingCorrect = information.isCorrect();
             token.add( information );
             isSpellingCorrect.add( isTokenSpellingCorrect );
-        } 
+        } ); 
         
         // test for abbreviation
         AbbreviationSummaryInformation abbreviationSummaryInformation = 
@@ -121,54 +121,10 @@ public class SpellingDetector implements Detector {
         // - every token is a recognised word or acronym, preceded (if appropriate) by correctly used branding or prefix
         boolean isCorrect;
         if ( cipherInformation != null && typeAcronymInformation != null ) {
-            if ( cipherInformation.isCorrect() || typeAcronymInformation.isCorrect() ) {
-                isCorrect = true;
-            }
-            else {
-                Token firstToken = identifierName.firstToken();
-                if ( firstToken != null ) {
-                    SpellingInformation spellingInformation = 
-                            (SpellingInformation) firstToken.getInformationList(InformationClassification.SPELLING ).get( 0 );
-                    AcronymInformation acronymInformation = 
-                            (AcronymInformation) firstToken.getInformationList(InformationClassification.ACRONYM ).get( 0 );
-                    isCorrect = spellingInformation.isCorrect() 
-                            || acronymInformation.isCorrect();
-                }
-                else {
-                    isCorrect = false; // only thing I can do -- it makes some sense semantically -- this would include a correct iso3166 code being used in a single toke identifier name, which Gosling forbids
-                }
-            }
+            isCorrect = isCorrectlySpelledSingleTokenName(cipherInformation, typeAcronymInformation, identifierName);
         }
         else {
-            SpellingInformation spellingInformation;
-            AcronymInformation acronymInformation;
-            PrefixInformation prefixInformation;
-            CountryCodeInformation countryCodeInformation;
-            
-            List<Boolean> testList = new ArrayList<>();
-            for ( Token token : identifierName.taggedTokens() ) {
-                spellingInformation = 
-                        (SpellingInformation) token.getInformationList(InformationClassification.SPELLING ).get( 0 );
-                acronymInformation = 
-                        (AcronymInformation) token.getInformationList(InformationClassification.ACRONYM ).get( 0 );
-                countryCodeInformation = 
-                        (CountryCodeInformation) token.getInformationList(InformationClassification.COUNTRY_CODE ).get( 0 );
-                List<TokenInformation> prefixInformationList = 
-                        token.getInformationList(InformationClassification.PREFIX );
-                if ( ! prefixInformationList.isEmpty() ) {
-                    prefixInformation = (PrefixInformation) prefixInformationList.get( 0 );
-                    testList.add( spellingInformation.isCorrect() 
-                            || acronymInformation.isCorrect() 
-                            || countryCodeInformation.isCorrect()
-                            || prefixInformation.isCorrect() );
-                }
-                else {
-                    testList.add( spellingInformation.isCorrect() 
-                            || acronymInformation.isCorrect()
-                            || countryCodeInformation.isCorrect() );
-                }
-            }
-            isCorrect = ! testList.contains( false );
+            isCorrect = isCorrectlySpelledMultiTokenName(identifierName);
         }
         
         SpellingSummaryInformation summaryInformation = 
@@ -181,6 +137,65 @@ public class SpellingDetector implements Detector {
         identifierName.add( summaryInformation );
         
         return summaryInformation;
+    }
+
+
+    private boolean isCorrectlySpelledSingleTokenName(
+            CipherInformation cipherInformation, 
+            TypeAcronymInformation typeAcronymInformation, 
+            IdentifierName identifierName) {
+        boolean isCorrect;
+        if ( cipherInformation.isCorrect() || typeAcronymInformation.isCorrect() ) {
+            isCorrect = true;
+        }
+        else {
+            Token firstToken = identifierName.firstToken();
+            if ( firstToken != null ) {
+                SpellingInformation spellingInformation = 
+                        (SpellingInformation) firstToken.getInformationList(InformationClassification.SPELLING ).get( 0 );
+                AcronymInformation acronymInformation = 
+                        (AcronymInformation) firstToken.getInformationList(InformationClassification.ACRONYM ).get( 0 );
+                isCorrect = spellingInformation.isCorrect() 
+                        || acronymInformation.isCorrect();
+            }
+            else {
+                isCorrect = false; // only thing I can do -- it makes some sense semantically -- this would include a correct iso3166 code being used in a single toke identifier name, which Gosling forbids
+            }
+        }        
+        return isCorrect;
+    }
+    
+    private boolean isCorrectlySpelledMultiTokenName(IdentifierName identifierName) {
+        SpellingInformation spellingInformation;
+        AcronymInformation acronymInformation;
+        PrefixInformation prefixInformation;
+        CountryCodeInformation countryCodeInformation;
+
+        List<Boolean> testList = new ArrayList<>();
+        for ( Token token : identifierName.taggedTokens() ) {
+            spellingInformation = 
+                    (SpellingInformation) token.getInformationList(InformationClassification.SPELLING ).get( 0 );
+            acronymInformation = 
+                    (AcronymInformation) token.getInformationList(InformationClassification.ACRONYM ).get( 0 );
+            countryCodeInformation = 
+                    (CountryCodeInformation) token.getInformationList(InformationClassification.COUNTRY_CODE ).get( 0 );
+            List<TokenInformation> prefixInformationList = 
+                    token.getInformationList(InformationClassification.PREFIX );
+            if ( ! prefixInformationList.isEmpty() ) {
+                prefixInformation = (PrefixInformation) prefixInformationList.get( 0 );
+                testList.add( spellingInformation.isCorrect() 
+                        || acronymInformation.isCorrect() 
+                        || countryCodeInformation.isCorrect()
+                        || prefixInformation.isCorrect() );
+            }
+            else {
+                testList.add( spellingInformation.isCorrect() 
+                        || acronymInformation.isCorrect()
+                        || countryCodeInformation.isCorrect() );
+            }
+        }
+        
+        return ! testList.contains( false );
     }
     
 }

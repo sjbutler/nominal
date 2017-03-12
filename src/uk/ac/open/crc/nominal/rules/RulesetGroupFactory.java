@@ -1,17 +1,17 @@
 /*
- Copyright (C) 2013-2015 The Open University
+    Copyright (C) 2013-2015 The Open University
+    Copyright (C) 2017 Simon Butler
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+        http://www.apache.org/licenses/LICENSE-2.0
 
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
  */
 package uk.ac.open.crc.nominal.rules;
 
@@ -20,8 +20,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -43,6 +41,8 @@ public class RulesetGroupFactory {
     private static final String DEFAULT_RULES_FILE = "ajc-rules.nom";
     private static final String GOSLING_RULES_FILE = "jls-rules.nom";
     private static final String VERMEULEN_RULES_FILE = "ejs-rules.nom";
+    
+    private RulesetGroupFactory() {}
     
     /**
      * Creates a {@code RulesetGroup} using one of the stored definitions.
@@ -73,24 +73,8 @@ public class RulesetGroupFactory {
                 rulesFileName = DEFAULT_RULES_FILE;
                 break;
         }
-        
-        InputStream inStream = 
-                RulesetGroupFactory.class.getResourceAsStream( rulesFileName );
-        ANTLRInputStream input = 
-                new ANTLRInputStream( new BufferedReader(new InputStreamReader(inStream)) );
-        NominalLexer nominalLexer = new NominalLexer( input );
-        CommonTokenStream tokens = new CommonTokenStream( nominalLexer );
-        NominalParser nominalParser = new NominalParser( tokens );
-        ParseTree parseTree = nominalParser.file();
 
-        // now start the walk with an injected instance of RulesetGroup
-        RulesetGroup rulesetGroup = new RulesetGroup();
-        NominalVisitor nominalVisitor = new NominalVisitorImplementation( rulesetGroup );
-        nominalVisitor.visit( parseTree );
-        
-        addDummyRulesets( rulesetGroup );
-        
-        return rulesetGroup;
+        return populateRulesetGroup(null, new File(rulesFileName));
     }
 
     /**
@@ -101,41 +85,13 @@ public class RulesetGroupFactory {
      * @return an instance of {@code RulesetGroup}.
      * @throws java.io.FileNotFoundException if specified file is not found.
      */
-    public static RulesetGroup createRulesetGroup ( 
-            File conventionsDefinitionFile ) throws IOException {
-        RulesetGroup rulesetGroup = new RulesetGroup();
-        
-        // read the source file and parse it adding rules
-        FileReader fileReader;
-        try {
-            fileReader = new FileReader( conventionsDefinitionFile );
-        }
-        catch ( FileNotFoundException e ) {
-            LOGGER.error( 
-                    "Unable to access file \"{}\" : {}", 
-                    conventionsDefinitionFile.getName(), 
-                    e.getMessage() );
-            throw e; 
-        }
-        
-        ANTLRInputStream input = 
-                new ANTLRInputStream( new BufferedReader( fileReader ) );
-        NominalLexer nominalLexer = new NominalLexer( input );
-        CommonTokenStream tokens = new CommonTokenStream( nominalLexer );
-        NominalParser nominalParser = new NominalParser( tokens );
-        ParseTree parseTree = nominalParser.file();
-        
-        NominalVisitor nominalVisitor = 
-                new NominalVisitorImplementation( rulesetGroup );
-        nominalVisitor.visit( parseTree );
-        
-        addDummyRulesets( rulesetGroup );
-        
-        return rulesetGroup;
+    public static RulesetGroup createRulesetGroup ( File conventionsDefinitionFile ) 
+            throws IOException {
+            return populateRulesetGroup( new RulesetGroup(), conventionsDefinitionFile );
     }
     
     /**
-     * Creates a  <code>RulesetGroup</code> consisting of the default rules
+     * Creates a <code>RulesetGroup</code> consisting of the default rules
      * overwritten by any rules defined in the specified file.
      * <p>
      * NB the rule is that any defined rule <strong>replaces</strong> the 
@@ -148,8 +104,8 @@ public class RulesetGroupFactory {
      * @throws java.io.FileNotFoundException if external nominal (.nom) file 
      * is not found
      */
-    public static RulesetGroup createRulesetGroupWithDefaults( 
-            File conventionsDefinitionFile ) throws IOException {
+    public static RulesetGroup createRulesetGroupWithDefaults( File conventionsDefinitionFile ) 
+            throws IOException {
         RulesetGroup rulesetGroup;
         try {
             rulesetGroup = createDefaultRulesetGroup( "ajc" );
@@ -161,34 +117,35 @@ public class RulesetGroupFactory {
             throw e;
         }
         
-        FileReader fileReader;
-        try {
-            fileReader = new FileReader( conventionsDefinitionFile );
+        return populateRulesetGroup(rulesetGroup, conventionsDefinitionFile );
+    }
+    
+    private static RulesetGroup populateRulesetGroup( RulesetGroup rulesetGroup, File conventionsDefinitionFile ) 
+            throws IOException {
+        try (FileReader fileReader = new FileReader( conventionsDefinitionFile )) {
+            ANTLRInputStream input = 
+                    new ANTLRInputStream( new BufferedReader( fileReader ) );
+            NominalLexer nominalLexer = new NominalLexer( input );
+            CommonTokenStream tokens = new CommonTokenStream( nominalLexer );
+            NominalParser nominalParser = new NominalParser( tokens );
+            ParseTree parseTree = nominalParser.file();
+
+            NominalVisitor nominalVisitor = 
+                    new NominalVisitorImplementation( rulesetGroup );
+            nominalVisitor.visit( parseTree );
+
+            addDummyRulesets( rulesetGroup );
+
+            return rulesetGroup;
         }
         catch ( FileNotFoundException e ) {
-            LOGGER.warn( 
+            LOGGER.error( 
                     "Unable to access file \"{}\" : {}", 
                     conventionsDefinitionFile.getName(), 
                     e.getMessage() );
             throw e; 
         }
-        
-        ANTLRInputStream input = 
-                new ANTLRInputStream( new BufferedReader( fileReader ) );
-        NominalLexer nominalLexer = new NominalLexer( input );
-        CommonTokenStream tokens = new CommonTokenStream( nominalLexer );
-        NominalParser nominalParser = new NominalParser( tokens );
-        ParseTree parseTree = nominalParser.file();
-        
-        NominalVisitor nominalVisitor = 
-                new NominalVisitorImplementation( rulesetGroup );
-        nominalVisitor.visit( parseTree );
-        
-        addDummyRulesets( rulesetGroup );
-        
-        return rulesetGroup;
-    }
-    
+    } 
     
     // inserts emptyy rulesets into any gaps in the
     // hierarchy to prevent NPEs during the recursive search up the tree

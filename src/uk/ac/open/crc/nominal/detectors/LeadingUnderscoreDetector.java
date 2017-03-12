@@ -19,7 +19,7 @@ package uk.ac.open.crc.nominal.detectors;
 import uk.ac.open.crc.nominal.IdentifierName;
 import uk.ac.open.crc.nominal.information.LeadingUnderscoreInformation;
 
-// implementation to be revised when use of leadin underscores can be defined
+// implementation to be revised when use of leading underscores can be defined
 /**
  * Checks for the use of leading underscores.
  */

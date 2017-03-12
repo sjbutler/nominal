@@ -1,17 +1,18 @@
 /*
- Copyright (C) 2013-2015 The Open University
+    Copyright (C) 2013-2015 The Open University
+    Copyright (C) 2017 Simon Butler
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
+        http://www.apache.org/licenses/LICENSE-2.0
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
  */
 
 package uk.ac.open.crc.nominal.rules;
@@ -27,7 +28,7 @@ import uk.ac.open.crc.nominal.information.CipherInformation;
 
 // NB: instances of this class created by the nominal parser.
 // the cipher map is populated by the same parser and
-// probably after this object is instantiated, hence
+// most likely after this object is instantiated, hence
 // the lazy assignment of the reference to the specified cipher map. 
 /**
  * Embodies the rules on cipher use.
@@ -73,7 +74,12 @@ public class CipherRule extends IdentifierRule {
      */
     @Override
     public CipherInformation test( IdentifierName identifierName ) {
-        // populate the map
+        populateCipherMap();        
+           
+        return evaluateName(identifierName);
+    }
+    
+    private void populateCipherMap() {
         if ( this.cipherMap == null || this.cipherMap.isEmpty() ) {
             this.cipherMap = CipherMapStore.getInstance().get( this.cipherMapKey );
             if ( this.cipherMap == null || this.cipherMap.isEmpty() ) {
@@ -85,46 +91,47 @@ public class CipherRule extends IdentifierRule {
                         this.cipherMapKey ) );
             }
         }
-                
-        if ( identifierName.tokenCount() == 1 ) {
-            List<TaggedToken> originalTokens = identifierName.taggedTokens();
-            Token originalToken = originalTokens.get( 0 );
-            boolean isKnownCipher = this.cipherMap.isKnownCipher( originalToken.text() );
-            boolean isCorrectType = false;
-            if ( isKnownCipher ) {
-                Set<String> types = this.cipherMap.typeList( originalToken.text() );
-                for ( String type : types ) {
-                    if ( type.equals( "*" ) ) {
-                        isCorrectType = true;
-                    }
-                    else if ( identifierName.type().equals( type ) ) { 
-                        isCorrectType = true;
-                    }
-                    else if ( type.startsWith( "*" ) ) {
-                        String superType = type.substring( 2 );
-                        
-                        isCorrectType = ( 
-                                identifierName.type().equals( superType )  
-                                || identifierName.type().endsWith( superType ) 
-                                //|| // super type check in JavaRef
-                                );
-                    }
-                    if ( isCorrectType ) {
-                        break;
-                    }
-                }
-            }
-
-            boolean isCorrect = ( isKnownCipher && isCorrectType && this.isPermitted );
-            
-            CipherInformation information = 
-                    new CipherInformation( isCorrect, isKnownCipher, isCorrectType );
-            identifierName.add( information );
-            return information;
-        }
-        else {
-            return null; // do not annotate identifier name or token
-        }
     }
     
+    private CipherInformation evaluateName( IdentifierName identifierName ) {
+        if ( identifierName.tokenCount() > 1 ) {
+            return null;
+        }
+        
+        List<TaggedToken> originalTokens = identifierName.taggedTokens();
+        Token originalToken = originalTokens.get( 0 );
+        boolean isKnownCipher = this.cipherMap.isKnownCipher( originalToken.text() );
+        boolean isCorrectType = false;
+        if ( isKnownCipher ) {
+            Set<String> types = this.cipherMap.typeList( originalToken.text() );
+            for ( String type : types ) {
+                if ( "*".equals( type ) ) {
+                    isCorrectType = true;
+                }
+                else if ( identifierName.type().equals( type ) ) { 
+                    isCorrectType = true;
+                }
+                else if ( type.startsWith( "*" ) ) {
+                    String superType = type.substring( 2 );
+
+                    isCorrectType = identifierName.type().equals( superType )  
+                                    || identifierName.type().endsWith( superType ) 
+                                    //|| // super type check in JavaRef
+                                    ;
+                }
+                if ( isCorrectType ) {
+                    break;
+                }
+            }
+        }
+
+        boolean isCorrect = isKnownCipher 
+                            && isCorrectType 
+                            && this.isPermitted;
+
+        CipherInformation information = 
+                new CipherInformation( isCorrect, isKnownCipher, isCorrectType );
+        identifierName.add( information );
+        return information;
+    }
 }

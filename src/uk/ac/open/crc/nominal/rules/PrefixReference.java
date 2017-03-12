@@ -63,4 +63,6 @@ public class PrefixReference {
     public static boolean isPossessivePrefix( String s ) {
         return possessivePrefixes.contains( s );
     }
+    
+    private PrefixReference() {}
 }

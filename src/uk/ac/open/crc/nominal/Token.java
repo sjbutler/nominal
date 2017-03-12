@@ -71,11 +71,9 @@ public class Token {
         List<TokenInformation> classifiedInformationList = new ArrayList<>();
         
         this.informationList.stream().filter( 
-                (information) -> 
-                        ( information.classification() == informationClass ) )
-                .forEach( (information) -> { 
-                    classifiedInformationList.add( information );
-        } );
+                information -> information.classification() == informationClass ) 
+                .forEach( information ->  
+                    classifiedInformationList.add( information ) );
         
         return classifiedInformationList;
     }

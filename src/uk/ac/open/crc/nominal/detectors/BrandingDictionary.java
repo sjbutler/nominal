@@ -25,7 +25,7 @@ public class BrandingDictionary {
 
     private static BrandingDictionary instance = null;
     
-    public final static BrandingDictionary getInstance() {
+    public static final BrandingDictionary getInstance() {
         if ( instance == null ) {
             instance = new BrandingDictionary();
         }
