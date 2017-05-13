@@ -46,10 +46,10 @@ public class RedundantPrefixDetector implements Detector {
     public RedundantPrefixInformation test( IdentifierName identifierName ) {
         RedundantPrefixInformation information = null;
         if ( identifierName.species().isReference() ) {
-            Rule redundantPrefixrule = this.rulesetGroup.get( 
+            Rule redundantPrefixRule = this.rulesetGroup.get( 
                     identifierName.classification(), 
                     RuleType.REDUNDANT_PREFIX );
-            information = (RedundantPrefixInformation) redundantPrefixrule.test( identifierName );
+            information = (RedundantPrefixInformation) redundantPrefixRule.test( identifierName );
         }
         
         return information;
