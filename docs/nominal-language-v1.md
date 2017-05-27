@@ -156,7 +156,7 @@ Phrasal content is specified using the Penn Treebank chunk tags `NP`, `VP`, `PP`
 
 Non-phrasal content may be specified using the keywords `cipher`, `type-acronym` and `abbreviation`.
 
-`cipher` is defined above. _Type acronyms_ are acronyms derived from type names, e.g `InputStream is` and `StringBuilder sb`. Nominal derives type acronyms when checking names. However our research found an additional type of type acronym where the type acronym is derived from the super class, for example `BufferedOutputStream os`. Nominal does not detect this kind of type acronym nor can it be specified in a rule. The necessary functionality is planned for a future version. Abbreviations are
+`cipher` is defined above. _Type acronyms_ are acronyms derived from type names, e.g `InputStream is` and `StringBuilder sb`. Nominal derives type acronyms when checking names. However our research found an additional type of type acronym where the type acronym is derived from the super class, for example `BufferedOutputStream os`. Nominal does not detect this kind of type acronym nor can it be specified in a rule. The necessary functionality is planned for a future version. Abbreviations are defined in dictionaries in mdsc.
 
 ## Limitations and Future Directions
 
