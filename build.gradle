@@ -1,0 +1,51 @@
+/*
+ * Simple Gradle configuration
+ */
+
+apply plugin: 'java-library'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+// metadata for the pom
+group = "uk.org.facetus"
+archivesBaseName = "nominal"
+version = "0.1.0"
+
+sourceCompatibility = 1.8
+
+dependencies {
+    // external dependencies
+    api 'org.slf4j:slf4j-api:1.7.25'
+    api 'org.slf4j:slf4j-jdk14:1.7.25'
+    compile 'uk.org.facetus:mdsc:0.1.0'
+    compile 'uk.org.facetus:idtk-j:0.5.0'
+    compile 'org.antlr:antlr4-runtime:4.7'
+
+    // Use JUnit test framework
+    testImplementation 'junit:junit:4.12'
+}
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
+}
+
