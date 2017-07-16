@@ -1,17 +1,17 @@
 /*
- Copyright (C) 2013-2015 The Open University
+    Copyright (C) 2013-2015 The Open University
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
+        http://www.apache.org/licenses/LICENSE-2.0
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
  */
 
 package uk.ac.open.crc.nominal.detectors;
@@ -30,7 +30,8 @@ import org.slf4j.LoggerFactory;
  * Two separate tests are available. One is for mnemonics as they are
  * conventionally written, including those that contain underscores, such 
  * as {@code aload_1}. The second contains mnemonics where the underscore 
- * has been removed, so, for example, {@code aload_1} becomes {@code aload1}.
+ * has been removed, so, for example, {@code aload_1} becomes {@code aload1}. 
+ * Tests are case insensitive. 
  * </p>
  */
 public class BytecodeMnemonicDictionary {
@@ -58,12 +59,12 @@ public class BytecodeMnemonicDictionary {
         this.contractedDictionary = new HashSet<>();
         
         try ( BufferedReader in = new BufferedReader( new InputStreamReader( 
-                this.getClass().getResourceAsStream( "mnemonics-tokens-java8" ) ) ) ) {
+                this.getClass().getResourceAsStream( "/wordlists/mnemonics-tokens-java8" ) ) ) ) {
             String line;
             while ( ( line = in.readLine() ) != null ) {
-                String trimmedToken = line.trim(); 
-                this.dictionary.add( trimmedToken );
-                this.contractedDictionary.add( trimmedToken.replace( "_", "" ) );
+                String trimmedAndNormalisedToken = line.trim().toLowerCase(); 
+                this.dictionary.add( trimmedAndNormalisedToken );
+                this.contractedDictionary.add( trimmedAndNormalisedToken.replace( "_", "" ) );
             }
         }
         catch ( IOException e ) {
@@ -82,8 +83,8 @@ public class BytecodeMnemonicDictionary {
      * @param string a string to test
      * @return {@code true} if the test string matches a bytecode mnemonic.
      */
-    public boolean isMnemonic( String string ) {
-        return this.dictionary.contains( string );
+    public boolean isUncontractedMnemonic( String string ) {
+        return string != null ? this.dictionary.contains( string.toLowerCase() ) : false;
     }
     
     
@@ -95,20 +96,23 @@ public class BytecodeMnemonicDictionary {
      * @return {@code true} if the test string matches a contracted bytecode mnemonic.
      */
     public boolean isContractedMnemonic( String string ) {
-        return this.contractedDictionary.contains( string );
+        return string != null ? this.contractedDictionary.contains( string.toLowerCase() ) : false;
     }
     
 
     // see if this is any use
     /**
-     * Case and format insensitive test for a bytecode mnemonic.
+     * Format insensitive test for a bytecode mnemonic.
      * @param string a string to test
      * @return {@code true} if the test string matches a bytecode mnemonic, 
      * whether contracted or not, regardless of case. 
      */
-    public boolean isMnemonicIgnoreCase( String string ) {
-        String normalisedString = string.toLowerCase();
-        return isMnemonic( normalisedString ) 
+    public boolean isMnemonic( String string ) {
+        if (string == null) {
+	    return false;
+	}
+	String normalisedString = string.toLowerCase();
+        return isUncontractedMnemonic( normalisedString ) 
                || isContractedMnemonic( normalisedString );
     }
     

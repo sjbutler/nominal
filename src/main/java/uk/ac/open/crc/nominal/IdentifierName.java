@@ -1,17 +1,18 @@
 /*
- Copyright (C) 2013-2015 The Open University
+    Copyright (C) 2013-2015 The Open University
+    Copyright (C) 2017 Simon Butler
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
+        http://www.apache.org/licenses/LICENSE-2.0
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
  */
 
 package uk.ac.open.crc.nominal;
@@ -229,7 +230,7 @@ public class IdentifierName {
     
     /**
      * A list of the modifiers used in the declaration. NB the list may be empty.
-     * @return a {@code List} pf modifiers.
+     * @return a {@code List} of modifiers.
      */
     public List<Modifier> modifiers() {
         return this.modifiers;
@@ -280,11 +281,9 @@ public class IdentifierName {
         getInformationList( InformationClassification informationClass ) {
         List<IdentifierInformation> classifiedInformationList = new ArrayList<>();
         
-        this.informationList.stream().filter( 
-                information -> 
-                        information.classification() == informationClass )
-                .forEach( information ->  
-                    classifiedInformationList.add( information ) );
+        this.informationList.stream()
+                .filter( information -> information.classification() == informationClass )
+                .forEach( information ->  classifiedInformationList.add( information ) );
         
         return classifiedInformationList;
     }
@@ -326,7 +325,6 @@ public class IdentifierName {
      * @return a boolean
      */
     public boolean containsAbbreviation() {
-//       AbbreviationInformation
         boolean containsAbbreviation = false;
         
         for ( Token token : this.tokenisedName.taggedTokens() ) {
@@ -495,6 +493,24 @@ public class IdentifierName {
         TypeAcronymInformation information = (TypeAcronymInformation) list.get( 0 );
         
         return information.isCorrect();
+    }
+    
+    /**
+     * Indicates is the name is a type acronym of a super type. The idea of a 
+     * 'super type acronym' is used by some developers in some declarations, for 
+     * example {@code BufferedInputStream is;}. So, this method identifies when
+     * a name of two or more characters forms the end of an acronym derived from 
+     * the type name.
+     * 
+     * <p>
+     * NB this method is experimental, and the .
+     * </p>
+     * 
+     * @return {@code true} if the name consists of two or more characters that
+     * form a substring of the RHS of an acronym of the type.
+     */
+    public boolean isSuperTypeAcronym() {
+        throw new UnsupportedOperationException();
     }
     
     /**

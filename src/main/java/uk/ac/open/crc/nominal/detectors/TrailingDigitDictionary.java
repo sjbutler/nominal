@@ -51,7 +51,7 @@ public class TrailingDigitDictionary {
     
     private TrailingDigitDictionary() {
         this.abbreviations = new HashSet<>();
-        try ( BufferedReader in = new BufferedReader( new InputStreamReader( this.getClass().getResourceAsStream( "trailing-digit-abbreviations" ) ) ) ) {
+        try ( BufferedReader in = new BufferedReader( new InputStreamReader( this.getClass().getResourceAsStream( "/wordlists/trailing-digit-abbreviations" ) ) ) ) {
             String line;
             while ( ( line = in.readLine() ) != null ) {
                 this.abbreviations.add( line.trim() );

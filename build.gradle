@@ -3,6 +3,7 @@
  */
 
 apply plugin: 'java-library'
+apply plugin: 'antlr'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
@@ -20,15 +21,30 @@ version = "0.1.0"
 sourceCompatibility = 1.8
 
 dependencies {
+    antlr 'org.antlr:antlr4:4.7'
+    
     // external dependencies
     api 'org.slf4j:slf4j-api:1.7.25'
     api 'org.slf4j:slf4j-jdk14:1.7.25'
-    compile 'uk.org.facetus:mdsc:0.1.0'
+    compile 'uk.org.facetus:mdsc:0.1.1'
     compile 'uk.org.facetus:idtk-j:0.5.0'
     compile 'org.antlr:antlr4-runtime:4.7'
-
+    compile 'org.apache.commons:commons-lang3:3.6'
+    
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
+}
+
+compileJava {
+    options.compilerArgs << '-Xlint:deprecation'
+}
+
+generateGrammarSource {
+    arguments += ["-visitor", "-long-messages"]
+}
+
+compileTestJava {
+    options.compilerArgs << '-Xlint:deprecation'
 }
 
 task javadocJar(type: Jar) {

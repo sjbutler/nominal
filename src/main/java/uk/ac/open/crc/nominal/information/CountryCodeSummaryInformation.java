@@ -1,17 +1,17 @@
 /*
- Copyright (C) 2013-2015 The Open University
+    Copyright (C) 2013-2015 The Open University
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
+	http://www.apache.org/licenses/LICENSE-2.0
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
  */
 
 package uk.ac.open.crc.nominal.information;
@@ -19,12 +19,12 @@ package uk.ac.open.crc.nominal.information;
 /**
  * Records whether a identifier name contains a token that is an ISO 3166 
  * alpha 2 or alpha 3 country code. Full details are in the information 
- * object attached to the token,
+ * object attached to the token.
  * <p>
  * The semantics of this object are inaccurate. The object records the presence
  * of an ISO 3166 country code in the name. Only JLS forbids the use of country 
  * codes. The semantics will change when the language is expanded to specify
- * the use of country codes. 
+ * the use of country codes. Accordingly this object reports only information.
  * </p>
  */
 public class CountryCodeSummaryInformation extends IdentifierInformation {

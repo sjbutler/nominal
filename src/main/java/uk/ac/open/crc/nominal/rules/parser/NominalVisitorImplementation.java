@@ -70,8 +70,9 @@ public class NominalVisitorImplementation extends NominalBaseVisitor<String> {
         String ruleName = context.TYPE_SELECTOR().toString();
         IdentifierClassification classification = 
                 IdentifierClassification.getClassificationFor( ruleName );
-        this.currentRuleset = this.rulesetGroup.get( classification );
-        
+	
+	this.currentRuleset = this.rulesetGroup.get( classification );
+	
         if ( this.currentRuleset == null ) {
             this.currentRuleset = new Ruleset( classification );
             this.rulesetGroup.add( currentRuleset );
