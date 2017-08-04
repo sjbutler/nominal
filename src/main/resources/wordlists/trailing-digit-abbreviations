@@ -9,6 +9,7 @@ html5
 http1
 http10
 http11
+http2
 i386
 i486
 i586
@@ -32,6 +33,11 @@ jdk15
 jdk16
 jdk17
 jdk18
+jdk19
+jdk6
+jdk7
+jdk8
+jdk9
 junit3
 junit4
 md5
@@ -47,11 +53,15 @@ soap12
 utf8
 utf16
 utf32
+win31
 win32
 win64
 win7
 win8
 win81
+win9
+win95
+win10
 x11
 x86
 xpp3

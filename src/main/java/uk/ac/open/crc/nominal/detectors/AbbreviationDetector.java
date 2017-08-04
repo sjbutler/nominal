@@ -23,7 +23,6 @@ import uk.ac.open.crc.mdsc.DictionaryManager;
 import uk.ac.open.crc.mdsc.DictionarySet;
 import uk.ac.open.crc.mdsc.Result;
 import uk.ac.open.crc.nominal.IdentifierName;
-import uk.ac.open.crc.nominal.Token;
 import uk.ac.open.crc.nominal.information.AbbreviationInformation;
 import uk.ac.open.crc.nominal.information.AbbreviationSummaryInformation;
 import uk.ac.open.crc.nominal.rules.RulesetGroup;
@@ -59,7 +58,7 @@ public class AbbreviationDetector implements Detector {
         
         List<AbbreviationInformation> informationList = new ArrayList<>();
         
-        for ( Token token : identifierName.taggedTokens() ) {
+	identifierName.taggedTokens().forEach( token ->  {
             List<Result> resultList = this.abbreviationDictionaries.spellCheck( token.text() );
 
             AbbreviationInformation information = new AbbreviationInformation( resultList ); 
@@ -73,8 +72,8 @@ public class AbbreviationDetector implements Detector {
             
             token.add( information );
             informationList.add( information );
-        }
-        
+        } );
+	
         AbbreviationSummaryInformation summaryInformation = 
                 new AbbreviationSummaryInformation( informationList );
        

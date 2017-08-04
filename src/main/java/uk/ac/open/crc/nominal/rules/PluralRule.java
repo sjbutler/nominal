@@ -18,8 +18,6 @@
 package uk.ac.open.crc.nominal.rules;
 
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import uk.ac.open.crc.nominal.IdentifierName;
 import uk.ac.open.crc.nominal.information.PluralInformation;
 import uk.ac.open.crc.nominal.information.IdentifierInformation;

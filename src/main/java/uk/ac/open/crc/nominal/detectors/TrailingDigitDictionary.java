@@ -69,11 +69,12 @@ public class TrailingDigitDictionary {
     }
     
     /**
-     * Indicates if the given string is found in the dictonary.
+     * Indicates if the given string is found in the dictionary.
      * @param string a token to test
      * @return true iff the string is recognised
      */
     boolean isAbbreviation( String string ) {
+	
         return this.abbreviations.contains( string );
     }
     
