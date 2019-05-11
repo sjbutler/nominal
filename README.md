@@ -11,17 +11,20 @@ can be found in the docs directory.
 ## Copyright and License
 
 nominal is Copyright (C) 2013-2015 The Open University and
-Copyright (C) 2017 Simon Butler. nominal is open
+Copyright (C) 2017-2019 Simon Butler. nominal is open
 source software licensed under version 2.0 of the Apache License. 
 A copy of the licence can be found in the file LICENCE and the
 text is available at https://www.apache.org/licenses/LICENSE-2.0
+
+## Getting Started
+A guide to working with nominal can be found at https://github.com/sjbutler/nominal/wiki/Nominal:-Getting-Started
 
 ## Requirements
 
 nominal requires Java v8 to run. 
 
 ## Build
-nominal is built using Gradle.
+nominal is built using maven, and could be built using Gradle or Ivy.
 
 ## Dependencies
 
@@ -31,7 +34,7 @@ nominal has the following dependencies:
     must be on the classpath when compiling and running nominal.
     Another slf4j jar will also be required to support logging
     -- see http://slf4j.org/ for more information
-    nominal was coded against slf4j v1.7.7, so v1.7.7 or greater
+    nominal was coded against slf4j v1.7.25, so v1.7.25 or greater
     should work
  2. mdsc - nominal uses mdsc which is available at
     https://github.com/sjbutler/mdsc/
@@ -42,7 +45,9 @@ nominal has the following dependencies:
     the classpath. nominal was coded against ANTLR v4.4
     See http://www.antlr.org/
     (ANTLRWorks 2 is a useful tool for working with ANTLR grammars)
+ 5. Apache Commons Lang3 - is available from https://commons.apache.org/
 
+All dependencies are available from maven central and specified in the POM.
 
 ## Caveat
 
