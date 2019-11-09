@@ -80,7 +80,7 @@ Nominal allows the following species and subspecies to be used to specify rules.
   - `class-gui-action`
   - `class-static-services`
 
-- interface
+- `interface`
   - `interface-mix-in`
 
 - `annotation`
@@ -134,7 +134,8 @@ Typography is defined using four instructions. The following rule for a local va
 local-variable {
     first-char: lower;
     body: mixed;
-}```
+}
+```
 
 The following rule for a constant field name also includes the use of separator characters. Currently the `separator` keyword allows a set of separator characters to be specified separated by commas. The default behaviour is that only one separator character is permitted between each token in a name, but `+` can be appended to any separator character to permit the use of one or more consecutive separators, e.g. `separator: _+,$;` which allows multiple underscores between tokens and single dollar signs.
 ```
@@ -142,13 +143,15 @@ field-constant {
     first-char: upper;
     body: upper;
     separator: _;
-}```
+}
+```
 
 ## Content Types
 
 Content types permitted in a name are defined using the `content` keyword. For example:
 ```
-content: cipher, type-acronym, NP;```
+content: cipher, type-acronym, NP;
+```
 
 The language allows the specification of phrasal and non-phrasal content.
 
