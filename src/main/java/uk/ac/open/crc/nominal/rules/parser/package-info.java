@@ -1,6 +1,9 @@
 /*
     Copyright (C) 2013-2015 The Open University
 
+    SPDX-FileCopyrightText: 2013-2015 The Open University
+    SPDX-License-Identifier: Apache-2.0
+
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
@@ -16,11 +19,9 @@
 /**
  * An ANTLR 4 parser for the nominal language.
  * 
- * <p>
- * The parser and the{@code NominalVisitorImplementation} class are invoked from 
- * {@code RulesetGroupFactory}. Nominal.g4 contains the grammar for 
- * .nom files and details of the nominal language can be found in 
- * docs/nominal-language.
- * </p>
+ * <p> The parser and the{@code NominalVisitorImplementation} class
+ * are invoked from {@code RulesetGroupFactory}. Nominal.g4 contains
+ * the grammar for .nom files and details of the nominal language can
+ * be found in docs/nominal-language.</p>
  */
 package uk.ac.open.crc.nominal.rules.parser;

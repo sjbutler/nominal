@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright (C) 2013-2015 The Open University
+    Copyright (C) 2017 Simon Butler
+
+    SPDX-FileCopyrightText: 2013-2015 The Open University
+    SPDX-License-Identifier: Apache-2.0
+-->
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
 	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>

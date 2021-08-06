@@ -1,3 +1,8 @@
+<!-- 
+    SPDX-FileCopyrightText: 2013-2015 The Open University
+    SPDX-FileCopyrightText: 2017-2021 Simon Butler
+    SPDX-License-Identifier: Apache-2.0
+-->
 # Citing
 
 You should cite the following paper for nominal:
